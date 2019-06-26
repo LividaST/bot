@@ -1,0 +1,3 @@
+# bot
+
+Official Discord bot!
