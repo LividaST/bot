@@ -3,12 +3,7 @@ const cooldown = new Set();
 module.exports = {
     name: "message",
     run: async (client, msg) => {
-        if(msg.author.bot) return;
-        if(msg.channel.type == "dm") {
-            
-        };
-
-        if(!msg.guild) return;
+        if(msg.author.bot || !msg.guild) return;
 
         const confPrefix = await client.Models.Prefix.findOne({
             guildID: msg.guild.id
@@ -27,7 +22,7 @@ module.exports = {
                     if(command.permissions && !msg.member.hasPermission(command.permissions) && msg.author.id !== client.creator.id) return client.Errors.noPerms(msg.channel, command.permissions);
                     if(command.clientPerms && !msg.guild.me.hasPermission(command.clientPerms)) return client.Errors.noClientPerms(msg.channel, command.clientPerms);
                     if(command.requiresArgs === true && args.length < 1) return client.Errors.noArgs(msg.guild, msg.channel, command.name);
-                    if(command.creatorOnly && !client.creators.ids.includes(msg.author.id)) return msg.react("664138952730607640");
+                    if(command.creatorOnly && !client.creators.ids.includes(msg.author.id)) return;
 
                     command.run(client, msg, args);
                     
@@ -43,25 +38,6 @@ module.exports = {
             if(msg.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
                 msg.channel.send(new client.Embed().none(`Hey there! I am **${client.user.username}**, here to help! To get started just type \`${prefix}help\` and everything will come up!`).setFooter("This message will delete in 20 secodns")).then(m => m.delete(20000));
             };
-
-            if (msg.content.includes(msg.mentions.users.first())) {
-                let mentioned = client.afk.get(msg.mentions.users.first().id);
-                if(mentioned) msg.channel.send(`**${mentioned.usertag}** is currently afk. Reason: ${mentioned.reason}`);
-            };
-
-            const settings = await client.Models.Logs.findOne({
-                guildID: msg.guild.id
-            });
-            if(settings !== null && settings.antiInviteChannelIDs !== null) {
-                const invRegex = /(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]/m;
-                if(settings.antiInviteChannelIDs.includes(msg.channel.id) && invRegex.test(msg.content.toLowerCase())) {
-                    msg.delete("Contained an invite in anti-invite channels");
-                    msg.channel.send(`${client.Emojis.x} You may not send invites in this channel **${msg.author.username}**#${msg.author.discriminator}!`).then(m => m.delete(10000));
-                };
-            };
-
-            let afkcheck = client.afk.get(msg.author.id);
-            if(afkcheck) return [client.afk.delete(msg.author.id), msg.channel.send(`Welcome back ${msg.author}! I have removed your afk!`).then(m => m.delete(20000))];
         };
     }
 };

@@ -11,8 +11,8 @@ module.exports = class Errors {
                 .setAuthor("An unknown error occured!")
                 .setColor("RED")
                 .addField("Error", err.message)
-                .addField("In server", `**${msg.guild.name}** | \`${msg.guild.id}\``, true)
-                .addField("By user", `${msg.author} | **${msg.author.tag}** | \`${msg.author.id}\``, true)
+                .addField("In server", `**${msg.guild.name}**  \`${msg.guild.id}\``, true)
+                .addField("By user", `${msg.author}  **${msg.author.tag}**  \`${msg.author.id}\``, true)
                 .setTimestamp();
             bugs.send(embed);
         } catch(err) {
@@ -25,7 +25,7 @@ module.exports = class Errors {
         const prefix = await this.client.Models.Prefix.findOne({
             guildID: guild.id
         });
-        channel.send(new this.client.Embed().error(`That command requries arguments! Correct usage \`${prefix ? prefix.prefix : "?"}${commandName} ${this.client.commands.get(commandName).usage}\``));
+        channel.send(new this.client.Embed().error(`That command requires arguments! Correct usage \`${prefix ? prefix.prefix : "?"}${commandName} ${this.client.commands.get(commandName).usage}\``));
     };
 
     saveFail(msg, err) {

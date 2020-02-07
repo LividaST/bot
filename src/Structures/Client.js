@@ -9,9 +9,9 @@ const Embed = require("./Embed");
 module.exports = class Bot extends Client {
     constructor(options = {}) {
         super(options);
-        this.musicEnabled = false;
+        this.musicEnabled = true;
         this.nodes = [
-            { host: "localhost", port: "2333", password: "youshallpass"}
+            { host: "localhost", port: "2333", password: "youshallpass" }
         ];
         this.bugReportsChannelID = "";
         this.token = process.env.TOKEN;
@@ -85,19 +85,6 @@ module.exports = class Bot extends Client {
             target = msg.mentions.channels.first() ||
                     msg.guild.channels.get(query);
         }
-        return target;
-    };
-
-    getCategoryTarget(msg, query) {
-        let target;
-        if(query.length > 3) {
-            target = msg.mentions.channels.filter(ch => ch.type === "category").first() || 
-                    msg.guild.channels.find(ch => ch.id === query && ch.type === "category")
-                    msg.guild.channels.filter(ch => ch.name.includes(query.toLowerCase()) && ch.type === "category").first();
-        } else {
-            target = msg.mentions.channels.filter(ch => ch.type === "category").first() || 
-                    msg.guild.channels.find(ch => ch.id === query && ch.type === "category");
-        };
         return target;
     };
 
