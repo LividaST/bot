@@ -19,7 +19,6 @@ module.exports = {
         let commandSize = client.commands.size;
         let embed = new client.Embed()
             .setColor(msg.guild.me.highestRole.color || "BLUE")
-            .setDescription(`Do \`${prefixDB ? prefixDB.prefix : client.prefix}help [command | category]\``)
             .setFooter(`Currently running ${commandSize} commands! | < optional >  [ required ]`);
 
         if(!args[0]) {

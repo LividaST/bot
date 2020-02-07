@@ -11,7 +11,7 @@ module.exports = class Bot extends Client {
         super(options);
         this.musicEnabled = true;
         this.nodes = [
-            { host: "localhost", port: "2333", password: "youshallpass" }
+            { host: "localhost", port: "2333", password: "youshallnotpass" }
         ];
         this.bugReportsChannelID = "";
         this.token = process.env.TOKEN;
@@ -20,7 +20,7 @@ module.exports = class Bot extends Client {
         this.commands = new Collection();
         this.aliases = new Collection();
         this.afk = new Map();
-        this.prefix = "/";
+        this.prefix = "-";
         this.creators = {
             tags: ["Matievis The Kat#8509"],
             ids: ["492708936290402305"]
