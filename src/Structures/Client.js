@@ -28,7 +28,7 @@ module.exports = class Bot extends Client {
         this.Colours = { yellow: "#F7DC6F", orange: "#FB8C00" };
         this.Embed = Embed;
         this.Errors = new Errors(this);
-        this.Models = require("./Models");
+        this.Models = require("./Constants/Models");
         this.Emojis = require("./Constants/Emojis");
     };
 

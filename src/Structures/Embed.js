@@ -1,5 +1,5 @@
 const { RichEmbed } = require("discord.js");
-const { x, check} = require("./Emojis");
+const { x, check} = require("./Constants/Emojis");
 
 module.exports = class Embed extends RichEmbed {
     constructor(data) {
