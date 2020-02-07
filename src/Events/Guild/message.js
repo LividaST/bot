@@ -1,5 +1,4 @@
 const cooldown = new Set();
-const talked = new Set();
 
 module.exports = {
     name: "message",
