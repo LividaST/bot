@@ -11,24 +11,6 @@ module.exports = {
 
         if(!msg.guild) return;
 
-        const settings = await client.Models.Logs.findOne({
-            guildID: msg.guild.id,
-        });
-        if(settings !== null && settings.antiSpam === true) {
-            if(talked.has(msg.author.id)) {
-                msg.delete(`${msg.author.tag} was spamming!`);
-                msg.channel.send(`${client.Emojis.x} You are sending messages to quickly **${msg.author.username}**#${msg.author.discriminator}!`).then(m => m.delete(10000));
-                setTimeout(function() {
-                    talked.delete(msg.author.id);
-                }, 1000);
-            } else {
-                talked.add(msg.author.id);
-                setTimeout(function() {
-                    talked.delete(msg.author.id);
-                }, 500);
-            };
-        };
-
         const confPrefix = await client.Models.Prefix.findOne({
             guildID: msg.guild.id
         });
@@ -59,21 +41,6 @@ module.exports = {
                 client.Errors.unknownErr(msg, err);
             };
         } else {
-            const agreeSettings = await client.Models.Agree.findOne({
-                guildID: msg.guild.id
-            });
-            if(agreeSettings !== null && agreeSettings.channelID === msg.channel.id && agreeSettings.roleID !== null && !msg.member.hasPermission("ADMINISTRATOR")) {
-                if(msg.content.toLowerCase() !== "agree") return msg.delete();
-                try {
-                    await msg.member.addRole(agreeSettings.roleID);
-                    msg.channel.send(`${client.Emojis.check} You have been verified **${msg.author.username}**${msg.author.discriminator}!`).then(m => m.delete(5000));
-                    msg.delete();
-                } catch(err) {
-                    client.log(err);
-                    return msg.channel.send(`${client.Emojis.x} I failed to verify you! Please contact the support team for this server! If you believe this is a problem with the bot please report it to the developers!`);
-                };
-            };
-
             if(msg.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
                 msg.channel.send(new client.Embed().none(`Hey there! I am **${client.user.username}**, here to help! To get started just type \`${prefix}help\` and everything will come up!`).setFooter("This message will delete in 20 secodns")).then(m => m.delete(20000));
             };
