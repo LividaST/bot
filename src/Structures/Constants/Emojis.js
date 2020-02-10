@@ -1,6 +1,6 @@
 module.exports = {
-    x: "<:xemoji:672073562307297293>",
-    check: "<:checkemoji:672073550886338626>",
+    x: "<:cross:571759105979449354>",
+    check: "<:check:571759102561091597>",
     neutral: "<:neutral:655331837014704139>",
     retroCoin: "<:coin:650379649242890252>",
     err: "<:outage:659441700946706433>",
