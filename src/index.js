@@ -1,5 +1,5 @@
 require('dotenv').config();
-const Bot = require('./structures/Client.js');
+const Bot = require('./structures/Client');
 const client = new Bot({
 	disableEveryone: false,
 	sync: true,
