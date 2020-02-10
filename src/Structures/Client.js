@@ -9,7 +9,7 @@ const Embed = require("./Embed");
 module.exports = class Bot extends Client {
     constructor(options = {}) {
         super(options);
-        this.musicEnabled = true;
+        this.musicEnabled = false;
         this.nodes = [
             { host: "localhost", port: "2333", password: "youshallnotpass" }
         ];
