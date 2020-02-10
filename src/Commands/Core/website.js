@@ -11,7 +11,7 @@ module.exports = {
     creatorOnly: false,
     guildOnly: false,
     premiumOnly: false,
-    requiresArgs: true,
+    requiresArgs: false,
     run: async (client, msg, args) => {
         const embed = new RichEmbed()
         .setTitle("Website")
