@@ -1,5 +1,5 @@
 {
-  "name": "lividia-bot",
+  "name": "livida-bot",
   "version": "1.0.0",
   "description": "Official Discord bot!",
   "main": "src/index.js",
@@ -26,5 +26,6 @@
     "mongoose": "^5.8.5",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0"
-  }
+  },
+  "devDependencies": {}
 }
