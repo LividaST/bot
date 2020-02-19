@@ -11,6 +11,6 @@ client.connectToDB();
 client.loadEvents();
 client.loadCommands();
 client.login(Bot.token).catch(err => client.log(err));
-client.on("error", err => client.log(err));
+client.on('error', err => client.log(err));
 
 module.exports = client;
