@@ -19,7 +19,6 @@
   "homepage": "https://gitlab.com/livida/discord/bot#readme",
   "dependencies": {
     "@sentry/node": "^5.12.2",
-    "beautify": "0.0.8",
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
     "erela.js": "^1.0.8",
@@ -29,5 +28,7 @@
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "standard": "^14.3.1"
+  }
 }
