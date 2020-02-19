@@ -1,5 +1,3 @@
-const { RichEmbed } = require('discord.js')
-
 module.exports = {
   name: 'help',
   aliases: ['cmds', 'commands'],
@@ -28,7 +26,7 @@ module.exports = {
       }, []).sort()
 
       categories.forEach(c => {
-        let commands = client.commands.filter(command => command.category == c)
+        let commands = client.commands.filter(command => command.category === c)
         commands = commands.map(cmd => cmd.name)
         if (commands.length <= 0) return
         commandSize += commands.length
