@@ -1,6 +1,6 @@
 module.exports = {
-    name: "",
-    run: async (client, ) => {
+  name: '',
+  run: async (client) => {
 
-    }
-};
+  }
+}
