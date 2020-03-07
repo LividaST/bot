@@ -5,7 +5,7 @@ const client = new Bot({
   sync: true
 })
 const Sentry = require('@sentry/node')
-Sentry.init({ dsn: 'https://25416379e40f4312ad4a5b56e8a72edb@sentry.io/2648219' })
+Sentry.init({ dsn: process.env.DSN })
 
 client.connectToDB()
 client.loadEvents()
