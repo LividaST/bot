@@ -28,3 +28,8 @@ jobs:
     - run: npm run start
       env:
         CI: true
+        TOKEN:  ${{ secrets BOT_TOKEN}}
+        URL: ${{ secrets MONGODB}}
+        COMMAND_DIR: ../Commands
+        EVENT_DIR: ../Events
+        DSN: SENTRYDSN 
