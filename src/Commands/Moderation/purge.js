@@ -11,6 +11,12 @@ module.exports = {
     premiumOnly: false,
     requiresArgs: true,
     run: async (client, msg, args) => {
+        function err(input) {
+            let embed = new client.Embed()
+            .setColor("RED")
+            .setDescription("An error has occured while running the command!\n```" + input + "```")
+        return embed;
+        }
         if(isNaN(args[0])) {
             msg.channel.send("The provided value is not a number!").then(message => {
                 setTimeout(() => {
@@ -20,10 +26,12 @@ module.exports = {
             });
         } else if(Number(args[0]) > 100) {
             await msg.channel.bulkDelete(100)
-            msg.channel.send("Successfully purged 100 messages!").then(message => {message.delete(5000)})
+            setTimeout(50)
+            msg.channel.send("Successfully purged 100 messages!").then(message => {message.delete(5000)}).catch(error => message.channel.send(err(error.stack)));
         } else {
             await msg.channel.bulkDelete(args[0])
-            msg.channel.send("Successfully purged " + args[0] + " messages!").then(message => {message.delete(5000)})
+            setTimeout(50)
+            msg.channel.send("Successfully purged " + args[0] + " messages!").then(message => {message.delete(5000)}).catch(error => message.channel.send(err(error.stack)));
         }
     }
   };
