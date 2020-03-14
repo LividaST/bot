@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 module.exports = client => {
     app.post("/newBlogPost", function(req, res){
-        let post = req.body.post.current, thumbnail = post.feature_image || "https://i.imgur.com/o1KuRqv.png",
+        let post = req.body.post.current, thumbnail = (post.feature_image || "https://i.imgur.com/o1KuRqv.png"),
             embed = new discord.RichEmbed()
             .setTitle(post.title)
             .setAuthor(`Author: ${post.primary_author.name}`)
