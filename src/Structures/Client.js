@@ -13,7 +13,7 @@ module.exports = class Bot extends Client {
     this.nodes = [
       { host: 'localhost', port: '2333', password: 'youshallnotpass' }
     ]
-    this.bugReportsChannelID = ''
+    this.bugReportsChannelID = '688496042903207951'
     this.token = process.env.TOKEN
     this.commandDir = process.env.COMMAND_DIR
     this.eventDir = process.env.EVENT_DIR
