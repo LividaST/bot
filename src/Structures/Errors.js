@@ -25,7 +25,7 @@ module.exports = class Errors {
     const prefix = await this.client.Models.Prefix.findOne({
       guildID: guild.id
     })
-    channel.send(new this.client.Embed().error(`That command requires arguments! Correct usage \`${prefix ? prefix.prefix : '?'}${commandName} ${this.client.commands.get(commandName).usage}\``))
+    channel.send(new this.client.Embed().error(`That command requires arguments! Correct usage \`${prefix ? prefix.prefix : '-'}${commandName} ${this.client.commands.get(commandName).usage}\``))
   };
 
   saveFail (msg, err) {
