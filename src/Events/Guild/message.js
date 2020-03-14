@@ -1,4 +1,5 @@
 const cooldown = new Set()
+const Sentry = require('@sentry/node')
 
 module.exports = {
   name: 'message',
@@ -33,6 +34,7 @@ module.exports = {
       } catch (err) {
         client.log(err)
         client.Errors.unknownErr(msg, err)
+        Sentry.captureException(err)
       };
     } else {
       if (msg.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
