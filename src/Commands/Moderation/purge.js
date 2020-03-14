@@ -21,12 +21,14 @@ module.exports = {
             });
         } else if(Number(args[0]) >= 100) {
             await msg.channel.bulkDelete(99)
-            setTimeout(50)
-            msg.channel.send("Successfully purged 100 messages!").then(message => {message.delete(5000)})
+            setTimeout(()=>{
+                msg.channel.send("Successfully purged 100 messages!").then(message => {message.delete(5000)})
+            },50)
         } else {
             await msg.channel.bulkDelete(args[0])
-            setTimeout(50)
-            msg.channel.send("Successfully purged " + args[0] + " messages!").then(message => {message.delete(5000)})
+            setTimeout(() =>{
+                msg.channel.send("Successfully purged " + args[0] + " messages!").then(message => {message.delete(5000)})
+            },50)
         }
     }
   };
