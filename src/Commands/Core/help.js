@@ -42,7 +42,7 @@ module.exports = {
         if (!commands.size) return msg.channel.send(new client.Embed().error('I could not find any commands for that category!'))
         embed.addField(`**Query:** ${args.join(' ')}`, `${commands.map(c => `\`${c.name}\` `)}`)
         return msg.channel.send(embed)
-      } else if (command) {
+      } else {
         embed.setAuthor(`${command.category.toLowerCase()}:${command.name.toLowerCase()}`, msg.author.avatarURL)
         embed.setDescription(`\`\`\`yaml\n${command.description}\`\`\``)
         if (command.aliases.length >= 1) embed.addField('Aliases', `\`${command.aliases.join('`, `')}\``)
