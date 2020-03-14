@@ -42,16 +42,15 @@ module.exports = {
         if (!commands.size) return msg.channel.send(new client.Embed().error('I could not find any commands for that category!'))
         embed.addField(`**Query:** ${args.join(' ')}`, `${commands.map(c => `\`${c.name}\` `)}`)
         return msg.channel.send(embed)
-      } else if (command) {
+      } else {
         embed.setAuthor(`${command.category.toLowerCase()}:${command.name.toLowerCase()}`, msg.author.avatarURL)
         embed.setDescription(`\`\`\`yaml\n${command.description}\`\`\``)
         if (command.aliases.length >= 1) embed.addField('Aliases', `\`${command.aliases.join('`, `')}\``)
         if (command.usage !== null) embed.addField('Usage', `${prefixDB ? prefixDB.prefix : client.prefix}${command.name} ${command.usage}`, true)
         if (command.permissions !== null) embed.addField('Required Permissions', `User: \`${command.permissions}\`\nClient: \`${command.clientPerms}\``)
         embed.addField('Premium Only', command.premiumOnly ? command.premiumOnly : false, true)
-
         return msg.channel.send(embed)
-      } else return msg.channel.send(new client.Embed().error('I could not find that category or command!'))
+      } 
     };
   }
 }
