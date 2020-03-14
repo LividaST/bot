@@ -32,4 +32,4 @@ jobs:
         URI: ${{ secrets MONGODB }}
         COMMAND_DIR: ../Commands
         EVENT_DIR: ../Events
-        DSN: ${{ SENTRYDSN }}
+        DSN: ${{ secrets SENTRYDSN }}
