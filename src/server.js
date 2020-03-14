@@ -5,7 +5,7 @@ const discord = require("discord.js"),
 app.use(bodyParser.json());
 
 module.exports = client => {
-    var app = express();
+    var app = express(),
         port = 3000,
         listener = app.listen(port, () => {
             console.log("Your app is listening on port " + listener._connectionKey.split("::::")[1])
