@@ -21,5 +21,8 @@ module.exports = {
 
     client.user.setPresence({ game: { name: `-help | ${client.guilds.size} guilds` }, status: 'online' })
     client.log(`${client.user.tag} is online with ${client.guilds.size} guilds logged!`)
+
+    // Start express server
+    require(`${process.cwd()}/src/server.js`)(client);
   }
 }
