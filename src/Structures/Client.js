@@ -19,8 +19,8 @@ module.exports = class Bot extends Client {
     this.afk = new Map()
     this.prefix = '-'
     this.creators = {
-      tags: ["Callum#6052"],
-      ids: ["506899274748133376"]
+      tags: ["Callum#6052", "MegaJoshy#0001"],
+      ids: ["506899274748133376", "264617372227338241"]
     }
     this.Colours = { yellow: '#F7DC6F', orange: '#FB8C00' }
     this.Embed = Embed

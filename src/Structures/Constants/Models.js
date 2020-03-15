@@ -37,17 +37,17 @@ const Logs = new mongoose.Schema({
   guildChannelUpdateLogs: String,
   guildChannelDeleteLogs: String,
   // Emojis
-  guildEmojiCreateLog: String,
-  guildEmojiUpdateLog: String,
-  guildEmojiDeleteLog: String,
+  guildEmojiCreateLogs: String,
+  guildEmojiUpdateLogs: String,
+  guildEmojiDeleteLogs: String,
   // Webhook Logs
   guildWebhookCreateLogs: String,
   guildWebhookUpdateLogs: String,
   guildWebhookDeleteLogs: String,
 
   // Messages Logs
-  messageUpdateLog: String,
-  messageDeleteLog: String,
+  messageUpdateLogs: String,
+  messageDeleteLogs: String,
 
 
 })
