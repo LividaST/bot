@@ -13,14 +13,43 @@ const xpSchema = new mongoose.Schema({
 })
 
 const Logs = new mongoose.Schema({
+  // Guild ID
   guildID: String,
-  modLogID: String,
-  starboardChannelID: String,
-  antiInviteChannelIDs: Array,
-  antiSwear: Boolean,
-  antiSpam: Boolean,
-  updatedMessageLog: String,
-  deletedMessageLog: String
+
+  // Log Channels
+  guildChangeLogsChannel: String,
+  messageLogsChannel: String,
+
+  // Ignored
+  ignoredRoles: Array,
+  ignoreChannels: Array,
+  ignoredUsers: Array,
+
+  // Guild change Logs
+  // Members
+  guildMemberUpdateLogs: String,
+  guildMemberSoftBanLogs: String,
+  guildMemberBanLogs: String,
+  guildMemberKickLogs: String,
+  guildMemberWarnLogs: String,
+  // Channels
+  guildChannelCreateLogs: String,
+  guildChannelUpdateLogs: String,
+  guildChannelDeleteLogs: String,
+  // Emojis
+  guildEmojiCreateLog: String,
+  guildEmojiUpdateLog: String,
+  guildEmojiDeleteLog: String,
+  // Webhook Logs
+  guildWebhookCreateLogs: String,
+  guildWebhookUpdateLogs: String,
+  guildWebhookDeleteLogs: String,
+
+  // Messages Logs
+  messageUpdateLog: String,
+  messageDeleteLog: String,
+
+
 })
 
 const Premium = new mongoose.Schema({

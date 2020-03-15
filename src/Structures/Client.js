@@ -10,9 +10,6 @@ module.exports = class Bot extends Client {
   constructor (options = {}) {
     super(options)
     this.musicEnabled = false
-    this.nodes = [
-      { host: 'localhost', port: '2333', password: 'youshallnotpass' }
-    ]
     this.bugReportsChannelID = '688496042903207951'
     this.token = process.env.TOKEN
     this.commandDir = process.env.COMMAND_DIR
@@ -22,8 +19,8 @@ module.exports = class Bot extends Client {
     this.afk = new Map()
     this.prefix = '-'
     this.creators = {
-      tags: [],
-      ids: []
+      tags: ["Callum#6052"],
+      ids: ["506899274748133376"]
     }
     this.Colours = { yellow: '#F7DC6F', orange: '#FB8C00' }
     this.Embed = Embed
