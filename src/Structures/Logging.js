@@ -1,4 +1,4 @@
-const client = require(`./src/index.js`), mongoose = require("mongoose");
+const client = require(`${process.cwd()}/src/index.js`), mongoose = require("mongoose");
 
 async function executer(type, guildID) {
     const audit = await client.guilds.get(guildID).fetchAuditLogs({type: type}).then(audit => audit.entries.first());
