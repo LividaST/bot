@@ -44,7 +44,7 @@ module.exports = {
                 break;
             case "enable":
             case "true":
-                let embed = new client.Embed()
+                let casesEmbed = new client.Embed()
                 .setDescription(`
                 Make sure to mention which logs you want to enable!
                 \`
@@ -70,7 +70,7 @@ module.exports = {
             break;
             case "list":
             case "show":
-                let embed = new client.Embed()
+                let configEmbed = new client.Embed()
                     .setTitle("Livida • Log configuration")
                     .setDescription(`
                     **Log Channels**
@@ -79,7 +79,7 @@ module.exports = {
                     **Enabled/Disabled**
                     • Channel Creation Logs: ${Logs.guildChannelCreateLogs.enabled.toString().toLowerCase().replace("true", "Enabled").replace("false", "Disabled")}
                     `)
-                    msg.channel.send(embed);
+                    msg.channel.send(configEmbed);
             break;
         }
     }
