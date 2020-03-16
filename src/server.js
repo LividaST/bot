@@ -1,7 +1,7 @@
 const express = require("express"),
       bodyParser = require("body-parser");
 
-const client = require(`./src/index.js`);
+const client = require(`${process.cwd()}/src/index.js`);
 
     var app = express(),
         port = 3000,
