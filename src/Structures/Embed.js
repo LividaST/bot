@@ -14,7 +14,7 @@ module.exports = class Embed extends RichEmbed {
   };
 
   none (msg) {
-    this.setColor('BLUE')
+    this.setColor('#8800FF')
       .setDescription(msg)
     return this
   };

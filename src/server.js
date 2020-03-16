@@ -9,7 +9,7 @@ module.exports = client => {
         listener = app.listen(port, () => {
             console.log("Your app is listening on port " + listener._connectionKey.split("::::")[1])
         }),
-    channel = "668906486189129753"; // ID Of channel the new blog post will be sent too. Currently set to test server channel.
+    channel = "656498579518783508"; // ID of channel. Currently set to Livida's announcements.
     app.use(bodyParser.json());
     app.post("/newBlogPost", function(req, res){
         let post = req.body.post.current, thumbnail = (post.feature_image || "https://i.imgur.com/o1KuRqv.png"),
