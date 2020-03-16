@@ -53,10 +53,10 @@ module.exports = {
                 `)
                 if(!args[1]) return msg.channel.send(casesEmbed);
                 switch (args[1].toLowerCase()) {
-                    case "":
+                    case "channelUpdates":
                         Logs.findOneAndUpdate(query, {guildChannelCreateLogs: {enabled: true }}, {upsert: true}, function(err, doc) {
                             if (err) return msg.channel.send(err);
-                            msg.channel.send("Successfully enabled channelCreate logs!").then(message => {
+                            msg.channel.send("Successfully enabled `channelUpdates` logs!").then(message => {
                                 msg.delete(5000);
                                 message.delete(5000);
                             });
