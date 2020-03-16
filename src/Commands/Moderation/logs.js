@@ -11,6 +11,7 @@ module.exports = {
     premiumOnly: false,
     requiresArgs: false,
     run: async (client, msg, args) => {
+        const cases = ["channelUpdates", "memberUpdates", "emojiUpdates"]
         var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
             query = {guildID: msg.guild.id};
 
@@ -24,7 +25,6 @@ module.exports = {
 
         switch(args[0].toLowerCase()) {
             case "setchannel": 
-            const cases = ["channelUpdates", "memberUpdates", "emojiUpdates"]
 
                 switch(args[1].toLowerCase()) {
                     case "guildupdates":
@@ -44,7 +44,6 @@ module.exports = {
                 break;
             case "enable":
             case "true":
-                const cases = ["channelUpdates", "memberUpdates", "emojiUpdates"]
                 let embed = new client.Embed()
                 .setDescription(`
                 Make sure to mention which logs you want to enable!
