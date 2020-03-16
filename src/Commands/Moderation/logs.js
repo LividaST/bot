@@ -33,8 +33,11 @@ module.exports = {
                             message.delete(5000);
                         });
                         Logs.findOneAndUpdate(query, {guildChangeLogsChannel: args[3] }, {upsert: true}, function(err, doc) {
-                            if (err) return res.send(500, {error: err});
-                            return res.send('Succesfully saved.');
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully set guildUpdates log channel!").then(message => {
+                                msg.delete(5000);
+                                message.delete(5000);
+                            });
                         });
                     break;
                 }
