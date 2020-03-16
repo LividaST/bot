@@ -18,38 +18,11 @@ const Logs = new mongoose.Schema({
   guildID: { type: String },
 
   // Log Channels
-  guildChangeLogsChannel: { type: String, default: "Not Set"},
-  messageLogsChannel: { type: String, default: "Not Set"},
-
-  // Ignored
-  ignoredRoles: { type: String, default: []},
-  ignoreChannels: { type: String, default: []},
-  ignoredUsers: { type: String, default: []},
-
-  // Guild change Logs
-  // Members
-  guildMemberUpdateLogs: { type: String, default: {enabled: false}},
-  guildMemberSoftBanLogs: { type: String, default: {enabled: false}},
-  guildMemberBanLogs: { type: String, default: {enabled: false}},
-  guildMemberKickLogs: { type: String, default: {enabled: false}},
-  guildMemberWarnLogs: { type: String, default: {enabled: false}},
-  // Channels
-  guildChannelCreateLogs: { type: String, default: {enabled: false}},
-  guildChannelUpdateLogs: { type: String, default: {enabled: false}},
-  guildChannelDeleteLogs: { type: String, default: {enabled: false}},
-  // Emojis
-  guildEmojiCreateLogs: { type: String, default: {enabled: false}},
-  guildEmojiUpdateLogs: { type: String, default: {enabled: false}},
-  guildEmojiDeleteLogs: { type: String, default: {enabled: false}},
-  // Webhook Logs
-  guildWebhookCreateLogs: { type: String, default: {enabled: false}},
-  guildWebhookUpdateLogs: { type: String, default: {enabled: false}},
-  guildWebhookDeleteLogs: { type: String, default: {enabled: false}},
-
-  // Messages Logs
-  messageUpdateLogs: { type: String, default: {enabled: false}},
-  messageDeleteLogs: { type: String, default: {enabled: false}},
-
+  channelUpdates: { type: String, default: {enabled: false, channel: "Not Set"}},
+  memberUpdates: { type: String, default: {enabled: false, channel: "Not Set"}},
+  messageUpdates: { type: String, default: {enabled: false, channel: "Not Set"}},
+  emojiUpdates: { type: String, default: {enabled: false, channel: "Not Set"}},
+  
 
 })
 
