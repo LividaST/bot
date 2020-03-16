@@ -29,7 +29,13 @@ module.exports = {
     const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
 
     client.guilds.forEach(guild => {
-      new Logs({guildID: guild.id})
+      new Logs({
+        guildID: guild.id,
+        channelUpdates: { enabled: Logs.channelUpdates.enabled || false, channel: Logs.channelUpdates.channel || "Not Set"},
+        memberUpdates: { enabled: Logs.memberUpdates.enabled || false, channel: Logs.memberUpdates.channel || "Not Set"},
+        messageUpdates: { enabled: Logs.messageUpdates.enabled || false, channel: Logs.messageUpdates.channel || "Not Set"},
+        emojiUpdates: { enabled: Logs.emojiUpdates.enabled || false, channel: Logs.emojiUpdates.channel || "Not Set"},
+      })
     })
   }
 }
