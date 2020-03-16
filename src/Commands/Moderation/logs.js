@@ -24,13 +24,13 @@ module.exports = {
 
         switch(args[0].toLowerCase()) {
             case "setchannel": 
-                switch(args[2].toLowerCase()) {
+                switch(args[1].toLowerCase()) {
                     case "guildupdates":
-                        if(!args[3]) return msg.channel.send("Make sure to provide a channel that logs will be sent too.").then(message => {
+                        if(!args[2]) return msg.channel.send("Make sure to provide a channel that logs will be sent too.").then(message => {
                             msg.delete(5000);
                             message.delete(5000);
                         });
-                        Logs.findOneAndUpdate(query, {guildChangeLogsChannel: args[3] }, {upsert: true}, function(err, doc) {
+                        Logs.findOneAndUpdate(query, {guildChangeLogsChannel: args[2] }, {upsert: true}, function(err, doc) {
                             if (err) return msg.channel.send(err);
                             msg.channel.send("Successfully set guildUpdates log channel!").then(message => {
                                 msg.delete(5000);
@@ -69,7 +69,7 @@ module.exports = {
                     **Enabled/Disabled**
                     • Channel Creation Logs: ${Logs.guildChannelCreateLogs.enabled.toString().toLowerCase().replace("true", "Enabled").replace("false", "Disabled")}
                     `)
-                    message.channel.send(embed);
+                    msg.channel.send(embed);
             break;
         }
     }
