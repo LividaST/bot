@@ -26,19 +26,29 @@ module.exports = {
 
         switch(args[0].toLowerCase()) {
             case "setchannel": {
-                if(!args[2]) return msg.channel.send("Make sure to provide a channel that logs will be sent too.");
-                Logs.findOneAndUpdate(query, {guildChangeLogsChannel: args[2].id }, {upsert: true}, function(err, doc) {
-                    if (err) return res.send(500, {error: err});
-                    return res.send('Succesfully saved.');
-                });
+                switch(args[2].toLowerCase()) {
+                    case "guildUpdates":
+                        if(!args[3]) return msg.channel.send("Make sure to provide a channel that logs will be sent too.").then(message => {
+                            msg.delete(5000);
+                            message.delete(5000);
+                        });
+                        Logs.findOneAndUpdate(query, {guildChangeLogsChannel: args[3] }, {upsert: true}, function(err, doc) {
+                            if (err) return res.send(500, {error: err});
+                            return res.send('Succesfully saved.');
+                        });
+                    break;
+                }
             }
             case "enable":
             case "true":
                 switch (args[1]) {
                     case "channelCreate":
                         Logs.findOneAndUpdate(query, {guildChannelCreateLogs: {enabled: true }}, {upsert: true}, function(err, doc) {
-                            if (err) return res.send(500, {error: err});
-                            return res.send('Succesfully saved.');
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully enabled channelCreate logs!").then(message => {
+                                msg.delete(5000);
+                                message.delete(5000);
+                            });
                         });
                     break;
                 }
