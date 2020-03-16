@@ -1,8 +1,8 @@
 const express = require("express"),
       bodyParser = require("body-parser");
 
+const client = require(`./src/index.js`);
 
-module.exports = client => {
     var app = express(),
         port = 3000,
         listener = app.listen(port, () => {
@@ -24,4 +24,3 @@ module.exports = client => {
         client.channels.get(channel).send(embed);
         res.json({success: true});
     });
-};
