@@ -1,5 +1,4 @@
-const discord = require("discord.js"),
-      express = require("express"),
+const express = require("express"),
       bodyParser = require("body-parser");
 
 
@@ -13,7 +12,7 @@ module.exports = client => {
     app.use(bodyParser.json());
     app.post("/newBlogPost", function(req, res){
         let post = req.body.post.current, thumbnail = (post.feature_image || "https://i.imgur.com/o1KuRqv.png"),
-            embed = new discord.RichEmbed()
+            embed = new client.Embed()
             .setTitle(post.title)
             .setAuthor(`Author: ${post.primary_author.name}`)
             .setURL(post.url)
