@@ -23,6 +23,7 @@ module.exports = {
     client.log(`${client.user.tag} is online with ${client.guilds.size} guilds logged!`)
 
     // Start express server
-    require(`${process.cwd()}/src/server.js`)(client);
+    require(`${process.cwd()}/src/server.js`);
+    require(`${process.cwd()}/src/Structures/Logging.js`);
   }
 }

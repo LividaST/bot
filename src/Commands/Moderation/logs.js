@@ -4,7 +4,7 @@ module.exports = {
     category: 'Moderation',
     description: 'Enable/Disable certain logs in the server.',
     usage: '<enable|disable> <#channel>',
-    permissions: 'MANAGE_SERVER',
+    permissions: 'MANAGE_GUILD',
     clientPerms: 'VIEW_AUDIT_LOG',
     creatorOnly: false,
     guildOnly: true,
