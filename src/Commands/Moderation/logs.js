@@ -11,7 +11,7 @@ module.exports = {
     premiumOnly: false,
     requiresArgs: false,
     run: async (client, msg, args) => {
-        var { Logs } = require("./src/Structures/Constants/Models.js"),
+        var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
             query = {guildID: msg.guild.id};
 
         // const values = {
