@@ -13,41 +13,42 @@ const xpSchema = new mongoose.Schema({
 })
 
 const Logs = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   // Guild ID
-  guildID: String,
+  guildID: { type: String },
 
   // Log Channels
-  guildChangeLogsChannel: String,
-  messageLogsChannel: String,
+  guildChangeLogsChannel: { type: String, default: "Not Set"},
+  messageLogsChannel: { type: String, default: "Not Set"},
 
   // Ignored
-  ignoredRoles: Array,
-  ignoreChannels: Array,
-  ignoredUsers: Array,
+  ignoredRoles: { type: String, default: []},
+  ignoreChannels: { type: String, default: []},
+  ignoredUsers: { type: String, default: []},
 
   // Guild change Logs
   // Members
-  guildMemberUpdateLogs: String,
-  guildMemberSoftBanLogs: String,
-  guildMemberBanLogs: String,
-  guildMemberKickLogs: String,
-  guildMemberWarnLogs: String,
+  guildMemberUpdateLogs: { type: String, default: {enabled: false}},
+  guildMemberSoftBanLogs: { type: String, default: {enabled: false}},
+  guildMemberBanLogs: { type: String, default: {enabled: false}},
+  guildMemberKickLogs: { type: String, default: {enabled: false}},
+  guildMemberWarnLogs: { type: String, default: {enabled: false}},
   // Channels
-  guildChannelCreateLogs: String,
-  guildChannelUpdateLogs: String,
-  guildChannelDeleteLogs: String,
+  guildChannelCreateLogs: { type: String, default: {enabled: false}},
+  guildChannelUpdateLogs: { type: String, default: {enabled: false}},
+  guildChannelDeleteLogs: { type: String, default: {enabled: false}},
   // Emojis
-  guildEmojiCreateLogs: String,
-  guildEmojiUpdateLogs: String,
-  guildEmojiDeleteLogs: String,
+  guildEmojiCreateLogs: { type: String, default: {enabled: false}},
+  guildEmojiUpdateLogs: { type: String, default: {enabled: false}},
+  guildEmojiDeleteLogs: { type: String, default: {enabled: false}},
   // Webhook Logs
-  guildWebhookCreateLogs: String,
-  guildWebhookUpdateLogs: String,
-  guildWebhookDeleteLogs: String,
+  guildWebhookCreateLogs: { type: String, default: {enabled: false}},
+  guildWebhookUpdateLogs: { type: String, default: {enabled: false}},
+  guildWebhookDeleteLogs: { type: String, default: {enabled: false}},
 
   // Messages Logs
-  messageUpdateLogs: String,
-  messageDeleteLogs: String,
+  messageUpdateLogs: { type: String, default: {enabled: false}},
+  messageDeleteLogs: { type: String, default: {enabled: false}},
 
 
 })

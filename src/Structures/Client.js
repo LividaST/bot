@@ -9,7 +9,6 @@ const Embed = require('./Embed')
 module.exports = class Bot extends Client {
   constructor (options = {}) {
     super(options)
-    this.musicEnabled = false
     this.bugReportsChannelID = '688496042903207951'
     this.token = process.env.TOKEN
     this.commandDir = process.env.COMMAND_DIR
@@ -30,7 +29,7 @@ module.exports = class Bot extends Client {
   };
 
   log (msg) {
-    return console.log(`[LOG] (${moment().format('HH:mm')}): ${msg}`)
+    return console.log(`[LOG • ${moment().format('HH:mm')}]: ${msg}`)
   };
 
   capitalise (str) {
