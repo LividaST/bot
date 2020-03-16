@@ -11,6 +11,7 @@ module.exports = {
     premiumOnly: false,
     requiresArgs: false,
     run: async (client, msg, args) => {
+        const cases = ["channelUpdates", "memberUpdates", "emojiUpdates"]
         var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
             query = {guildID: msg.guild.id};
 
@@ -24,6 +25,7 @@ module.exports = {
 
         switch(args[0].toLowerCase()) {
             case "setchannel": 
+
                 switch(args[1].toLowerCase()) {
                     case "guildupdates":
                         if(!args[2]) return msg.channel.send("Make sure to provide a channel that logs will be sent too.").then(message => {
@@ -42,8 +44,16 @@ module.exports = {
                 break;
             case "enable":
             case "true":
-                switch (args[1]) {
-                    case "channelCreate":
+                let casesEmbed = new client.Embed()
+                .setDescription(`
+                Make sure to mention which logs you want to enable!
+                \`
+                • ${cases.join("\n•")}
+                \`
+                `)
+                if(!args[1]) return msg.channel.send(casesEmbed);
+                switch (args[1].toLowerCase()) {
+                    case "":
                         Logs.findOneAndUpdate(query, {guildChannelCreateLogs: {enabled: true }}, {upsert: true}, function(err, doc) {
                             if (err) return msg.channel.send(err);
                             msg.channel.send("Successfully enabled channelCreate logs!").then(message => {
@@ -60,7 +70,7 @@ module.exports = {
             break;
             case "list":
             case "show":
-                let embed = new client.Embed()
+                let configEmbed = new client.Embed()
                     .setTitle("Livida • Log configuration")
                     .setDescription(`
                     **Log Channels**
@@ -69,7 +79,7 @@ module.exports = {
                     **Enabled/Disabled**
                     • Channel Creation Logs: ${Logs.guildChannelCreateLogs.enabled.toString().toLowerCase().replace("true", "Enabled").replace("false", "Disabled")}
                     `)
-                    msg.channel.send(embed);
+                    msg.channel.send(configEmbed);
             break;
         }
     }
