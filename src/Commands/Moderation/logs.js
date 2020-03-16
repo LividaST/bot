@@ -5,7 +5,7 @@ module.exports = {
     description: 'Enable/Disable certain logs in the server.',
     usage: '<enable|disable> <#channel>',
     permissions: 'MANAGE_SERVER',
-    clientPerms: ['MANAGE_SERVER', 'VIEW_AUDIT_LOG'],
+    clientPerms: 'VIEW_AUDIT_LOG',
     creatorOnly: false,
     guildOnly: true,
     premiumOnly: false,
