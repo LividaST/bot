@@ -17,7 +17,7 @@ module.exports = {
         // const values = {
 
         // }
-        if(!args[0]) return msg.channel.send("Please provide one of the following arguments: list, enable, disable, setChannel").then(message => {
+        if(!args[0]) return msg.channel.send("Please provide one of the following arguments: `list, enable, disable, setChannel`").then(message => {
             msg.delete(5000);
             message.delete(5000);
         });
