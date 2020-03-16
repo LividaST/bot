@@ -1,5 +1,4 @@
-const discord = require("discord.js"),
-      express = require("express"),
+const express = require("express"),
       bodyParser = require("body-parser");
 
 

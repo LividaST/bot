@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 module.exports = {
     name: 'logs',
     aliases: [],
@@ -15,18 +14,18 @@ module.exports = {
         var { Logs } = require("./src/Structures/Constants/Models.js"),
             query = {guildID: msg.guild.id};
 
-        const values = {
+        // const values = {
 
-        }
+        // }
         if(!args[0]) return msg.channel.send("Please provide one of the following arguments: list, enable, disable, setChannel").then(message => {
             msg.delete(5000);
             message.delete(5000);
         });
 
         switch(args[0].toLowerCase()) {
-            case "setchannel": {
+            case "setchannel": 
                 switch(args[2].toLowerCase()) {
-                    case "guildUpdates":
+                    case "guildupdates":
                         if(!args[3]) return msg.channel.send("Make sure to provide a channel that logs will be sent too.").then(message => {
                             msg.delete(5000);
                             message.delete(5000);
@@ -40,7 +39,7 @@ module.exports = {
                         });
                     break;
                 }
-            }
+                break;
             case "enable":
             case "true":
                 switch (args[1]) {
