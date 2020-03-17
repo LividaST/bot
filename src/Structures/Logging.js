@@ -31,4 +31,3 @@ client
         if(config.channelUpdates.channel.toLowerCase() === "not set") return;
         client.channels.get(config.channelUpdates.channel).send(embed);
     })
-    .on("", () => {})
