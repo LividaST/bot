@@ -26,6 +26,14 @@ module.exports = {
 
         switch(args[0].toLowerCase()) {
             case "setchannel":
+                let casesEmbed = new client.Embed()
+                .setDescription(`
+                Make sure to mention which logs you want to set the channel for!!
+                \`
+                • ${cases.join("\n•")}
+                \`
+                `)
+                if(!args[1]) return msg.channel.send(casesEmbed);
                 switch(args[1].toLowerCase()) {
                     case "channelupdates":
                         if(!args[2]) return msg.channel.send("Make sure to provide a channel that logs will be sent too.").then(message => {
