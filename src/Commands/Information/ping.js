@@ -11,9 +11,9 @@ module.exports = {
     premiumOnly: false,
     requiresArgs: false,
     run: async (client, msg, args) => {
-        msg.channel.send({embeds:[{
+        msg.channel.send({embed: {
             description: "Loading..."
-        }]}).then(message => {
+        }}).then(message => {
             function uptime() {
                 let totalSeconds = process.uptime();
                 let realTotalSecs = Math.floor(totalSeconds % 60);
