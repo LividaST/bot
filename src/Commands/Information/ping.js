@@ -21,14 +21,14 @@ module.exports = {
                 let hours = Math.floor((totalSeconds / 3600) % 24);
                 let mins = Math.floor((totalSeconds / 60) % 60);
                 
-                return `Days: ${days} • Hours: ${hours} • Minutes: ${mins} • Seconds: ${realTotalSecs}` ;
+                return `Days: ${days} • Hours: ${hours} • Minutes: ${mins} • Seconds: ${realTotalSecs}`;
             }
             let color = "GREEN";
             if(client.pings[0] > 150) {color = "ORANGE"};
-            if(client.pings[0] > 250) {color = "RED"} 
+            if(client.pings[0] > 250) {color = "RED"};
             setTimeout(() => {
                 let embed = new client.Embed()
-                .setTitle("Livida • Ping & Uptime")
+                .setAuthor("Livida • Ping & Uptime")
                 .setDescription(`
 **Bot Ping:** ${client.pings[0]}ms
 **API Latency:** ${message.createdTimestamp - msg.createdTimestamp}
