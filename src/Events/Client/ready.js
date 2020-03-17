@@ -26,7 +26,7 @@ module.exports = {
     require(`${process.cwd()}/src/server.js`);
     require(`${process.cwd()}/src/Structures/Logging.js`);
 
-    const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
+    // const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
 
     // client.guilds.forEach(guild => {
     //  const query = {guildID: guild.id};
