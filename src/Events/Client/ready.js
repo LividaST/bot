@@ -28,11 +28,11 @@ module.exports = {
 
     const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
 
-    client.guilds.forEach(guild => {
-     const query = {guildID: guild.id};
-     Logs.findOneAndUpdate(query, { time: new Date() }, {upsert: true, setDefaultsOnInsert:true}, function(err, doc) {
-      if (err) return msg.channel.send(err);
-      });
-    })
+    // client.guilds.forEach(guild => {
+    //  const query = {guildID: guild.id};
+    //  Logs.findOneAndUpdate(query, { time: new Date() }, {upsert: true, setDefaultsOnInsert:true}, function(err, doc) {
+    //   if (err) return msg.channel.send(err);
+    //   });
+    // })
   }
 }
