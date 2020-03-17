@@ -31,7 +31,7 @@ module.exports = {
                     **Bot Ping**
                     ${client.pings[0]}ms
                     **API Latency**
-                    ${msg.createdTimestamp - message.createdTimestamp}
+                    ${message.createdTimestamp - msg.createdTimestamp}
 
                     **Bot Uptime**
                     \`\`\`
