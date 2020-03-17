@@ -13,7 +13,7 @@ module.exports = {
     run: async (client, msg, args) => {
         const cases = ["channelUpdates", "memberUpdates", "emojiUpdates", "messageUpdates"]
         var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
-            config = Logs.find({guildID: msg.guild.id}, (err, config) => { if(err) {err} else {config}}),
+            config = Logs.find({guildID: message.guild.id}).then(items => items[0]),
             query = {guildID: msg.guild.id};
 
         // const values = {
@@ -35,13 +35,10 @@ module.exports = {
         }
         switch(args[0].toLowerCase()) {
             case "setchannel":
-                if(!args[1]) return msg.channel.send(casesEmbed("Make sure to mention which logs you want to set the channel for!"));
+                if(!args[1]) return msg.channel.send(casesEmbed("Make sure to mention which logs you want to set the channel for!")).then(message => {msg.delete(5000);message.delete(5000);});
+                if(!args[2]) return msg.channel.send("Make sure to provide a channel that logs will be sent too.").then(message => {msg.delete(5000);message.delete(5000);});
                 switch(args[1].toLowerCase()) {
                     case "channelupdates":
-                        if(!args[2]) return msg.channel.send("Make sure to provide a channel that logs will be sent too.").then(message => {
-                            msg.delete(5000);
-                            message.delete(5000);
-                        });
                         Logs.findOneAndUpdate(query, {channelUpdatesChannel:args[2].replace(/[<#*>]/g, "")}, {upsert: true}, function(err, doc) {
                             if (err) return msg.channel.send(err);
                             msg.channel.send("Successfully set `Channel Updates` log channel!").then(message => {
@@ -50,6 +47,36 @@ module.exports = {
                             });
                         });
                     break;
+                    case "emojiupdates":
+                        Logs.findOneAndUpdate(query, {emojiUpdatesChannel:args[2].replace(/[<#*>]/g, "")}, {upsert: true}, function(err, doc) {
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully set `Emoji Updates` log channel!").then(message => {
+                                msg.delete(5000);
+                                message.delete(5000);
+                            });
+                        });
+                    break;
+                    case "memberupdates":
+                        Logs.findOneAndUpdate(query, {memberUpdatesChannel:args[2].replace(/[<#*>]/g, "")}, {upsert: true}, function(err, doc) {
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully set `Member Updates` log channel!").then(message => {
+                                msg.delete(5000);
+                                message.delete(5000);
+                            });
+                        });
+                    break;
+                    case "messageupates":
+                        Logs.findOneAndUpdate(query, {messageUpdatesChannel:args[2].replace(/[<#*>]/g, "")}, {upsert: true}, function(err, doc) {
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully set `Message Updates` log channel!").then(message => {
+                                msg.delete(5000);
+                                message.delete(5000);
+                            });
+                        });
+                    break;
+                    default:
+                        msg.channel.send(casesEmbed("That is not a valid option!")).then(message => {msg.delete(5000);message.delete(5000);});
+                    break
                 }
                 break;
             case "enable":
@@ -59,29 +86,80 @@ module.exports = {
                     case "channelupdates":
                         Logs.findOneAndUpdate(query, {channelUpdatesEnabled: true }, {upsert: true}, function(err, doc) {
                             if (err) return msg.channel.send(err);
-                            msg.channel.send("Successfully enabled `Channel Updates` logs!").then(message => {
-                                msg.delete(5000);
-                                message.delete(5000);
-                            });
+                            msg.channel.send("Successfully enabled `Channel Updates` logs!").then(message => {msg.delete(5000);message.delete(5000);});
                         });
+                    break;
+                    case "emojiupdates":
+                        Logs.findOneAndUpdate(query, {emojiUpdatesEnabled: true }, {upsert: true}, function(err, doc) {
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully enabled `Emoji Updates` logs!").then(message => {msg.delete(5000);message.delete(5000);});
+                        });
+                    break;
+                    case "memberupdates":
+                        Logs.findOneAndUpdate(query, {memberUpdatesEnabled: true }, {upsert: true}, function(err, doc) {
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully enabled `Member Updates` logs!").then(message => {msg.delete(5000);message.delete(5000);});
+                        });
+                    break;
+                    case "messageupdates":
+                        Logs.findOneAndUpdate(query, {messageUpdatesEnabled: true }, {upsert: true}, function(err, doc) {
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully enabled `Message Updates` logs!").then(message => {msg.delete(5000);message.delete(5000);});
+                        });
+                    break;
+                    default:
+                        msg.channel.send(casesEmbed("That is not a valid option!")).then(message => {msg.delete(5000);message.delete(5000);});
                     break;
                 }
             break;
             case "disable":
             case "false":
-
+                if(!args[1]) return msg.channel.send(casesEmbed("Make sure to mention which logs you want to disable!"));
+                switch (args[1].toLowerCase()) {
+                    case "channelupdates":
+                        Logs.findOneAndUpdate(query, {channelUpdatesEnabled: false }, {upsert: true}, function(err, doc) {
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully disabled `Channel Updates` logs!").then(message => {msg.delete(5000);message.delete(5000);});
+                        });
+                    break;
+                    case "emojiupdates":
+                        Logs.findOneAndUpdate(query, {emojiUpdatesEnabled: false }, {upsert: true}, function(err, doc) {
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully disabled `Emoji Updates` logs!").then(message => {msg.delete(5000);message.delete(5000);});
+                        });
+                    break;
+                    case "memberupdates":
+                        Logs.findOneAndUpdate(query, {memberUpdatesEnabled: false }, {upsert: true}, function(err, doc) {
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully disabled `Member Updates` logs!").then(message => {msg.delete(5000);message.delete(5000);});
+                        });
+                    break;
+                    case "messageupdates":
+                        Logs.findOneAndUpdate(query, {messageUpdatesEnabled: false }, {upsert: true}, function(err, doc) {
+                            if (err) return msg.channel.send(err);
+                            msg.channel.send("Successfully disabled `Message Updates` logs!").then(message => {msg.delete(5000);message.delete(5000);});
+                        });
+                    break;
+                    default:
+                        msg.channel.send(casesEmbed("That is not a valid option!")).then(message => {msg.delete(5000);message.delete(5000);});
+                    break;
+                }
             break;
             case "list":
             case "show":
+                let description =`
+*• Log: enabled/disabled • channel*
+
+• Channel Updates: ${config.channelUpdatesEnabled} • <#${config.channelUpdatesChannel}>
+• Member Updates: ${config.memberUpdatesEnabled} • <#${config.memberUpdatesChannel}>
+• Message Updates: ${config.messageUpdatesEnabled} • <#${config.messageUpdatesChannel}>
+• Emoji Updates: ${config.emojiUpdatesEnabled} • <#${config.emojiUpdatesChannel}>
+
+*Logging is not yet complete and there may be some problems, or not all updates will log just yet, we will complete this soon!*
+                `
                 let configEmbed = new client.Embed()
                     .setTitle("Livida • Log configuration")
-                    .setDescription(`
-                    **Log Channels**
-                    • Channel Updates: ${config.channelUpdatesEnabled}
-                    • Member Updates: ${config.memberUpdatesEnabled}
-                    • Message Updates: ${config.messageUpdatesEnabled}
-                    • Emoji Updates: ${config.emojiUpdatesEnabled}
-                    `)
+                    .setDescription(description.replace(/([a-z]|[A-Z])/g, "").replace("<#>", "No log channel set"))
                     msg.channel.send(configEmbed);
             break;
         }
