@@ -71,7 +71,7 @@ client
             .setTitle("Logs • Member Joined")
             .setDescription(`${member.tag} has joined the server!`)
             .setTimestamp();
-        if(config.emojiUpdatesChannel.toLowerCase() === "not set") return;
+        if(config.memberUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.memberUpdatesChannel).send(embed);  
     })
     .on("guildMemberRemove", (member) => {
@@ -82,7 +82,7 @@ client
             .setTitle("Logs • Member Leave")
             .setDescription(`${member.tag} has left the server!`)
             .setTimestamp();
-        if(config.emojiUpdatesChannel.toLowerCase() === "not set") return;
+        if(config.memberUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.memberUpdatesChannel).send(embed);  
     })
     // TODO Add rest of events for logging
