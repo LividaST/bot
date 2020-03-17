@@ -40,8 +40,20 @@ module.exports = {
                     depth: 0
                 });
 
-        
-            message.edit(msg.content + `\n**Output (${type.replace(bot.token, "Hiding bots token xoxo").replace(process.env.TOKEN, "")}):**\n\`\`\`js\n${code}\n\`\`\``).catch(e => {
+            let output = client.Embed()
+            .setDescription(`
+**Input**
+\`\`\`js
+${codein}
+\`\`\`
+
+**Output (${type.replace(bot.token, "Hiding bots token xoxo").replace(process.env.TOKEN, "")})**
+\`\`\`js
+
+\`\`\`
+            `)
+            .setFooter("Livida • Evaluation")
+            message.edit(output).catch(e => {
                 fetch
                     (`https://hasteb.in/documents`, {
                         method: "POST",
