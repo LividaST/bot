@@ -154,6 +154,8 @@ module.exports = {
 • Member Updates: ${config.memberUpdatesEnabled} • <#${config.memberUpdatesChannel}>
 • Message Updates: ${config.messageUpdatesEnabled} • <#${config.messageUpdatesChannel}>
 • Emoji Updates: ${config.emojiUpdatesEnabled} • <#${config.emojiUpdatesChannel}>
+
+*Logging is not yet complete and there may be some problems, or not all updates will log just yet, we will complete this soon!*
                 `
                 let configEmbed = new client.Embed()
                     .setTitle("Livida • Log configuration")
