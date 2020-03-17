@@ -13,7 +13,7 @@ module.exports = {
     run: async (client, msg, args) => {
         const cases = ["channelUpdates", "memberUpdates", "emojiUpdates", "messageUpdates"]
         var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
-            config = Logs.find({guildID: msg.guild.id}),
+            config = Logs.find({guildID: channel.guild.id}, (err, config) => { if(err) {err} else {config}}),
             query = {guildID: msg.guild.id};
 
         // const values = {

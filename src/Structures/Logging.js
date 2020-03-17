@@ -9,7 +9,7 @@ client
     // Channel Logs
     .on("channelCreate", (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-        const config = Logs.find({guildID: channel.guild.id});
+        const config = Logs.find({guildID: channel.guild.id}, (err, config) => { if(err) {err} else {config}});
         if(!config.channelUpdatesEnabled) return;
         let embed = new client.Embed()
             .setTitle("Logs • Channel Creation")
