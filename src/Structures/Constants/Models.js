@@ -18,48 +18,38 @@ const Logs = new mongoose.Schema({
   guildID: { type: String },
 
   // Log Channels
-  channelUpdates: { 
-    enabled: {
-      type: Boolean,
-      default: false
-    },
-    channel: {
-      type: String,
-      default: "Not Set"
-    }
+  channelUpdatesEnabled: {
+    type: Boolean,
+    default: false
   },
-  memberUpdates: { 
-    enabled: {
-      type: Boolean,
-      default: false
-    },
-    channel: {
-      type: String,
-      default: "Not Set"
-    }
+  channelUpdatesChannel: {
+    type: String,
+    default: "Not Set"
   },
-  messageUpdates: { 
-    enabled: {
-      type: Boolean,
-      default: false
-    },
-    channel: {
-      type: String,
-      default: "Not Set"
-    }
+  memberUpdatesEnabled: {
+    type: Boolean,
+    default: false
   },
-  emojiUpdates: { 
-    enabled: {
-      type: Boolean,
-      default: false
-    },
-    channel: {
-      type: String,
-      default: "Not Set"
-    }
+  memberUpdatesChannel: {
+    type: String,
+    default: "Not Set"
   },
-  
-
+  messageUpdatesEnabled: {
+    type: Boolean,
+    default: false
+  },
+  messageUpdatesChannel: {
+    type: String,
+    default: "Not Set"
+  },
+  emojiUpdatesEnabled: {
+    type: Boolean,
+    default: false
+  },
+  emojiUpdatesChannel: {
+    type: String,
+    default: "Not Set"
+  }
 })
 
 const Premium = new mongoose.Schema({
