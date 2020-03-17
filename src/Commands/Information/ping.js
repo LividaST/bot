@@ -27,16 +27,13 @@ module.exports = {
             if(client.pings[0] > 200) {color = "RED"} else if(client.pings[0] > 100) {color = "ORANGE"};
             setTimeout(() => {
                 let embed = new client.Embed()
+                .setTitle("Livida • Ping & Uptime")
                     .setDescription(`
-                    **Bot Ping**
-                    ${client.pings[0]}ms
-                    **API Latency**
-                    ${message.createdTimestamp - msg.createdTimestamp}
+                    **Bot Ping:** ${client.pings[0]}ms
+                    **API Latency:** ${message.createdTimestamp - msg.createdTimestamp}
 
                     **Bot Uptime**
-                    \`\`\`
-${uptime()}
-                    \`\`\`
+\`\`\`${uptime()}\`\`\`
                     `)
 					.setColor(color)
 					.setFooter("Livida • Information");
