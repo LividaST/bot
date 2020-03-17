@@ -40,7 +40,7 @@ module.exports = {
                     depth: 0
                 });
 
-            let output = client.Embed()
+            let output = new client.Embed()
             .setDescription(`
 **Input**
 \`\`\`js
@@ -49,7 +49,7 @@ ${codein}
 
 **Output (${type.replace(bot.token, "Hiding bots token xoxo").replace(process.env.TOKEN, "")})**
 \`\`\`js
-
+${code}
 \`\`\`
             `)
             .setFooter("Livida • Evaluation")
@@ -66,7 +66,20 @@ ${codein}
                     });
             });
         } catch (e) {
-            message.edit(`${msg.content}\n***Error:**\n\`\`\`js\n${e}\n\`\`\``);
+            let errEmbed = new client.Embed()
+                        .setDescription(`
+**Input**
+\`\`\`js
+${codein}
+\`\`\`
+
+**Error**
+\`\`\`js
+${e}
+\`\`\`
+            `)
+            .setFooter("Livida • Evaluation")
+            message.edit(errEmbed);
         }
         })
     }
