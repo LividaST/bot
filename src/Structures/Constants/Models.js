@@ -18,10 +18,46 @@ const Logs = new mongoose.Schema({
   guildID: { type: String },
 
   // Log Channels
-  channelUpdates: { type: String, default: {enabled: false, channel: "Not Set"}},
-  memberUpdates: { type: String, default: {enabled: false, channel: "Not Set"}},
-  messageUpdates: { type: String, default: {enabled: false, channel: "Not Set"}},
-  emojiUpdates: { type: String, default: {enabled: false, channel: "Not Set"}},
+  channelUpdates: { 
+    enabled: {
+      type: Boolean,
+      default: false
+    },
+    channel: {
+      type: String,
+      default: "Not Set"
+    }
+  },
+  memberUpdates: { 
+    enabled: {
+      type: Boolean,
+      default: false
+    },
+    channel: {
+      type: String,
+      default: "Not Set"
+    }
+  },
+  messageUpdates: { 
+    enabled: {
+      type: Boolean,
+      default: false
+    },
+    channel: {
+      type: String,
+      default: "Not Set"
+    }
+  },
+  emojiUpdates: { 
+    enabled: {
+      type: Boolean,
+      default: false
+    },
+    channel: {
+      type: String,
+      default: "Not Set"
+    }
+  },
   
 
 })
