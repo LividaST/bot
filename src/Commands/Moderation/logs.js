@@ -159,7 +159,7 @@ module.exports = {
                 `
                 let configEmbed = new client.Embed()
                     .setTitle("Livida • Log configuration")
-                    .setDescription(description.replace(/([a-z]|[A-Z])/g, "").replace("<#>", "No log channel set"))
+                    .setDescription(description.replace("<#Not Set>", "No log channel set"))
                     msg.channel.send(configEmbed);
             break;
         }
