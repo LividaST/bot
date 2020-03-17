@@ -21,7 +21,7 @@ module.exports = {
                 let hours = Math.floor((totalSeconds / 3600) % 24);
                 let mins = Math.floor((totalSeconds / 60) % 60);
                 
-                return `Days: ${days} | Hours: ${hours} | Minutes: ${mins} | Seconds: ${realTotalSecs}` ;
+                return `Days: ${days} • Hours: ${hours} • Minutes: ${mins} • Seconds: ${realTotalSecs}` ;
             }
             let color = "GREEN";
             if(client.pings[0] > 200) {color = "RED"} else if(client.pings[0] > 100) {color = "ORANGE"};
@@ -35,7 +35,7 @@ module.exports = {
 
                     **Bot Uptime**
                     \`\`\`
-                    ${uptime()}
+${uptime()}
                     \`\`\`
                     `)
 					.setColor(color)
