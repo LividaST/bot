@@ -1,19 +1,19 @@
 module.exports = {
-    name: '',
-    aliases: [],
-    category: '',
-    description: '',
-    usage: '',
+    name: 'eval',
+    aliases: ["ev"],
+    category: 'Developer',
+    description: 'Evaluate javascript code through a command',
+    usage: '<code>',
     permissions: 'SEND_MESSAGES',
     clientPerms: 'SEND_MESSAGES',
-    creatorOnly: false,
+    creatorOnly: true,
     guildOnly: true,
     premiumOnly: false,
     requiresArgs: true,
     run: async (client, msg, args) => {
         let bot = client;
 
-        const codein = args.join(" ")
+        let codein = args.join(" ")
         if(!args[0]) codein = "No input given"
         msg.channel.send(`**Input:**\n\`\`\`js\n${codein}\n\`\`\``).then(async message => {
         
@@ -39,9 +39,7 @@ module.exports = {
                 code = require("util").inspect(code, {
                     depth: 0
                 });
-            if (code.length > 1978) {
-        
-            }
+
         
             message.edit(msg.content + `\n**Output (${type.replace(bot.token, "Hiding bots token xoxo").replace(process.env.TOKEN, "")}):**\n\`\`\`js\n${code}\n\`\`\``).catch(e => {
                 fetch
