@@ -13,6 +13,7 @@ module.exports = {
     run: async (client, msg, args) => {
         const cases = ["channelUpdates", "memberUpdates", "emojiUpdates", "messageUpdates"]
         var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
+            config = Logs.find({guildID: msg.guild.id}),
             query = {guildID: msg.guild.id};
 
         // const values = {
@@ -31,7 +32,7 @@ module.exports = {
                             msg.delete(5000);
                             message.delete(5000);
                         });
-                        Logs.findOneAndUpdate(query, {channelUpdates:{channel: args[2].replace(/[0-9]/g, "")} }, {upsert: true}, function(err, doc) {
+                        Logs.findOneAndUpdate(query, {channelUpdates:{channel: args[2].replace(/[<#*>]/g, "")} }, {upsert: true}, function(err, doc) {
                             if (err) return msg.channel.send(err);
                             msg.channel.send("Successfully set `Channel Updates` log channel!").then(message => {
                                 msg.delete(5000);
@@ -73,10 +74,10 @@ module.exports = {
                     .setTitle("Livida • Log configuration")
                     .setDescription(`
                     **Log Channels**
-                    • Channel Updates: ${Logs.channelUpdates.enabled}
-                    • Member Updates: ${Logs.memberUpdates.enabled}
-                    • Message Updates: ${Logs.messageUpdates.enabled}
-                    • Emoji Updates: ${Logs.emojiUpdates.enabled}
+                    • Channel Updates: ${config.channelUpdates.enabled}
+                    • Member Updates: ${config.memberUpdates.enabled}
+                    • Message Updates: ${config.messageUpdates.enabled}
+                    • Emoji Updates: ${config.emojiUpdates.enabled}
                     `)
                     msg.channel.send(configEmbed);
             break;

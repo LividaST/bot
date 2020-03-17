@@ -10,7 +10,6 @@ client
     .on("channelCreate", (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const config = Logs.find({guildID: channel.guild.id});
-        client.users.get("506899274748133376").send(JSON.stringify(config))
         if(!config.channelUpdates.enabled) return;
         let embed = new client.Embed()
             .setTitle("Logs • Channel Creation")
