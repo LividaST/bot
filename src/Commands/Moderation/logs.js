@@ -26,7 +26,7 @@ module.exports = {
         function casesEmbed(input) {    
             let casesEmbed = new client.Embed()
             .setDescription(`
-            Make sure to mention which logs you want to enable!
+            ${input}
             \`
             • ${cases.join("\n•")}
             \`
