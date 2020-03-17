@@ -10,23 +10,23 @@ client
     .on("channelCreate", (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const config = Logs.find({guildID: channel.guild.id});
-        if(!config.channelUpdates.enabled) return;
+        if(!config.channelUpdatesEnabled) return;
         let embed = new client.Embed()
             .setTitle("Logs • Channel Creation")
             .setDescription(`<#${channel.id}> has been created by **${executer("CHANNEL_CREATE", channel.guild.id)}`)
             .setTimestamp();
-        if(config.channelUpdates.channel.toLowerCase() === "not set") return;
-        client.channels.get(config.channelUpdates.channel).send(embed);
+        if(config.channelUpdatesChannel.toLowerCase() === "not set") return;
+        client.channels.get(config.channelUpdatesChannel).send(embed);
 
     })
     .on("channelDelete", (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const config = Logs.find({guildID: channel.guild.id});
-        if(!config.channelUpdates.enabled) return;
+        if(!config.channelUpdatesEnabled) return;
         let embed = new client.Embed()
             .setTitle("Logs • Channel Deleted")
             .setDescription(`<#${channel.id}> has been deleted by **${executer("CHANNEL_CREATE", channel.guild.id)}`)
             .setTimestamp();
-        if(config.channelUpdates.channel.toLowerCase() === "not set") return;
-        client.channels.get(config.channelUpdates.channel).send(embed);
+        if(config.channelUpdatesChannel.toLowerCase() === "not set") return;
+        client.channels.get(config.channelUpdatesChannel).send(embed);
     })

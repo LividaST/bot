@@ -42,7 +42,7 @@ module.exports = {
                             msg.delete(5000);
                             message.delete(5000);
                         });
-                        Logs.findOneAndUpdate(query, {channelUpdates:{channel: args[2].replace(/[<#*>]/g, "")} }, {upsert: true}, function(err, doc) {
+                        Logs.findOneAndUpdate(query, {channelUpdatesChannel:args[2].replace(/[<#*>]/g, "")}, {upsert: true}, function(err, doc) {
                             if (err) return msg.channel.send(err);
                             msg.channel.send("Successfully set `Channel Updates` log channel!").then(message => {
                                 msg.delete(5000);
@@ -57,7 +57,7 @@ module.exports = {
                 if(!args[1]) return msg.channel.send(casesEmbed("Make sure to mention which logs you want to enable!"));
                 switch (args[1].toLowerCase()) {
                     case "channelupdates":
-                        Logs.findOneAndUpdate(query, {channelUpdates: {enabled: true }}, {upsert: true}, function(err, doc) {
+                        Logs.findOneAndUpdate(query, {channelUpdatesEnabled: true }, {upsert: true}, function(err, doc) {
                             if (err) return msg.channel.send(err);
                             msg.channel.send("Successfully enabled `Channel Updates` logs!").then(message => {
                                 msg.delete(5000);
@@ -77,10 +77,10 @@ module.exports = {
                     .setTitle("Livida • Log configuration")
                     .setDescription(`
                     **Log Channels**
-                    • Channel Updates: ${config.channelUpdates.enabled}
-                    • Member Updates: ${config.memberUpdates.enabled}
-                    • Message Updates: ${config.messageUpdates.enabled}
-                    • Emoji Updates: ${config.emojiUpdates.enabled}
+                    • Channel Updates: ${config.channelUpdatesEnabled}
+                    • Member Updates: ${config.memberUpdatesEnabled}
+                    • Message Updates: ${config.messageUpdatesEnabled}
+                    • Emoji Updates: ${config.emojiUpdatesEnabled}
                     `)
                     msg.channel.send(configEmbed);
             break;
