@@ -26,13 +26,13 @@ module.exports = {
     require(`${process.cwd()}/src/server.js`);
     require(`${process.cwd()}/src/Structures/Logging.js`);
 
-    const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
+    // const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
 
-    client.guilds.forEach(guild => {
-     const query = {guildID: guild.id};
-     Logs.findOneAndUpdate(query, { time: new Date() }, {upsert: true, setDefaultsOnInsert:true}, function(err, doc) {
-      if (err) return msg.channel.send(err);
-      });
-    })
+    // client.guilds.forEach(guild => {
+    //  const query = {guildID: guild.id};
+    //  Logs.findOneAndUpdate(query, { time: new Date() }, {upsert: true, setDefaultsOnInsert:true}, function(err, doc) {
+    //   if (err) return msg.channel.send(err);
+    //   });
+    // })
   }
 }
