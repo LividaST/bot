@@ -23,17 +23,19 @@ module.exports = {
             msg.delete(5000);
             message.delete(5000);
         });
-
+        function casesEmbed(input) {    
+            let casesEmbed = new client.Embed()
+            .setDescription(`
+            Make sure to mention which logs you want to enable!
+            \`
+            • ${cases.join("\n•")}
+            \`
+            `)
+            return casesEmbed;
+        }
         switch(args[0].toLowerCase()) {
             case "setchannel":
-                let casesEmbed = new client.Embed()
-                .setDescription(`
-                Make sure to mention which logs you want to set the channel for!!
-                \`
-                • ${cases.join("\n•")}
-                \`
-                `)
-                if(!args[1]) return msg.channel.send(casesEmbed);
+                if(!args[1]) return msg.channel.send(casesEmbed("Make sure to mention which logs you want to set the channel for!"));
                 switch(args[1].toLowerCase()) {
                     case "channelupdates":
                         if(!args[2]) return msg.channel.send("Make sure to provide a channel that logs will be sent too.").then(message => {
@@ -52,14 +54,7 @@ module.exports = {
                 break;
             case "enable":
             case "true":
-                let casesEmbed = new client.Embed()
-                .setDescription(`
-                Make sure to mention which logs you want to enable!
-                \`
-                • ${cases.join("\n•")}
-                \`
-                `)
-                if(!args[1]) return msg.channel.send(casesEmbed);
+                if(!args[1]) return msg.channel.send(casesEmbed("Make sure to mention which logs you want to enable!"));
                 switch (args[1].toLowerCase()) {
                     case "channelupdates":
                         Logs.findOneAndUpdate(query, {channelUpdates: {enabled: true }}, {upsert: true}, function(err, doc) {
