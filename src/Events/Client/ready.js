@@ -3,7 +3,7 @@ const { ErelaClient, Utils } = require('erela.js');
 module.exports = {
   name: 'ready',
   run: async (client) => {
-    const Prefix = await client.Models.Prefix.findOne()
+    const Prefix = await client.Models.Prefix
     if (client.musicEnabled === true) {
       client.music = new ErelaClient(client, client.nodes)
         .on('nodeError', console.error)
