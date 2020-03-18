@@ -150,16 +150,16 @@ module.exports = {
                 let description =`
 *• Log: enabled/disabled • channel*
 
-• Channel Updates: ${config.channelUpdatesEnabled} • <#${config.channelUpdatesChannel}>
-• Member Updates: ${config.memberUpdatesEnabled} • <#${config.memberUpdatesChannel}>
-• Message Updates: ${config.messageUpdatesEnabled} • <#${config.messageUpdatesChannel}>
-• Emoji Updates: ${config.emojiUpdatesEnabled} • <#${config.emojiUpdatesChannel}>
+• Channel Updates • ${config.channelUpdatesEnabled} • <#${config.channelUpdatesChannel}>
+• Member Updates • ${config.memberUpdatesEnabled} • <#${config.memberUpdatesChannel}>
+• Message Updates • ${config.messageUpdatesEnabled} • <#${config.messageUpdatesChannel}>
+• Emoji Updates • ${config.emojiUpdatesEnabled} • <#${config.emojiUpdatesChannel}>
 
 *Logging is not yet complete and there may be some problems, or not all updates will log just yet, we will complete this soon!*
                 `
                 let configEmbed = new client.Embed()
                     .setTitle("Livida • Log configuration")
-                    .setDescription(description.replace("<#Not Set>", "No log channel set"))
+                    .setDescription(description.replace(/<#Not Set>/g, "No log channel set").replace("true", "Enabled").replace("false", "Disabled"))
                     msg.channel.send(configEmbed);
             break;
             }
