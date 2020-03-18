@@ -9,7 +9,8 @@ client
     // Channel Logs
     .on("channelCreate", (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-        const config = Logs.find({guildID: message.guild.id}).then(items => items[0]);
+        const data = await Logs.find({guildID: message.guild.id});
+        const config = data[0];
         if(!config.channelUpdatesEnabled) return;
         let embed = new client.Embed()
             .setTitle("Logs • Channel Creation")
@@ -21,7 +22,8 @@ client
     })
     .on("channelDelete", (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-        const config = Logs.find({guildID: message.guild.id}).then(items => items[0]);
+        const data = await Logs.find({guildID: message.guild.id});
+        const config = data[0];
         if(!config.channelUpdatesEnabled) return;
         let embed = new client.Embed()
             .setTitle("Logs • Channel Deleted")
@@ -32,7 +34,8 @@ client
     })
     .on("emojiCreate", (emoji) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-        const config = Logs.find({guildID: emoji.guild.id}).then(items => items[0]);
+        const data = await Logs.find({guildID: emoji.guild.id});
+        const config = data[0];
         if(!config.emojiUpdatesEnabled) return;
         let embed = new client.Embed()
             .setTitle("Logs • Emoji Created")
@@ -43,7 +46,8 @@ client
     })
     .on("emojiDelete", (emoji) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-        const config = Logs.find({guildID: emoji.guild.id}).then(items => items[0]);
+        const data = await Logs.find({guildID: emoji.guild.id});
+        const config = data[0];
         if(!config.emojiUpdatesEnabled) return;
         let embed = new client.Embed()
             .setTitle("Logs • Emoji Deleted")
@@ -54,7 +58,8 @@ client
     })
     .on("emojiUpdate", (oldEmoji, newEmoji) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-        const config = Logs.find({guildID: oldEmoji.guild.id}).then(items => items[0]);
+        const data = await Logs.find({guildID: oldEmoji.guild.id});
+        const config = data[0];
         if(!config.emojiUpdatesEnabled) return;
         let embed = new client.Embed()
             .setTitle("Logs • Emoji Updated")
@@ -65,7 +70,8 @@ client
     })
     .on("guildMemberAdd", (member) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-        const config = Logs.find({guildID: member.guild.id}).then(items => items[0]);
+        const data = await Logs.find({guildID: member.guild.id});
+        const config = data[0];
         if(!config.memberUpdatesEnabled) return;
         let embed = new client.Embed()
             .setTitle("Logs • Member Joined")
@@ -76,7 +82,8 @@ client
     })
     .on("guildMemberRemove", (member) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-        const config = Logs.find({guildID: member.guild.id}).then(items => items[0]);
+        const data = await Logs.find({guildID: member.guild.id});
+        const config = data[0];
         if(!config.memberUpdatesEnabled) return;
         let embed = new client.Embed()
             .setTitle("Logs • Member Leave")
