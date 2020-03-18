@@ -3,7 +3,6 @@ const { ErelaClient, Utils } = require('erela.js');
 module.exports = {
   name: 'ready',
   run: async (client) => {
-    const Prefix = await client.Models.Prefix
     if (client.musicEnabled === true) {
       client.music = new ErelaClient(client, client.nodes)
         .on('nodeError', console.error)
@@ -20,7 +19,7 @@ module.exports = {
         .set('high', 0.25)
     };
 
-    client.user.setPresence({ game: { name: `${Prefix}help | ${client.guilds.size} guilds` }, status: 'online' })
+    client.user.setPresence({ game: { name: `${process.env.PREFIX}help | ${client.guilds.size} guilds` }, status: 'online' })
     client.log(`${client.user.tag} is online with ${client.guilds.size} guilds logged!`)
 
     // Start express server
