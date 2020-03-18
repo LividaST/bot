@@ -14,8 +14,8 @@ module.exports = {
         const cases = ["channelUpdates", "memberUpdates", "emojiUpdates", "messageUpdates"]
         var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
             query = {guildID: msg.guild.id};
-            Logs.find({guildID: msg.guild.id}).then(config => {
-
+            Logs.find({guildID: msg.guild.id}).then(DataTransfer => {
+                const config = data[0]
         // const values = {
 
         // }
