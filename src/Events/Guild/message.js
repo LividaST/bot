@@ -5,8 +5,8 @@ module.exports = {
   name: 'message',
   run: async (client, msg) => {
     var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
-      query = {guildID: guild.id};
-    Logs.findOneAndUpdate(query, {guildID: guild.id}, {upsert: true}, function(err, doc) {
+      query = {guildID: msg.guild.id};
+    Logs.findOneAndUpdate(query, {guildID: msg.guild.id}, {upsert: true}, function(err, doc) {
       if (err) return msg.channel.send(err);
     });
 
