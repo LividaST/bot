@@ -15,6 +15,7 @@ client
         let embed = new client.Embed()
             .setTitle("Logs • Channel Creation")
             .setDescription(`<#${channel.id}> (${channel.id}) has been created by **${await executer("CHANNEL_CREATE", channel.guild.id)}**`)
+            .setColor('GREEN')
             .setTimestamp();
         if(config.channelUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.channelUpdatesChannel).send(embed);
@@ -28,6 +29,7 @@ client
         let embed = new client.Embed()
             .setTitle("Logs • Channel Deleted")
             .setDescription(`#${channel.name} (${channel.id}) has been deleted by **${await executer("CHANNEL_CREATE", channel.guild.id)}**`)
+            .setColor('RED')
             .setTimestamp();
         if(config.channelUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.channelUpdatesChannel).send(embed);
@@ -40,6 +42,7 @@ client
         let embed = new client.Embed()
             .setTitle("Logs • Emoji Created")
             .setDescription(`An emoji called \`${emoji.name}\` has been created by **${await executer("EMOJI_CREATE", emoji.guild.id)}**`)
+            .setColor('GREEN')
             .setTimestamp();
         if(config.emojiUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.emojiUpdatesChannel).send(embed);  
@@ -52,6 +55,7 @@ client
         let embed = new client.Embed()
             .setTitle("Logs • Emoji Deleted")
             .setDescription(`An emoji called \`${emoji.name}\` has been deleted by **${await executer("EMOJI_DELETE", emoji.guild.id)}**`)
+            .setColor('RED')
             .setTimestamp();
         if(config.emojiUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.emojiUpdatesChannel).send(embed);  
@@ -76,6 +80,7 @@ client
         let embed = new client.Embed()
             .setTitle("Logs • Member Joined")
             .setDescription(`${member.tag} has joined the server!`)
+            .setColor('GREEN')
             .setTimestamp();
         if(config.memberUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.memberUpdatesChannel).send(embed);  
@@ -88,6 +93,7 @@ client
         let embed = new client.Embed()
             .setTitle("Logs • Member Leave")
             .setDescription(`${member.tag} has left the server!`)
+            .setColor('RED')
             .setTimestamp();
         if(config.memberUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.memberUpdatesChannel).send(embed);  
