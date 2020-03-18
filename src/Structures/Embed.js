@@ -4,7 +4,7 @@ const { x, check } = require('./Constants/Emojis')
 module.exports = class Embed extends RichEmbed {
   constructor (data) {
     super(data)
-    this.setColor('BLUE')
+    this.setColor('#8800FF')
   };
 
   error (msg) {
