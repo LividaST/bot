@@ -16,7 +16,7 @@ module.exports = class Bot extends Client {
     this.commands = new Collection()
     this.aliases = new Collection()
     this.afk = new Map()
-    this.prefix = '-'
+    this.prefix = process.env.PREFIX
     this.creators = {
       tags: ["Callum#6052", "MegaJoshy#0001"],
       ids: ["506899274748133376", "264617372227338241"]
