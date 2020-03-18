@@ -27,7 +27,8 @@ module.exports = {
             let casesEmbed = new client.Embed()
             .setDescription(`
 ${input}
-\`• ${cases.join("\n•")}\`
+
+**•** ${cases.join("\n**•** ")}
             `)
             return casesEmbed;
         }
