@@ -4,7 +4,7 @@ const express = require("express"),
 const client = require(`${process.cwd()}/src/index.js`);
 
     var app = express(),
-        port = 3000,
+        port = process.env.PORT,
         listener = app.listen(port, () => {
             console.log("Your app is listening on port " + listener._connectionKey.split("::::")[1])
         }),
