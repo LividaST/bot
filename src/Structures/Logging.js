@@ -9,7 +9,7 @@ client
     // Channel Logs
     .on("channelCreate", async (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-        const data = await Logs.find({guildID: message.guild.id});
+        const data = await Logs.find({guildID: channel.guild.id});
         const config = data[0];
         if(!config.channelUpdatesEnabled) return;
         let embed = new client.Embed()
@@ -22,7 +22,7 @@ client
     })
     .on("channelDelete", async (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-        const data = await Logs.find({guildID: message.guild.id});
+        const data = await Logs.find({guildID: channel.guild.id});
         const config = data[0];
         if(!config.channelUpdatesEnabled) return;
         let embed = new client.Embed()
