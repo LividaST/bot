@@ -13,8 +13,8 @@ module.exports = {
     run: async (client, msg, args) => {
         const cases = ["channelUpdates", "memberUpdates", "emojiUpdates", "messageUpdates"]
         var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
-            config = Logs.find({guildID: msg.guild.id}).then(items => items[0]),
             query = {guildID: msg.guild.id};
+            Logs.find({guildID: msg.guild.id}).then(config => {
 
         // const values = {
 
@@ -162,7 +162,8 @@ module.exports = {
                     .setDescription(description.replace("<#Not Set>", "No log channel set"))
                     msg.channel.send(configEmbed);
             break;
-        }
+            }
+        })
     }
   }
   
