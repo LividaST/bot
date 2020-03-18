@@ -7,7 +7,7 @@ async function executer(type, guildID) {
 client
     // Guild Logs
     // Channel Logs
-    .on("channelCreate", (channel) => {
+    .on("channelCreate", async (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const data = await Logs.find({guildID: message.guild.id});
         const config = data[0];
@@ -20,7 +20,7 @@ client
         client.channels.get(config.channelUpdatesChannel).send(embed);
 
     })
-    .on("channelDelete", (channel) => {
+    .on("channelDelete", async (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const data = await Logs.find({guildID: message.guild.id});
         const config = data[0];
@@ -32,7 +32,7 @@ client
         if(config.channelUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.channelUpdatesChannel).send(embed);
     })
-    .on("emojiCreate", (emoji) => {
+    .on("emojiCreate", async (emoji) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const data = await Logs.find({guildID: emoji.guild.id});
         const config = data[0];
@@ -44,7 +44,7 @@ client
         if(config.emojiUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.emojiUpdatesChannel).send(embed);  
     })
-    .on("emojiDelete", (emoji) => {
+    .on("emojiDelete", async (emoji) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const data = await Logs.find({guildID: emoji.guild.id});
         const config = data[0];
@@ -56,7 +56,7 @@ client
         if(config.emojiUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.emojiUpdatesChannel).send(embed);  
     })
-    .on("emojiUpdate", (oldEmoji, newEmoji) => {
+    .on("emojiUpdate", async (oldEmoji, newEmoji) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const data = await Logs.find({guildID: oldEmoji.guild.id});
         const config = data[0];
@@ -68,7 +68,7 @@ client
         if(config.emojiUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.emojiUpdatesChannel).send(embed);  
     })
-    .on("guildMemberAdd", (member) => {
+    .on("guildMemberAdd", async (member) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const data = await Logs.find({guildID: member.guild.id});
         const config = data[0];
@@ -80,7 +80,7 @@ client
         if(config.memberUpdatesChannel.toLowerCase() === "not set") return;
         client.channels.get(config.memberUpdatesChannel).send(embed);  
     })
-    .on("guildMemberRemove", (member) => {
+    .on("guildMemberRemove", async (member) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const data = await Logs.find({guildID: member.guild.id});
         const config = data[0];
