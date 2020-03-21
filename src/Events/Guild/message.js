@@ -4,14 +4,16 @@ const Sentry = require('@sentry/node')
 module.exports = {
   name: 'message',
   run: async (client, msg) => {
+  if(msg.guild) {
     var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
-      query = {guildID: msg.guild.id};
+    query = {guildID: msg.guild.id};
     Logs.findOneAndUpdate(query, {guildID: msg.guild.id}, {upsert: true}, function(err, doc) {
       if (err) return msg.channel.send(err);
     });
+  }
 
 
-    if (msg.author.bot || !msg.guild) return
+    if (msg.author.bot) return
 
     const confPrefix = await client.Models.Prefix.findOne({
       guildID: msg.guild.id

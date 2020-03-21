@@ -27,7 +27,8 @@
     "moment": "^2.24.0",
     "mongoose": "^5.9.4",
     "ms": "^2.1.2",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "fortnite.js": "^2.1.4"
   },
   "devDependencies": {
     "standard": "^14.3.1"
