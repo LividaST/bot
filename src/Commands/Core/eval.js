@@ -46,7 +46,7 @@ Evaluating...
                     output = (`https://hasteb.in/${body.key}`);
                 });
             }
-            var output = new client.Embed().setFooter("Livida • Evaluation").setColor("GREEN")
+            var outputt = new client.Embed().setFooter("Livida • Evaluation").setColor("GREEN")
 .setDescription(`
 **Input**
 \`\`\`js
@@ -58,7 +58,7 @@ ${codein}
 ${code}
 \`\`\`
 `);
-            message.edit(output).catch(e => {
+            message.edit(outputt).catch(e => {
                 fetch
                     (`https://hasteb.in/documents`, {
                         method: "POST",
