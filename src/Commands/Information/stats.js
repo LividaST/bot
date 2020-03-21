@@ -45,7 +45,7 @@ module.exports = {
                     const client = new fortnite(process.env.FORTNITE_API_KEY);                   
                     client.get(username, device)
                         .then(data => {
-                fetch(`https://hasteb.in/documents`, {method: "POST",body: input})
+                fetch(`https://hasteb.in/documents`, {method: "POST",body: data})
                 .then(res => res.json())
                 .then(body => {
                     msg.channel.send(`https://hasteb.in/${body.key}`)
