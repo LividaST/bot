@@ -7,7 +7,7 @@ module.exports = {
     permissions: 'SEND_MESSAGES',
     clientPerms: 'SEND_MESSAGES',
     creatorOnly: true,
-    guildOnly: true,
+    guildOnly: false,
     premiumOnly: false,
     requiresArgs: false,
     run: async (client, msg, args) => {

@@ -4,7 +4,7 @@ module.exports = {
   name: 'website',
   aliases: [],
   category: 'Core',
-  description: 'Shows the website',
+  description: 'Gives you a link to our website!',
   usage: '',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
@@ -14,9 +14,8 @@ module.exports = {
   requiresArgs: false,
   run: async (client, msg, args) => {
     const embed = new RichEmbed()
-      .setTitle('Website')
-      .setColor(msg.guild.me.highestRole.color || 'BLUE')
-      .setDescription('If you would like to go to the website you can do that [here](https://livida.net)')
+      .setColor(msg.guild.me.highestRole.color || 'PURPLE')
+      .setDescription('You can visit the website by clicking [here](https://livida.net)!')
     msg.channel.send(embed)
   }
 }
