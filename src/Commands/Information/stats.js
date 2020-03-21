@@ -48,7 +48,7 @@ module.exports = {
                 fetch(`https://hasteb.in/documents`, {method: "POST",body: input})
                 .then(res => res.json())
                 .then(body => {
-                    message.channel.send(`https://hasteb.in/${body.key}`)
+                    msg.channel.send(`https://hasteb.in/${body.key}`)
                 })
             })
                 break;
