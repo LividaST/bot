@@ -51,7 +51,7 @@ module.exports = {
                     const client = new fortnite(process.env.FORTNITE_API_KEY);                   
                     client.get(username, device)
                         .then(data => {
-                            message.channel.send()
+                            message.channel.send(haste(data))
                         }) // Do stuff with the data
                         .catch(console.error); // Catch if there is an error
                 break;
