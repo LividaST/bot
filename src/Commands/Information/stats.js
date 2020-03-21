@@ -38,22 +38,19 @@ module.exports = {
                 }})
             break;
         }
-        function haste(input) {
-            fetch(`https://hasteb.in/documents`, {method: "POST",body: input})
-                .then(res => res.json())
-                .then(body => {
-                    return `https://hasteb.in/${body.key}`
-                })
-        }
+
         function getStats(input, username, device) {
             switch(input) {
                 case "fortnite":
                     const client = new fortnite(process.env.FORTNITE_API_KEY);                   
                     client.get(username, device)
                         .then(data => {
-                            message.channel.send(haste(data))
-                        }) // Do stuff with the data
-                        .catch(console.error); // Catch if there is an error
+                fetch(`https://hasteb.in/documents`, {method: "POST",body: input})
+                .then(res => res.json())
+                .then(body => {
+                    message.channel.send(`https://hasteb.in/${body.key}`)
+                })
+            })
                 break;
             }
         }
