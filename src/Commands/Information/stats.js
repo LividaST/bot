@@ -40,11 +40,11 @@ module.exports = {
         }
         function haste(input) {
             fetch(`https://hasteb.in/documents`, {method: "POST",body: input})
-        .then(res => res.json())
-        .then(body => {
-            return `https://hasteb.in/${body.key}`
-        })
-    }
+                .then(res => res.json())
+                .then(body => {
+                    return `https://hasteb.in/${body.key}`
+                })
+        }
         function getStats(input, username, device) {
             switch(input) {
                 case "fortnite":
