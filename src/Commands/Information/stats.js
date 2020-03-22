@@ -42,15 +42,23 @@ module.exports = {
         function getStats(input, username, device) {
             switch(input) {
                 case "fortnite":
-                    const client = new fortnite(process.env.FORTNITE_API_KEY);                   
-                    client.get(username, device)
-                        .then(data => {
-                fetch(`https://hasteb.in/documents`, {method: "POST",body: data})
-                .then(res => res.json())
-                .then(body => {
-                    msg.channel.send(`https://hasteb.in/${body.key}`)
-                })
-            })
+                    const fortnite = require('fortnite.js'), fetch = require("node-fetch")
+                    const fn = new fortnite(process.env.FORTNITE_API_KEY);                   
+                       fn.get(username, fortnite.PS4)
+                           .then(body => {
+ const embed = new client.Embed()
+   .setTitle(`Fortnite Statistics • ${username} • ${device.replace("fortnite.", "")}`)
+   .setDescription(`
+   **Matches Played:** ${body.stats.matches}
+   **Top 1** ${body.stats.top1}
+   **Top 3** ${body.stats.top3}
+   **Top 5** ${body.stats.top5}
+   **Top 25 **${body.stats.top25}
+   **Win Percentage** ${body.stats.winPercent}
+   **Score** ${body.stats.score}
+   `)
+                       msg.channel.send(embed)
+               })
                 break;
             }
         }
