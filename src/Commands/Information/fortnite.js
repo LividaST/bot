@@ -1,4 +1,4 @@
-const fortnite = require('fortnite.js'), fetch = require("node-fetch");
+const fortnite = require('fortnite.js');
 module.exports = {
     name: 'fortnite',
     aliases: ["fn", "fnstats"],
@@ -29,11 +29,11 @@ module.exports = {
 
         function getStats(username, device) {
                     const fn = new fortnite(process.env.FORTNITE_API_KEY);                   
-                       fn.get(username, device)
-                           .then(body => {
- const embed = new client.Embed()
-   .setTitle(`Fortnite Statistics • ${username} • ${device.replace("fortnite.", "")}`)
-   .setDescription(`
+fn.get(username, device)
+    .then(body => {
+    const embed = new client.Embed()
+    .setTitle(`Fortnite Statistics • ${username} • ${device.replace("fortnite.", "")}`)
+    .setDescription(`
    **Matches Played:** ${body.stats.matches}
    **Top 1** ${body.stats.top1}
    **Top 3** ${body.stats.top3}
