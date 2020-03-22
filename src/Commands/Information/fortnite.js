@@ -12,7 +12,8 @@ module.exports = {
     premiumOnly: false,
     requiresArgs: true,
     run: async (client, msg, args) => {
-        switch(args[1].toLowerCase()) {
+        if(args[1]) {
+            switch(args[1].toLowerCase()) {
                 case "ps4":
                     getStats(args[0], fortnite.PS4)
                 break;
@@ -22,10 +23,11 @@ module.exports = {
                 case "pc":
                     getStats(args[0], fortnite.PC)
                 break;
-                default:
-                    getStats(args[0], fortnite.PC)
-                break;
+            }  
+        } else {
+            getStats(args[0], fortnite.PC)
         }
+
 
         function getStats(username, device) {
                     const fn = new fortnite(process.env.FORTNITE_API_KEY);                   
