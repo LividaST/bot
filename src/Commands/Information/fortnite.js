@@ -15,26 +15,30 @@ module.exports = {
         if(args[1]) {
             switch(args[1].toLowerCase()) {
                 case "ps4":
-                    getStats(args[0], fortnite.PS4)
+                    getStats(args[0], fortnite.PS4, "PS4")
                 break;
                 case "xbox":
-                    getStats(args[0], fortnite.XBOX)
+                    getStats(args[0], fortnite.XBOX, "XBOX")
                 break;
                 case "pc":
-                    getStats(args[0], fortnite.PC)
+                    getStats(args[0], fortnite.PC, "PC")
                 break;
+                default:
+                    msg.channel.send({embed: {
+                        description: "The specified device was not found, try one of the following instead: `ps4, xbox, pc`!"
+                    }})
             }  
         } else {
-            getStats(args[0], fortnite.PC)
+            getStats(args[0], fortnite.PC, "PC")
         }
 
 
-        function getStats(username, device) {
+        function getStats(username, device, dev) {
                     const fn = new fortnite(process.env.FORTNITE_API_KEY);                   
 fn.get(username, device)
     .then(body => {
     const embed = new client.Embed()
-    .setTitle(`Fortnite Statistics • ${username} • ${device.replace("fortnite.", "")}`)
+    .setTitle(`Fortnite Statistics • ${username} • ${dev}`)
     .setDescription(`
    **Matches Played:** ${body.stats.matches}
    **Top 1** ${body.stats.top1}
