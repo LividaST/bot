@@ -5,7 +5,10 @@ const client = new Bot({
   sync: true
 })
 const Sentry = require('@sentry/node')
-Sentry.init({ dsn: process.env.DSN })
+Sentry.init({ 
+  dsn: process.env.DSN
+  release: 'discord-bot@' + process.env.npm_package_version
+});
 
 client.connectToDB()
 client.loadEvents()
