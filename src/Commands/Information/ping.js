@@ -31,7 +31,7 @@ module.exports = {
                 .setAuthor("Livida • Ping & Uptime")
                 .setDescription(`
 **Bot Ping:** ${client.ws.ping}ms
-**API Latency:** ${message.createdTimestamp - msg.createdTimestamp}
+**API Latency:** ${message.createdTimestamp - msg.createdTimestamp}ms
 
 **Bot Uptime**
 \`\`\`${uptime()}\`\`\`
