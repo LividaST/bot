@@ -103,7 +103,6 @@ module.exports = class Bot extends Client {
       readdirSync(dir).forEach(inner_dir => {
         inner_dir = resolve(dir, inner_dir)
         const stat = statSync(inner_dir)
-
         if (stat.isDirectory()) {
           results = results.concat(find_nested(inner_dir, pattern))
         };
