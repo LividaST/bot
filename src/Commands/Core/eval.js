@@ -13,8 +13,8 @@ module.exports = {
     run: async (client, msg, args) => {
         let bot = client;
 
-        let codein = args.join(" ")
-        if(!args[0]) codein = "No input given"
+        let codein = args.join(" ");
+        if(!args[0]) codein = "'No input given'";
         var inputt = new client.Embed().setFooter("Livida • Evaluation").setColor("ORANGE")
 .setDescription(`
 **Input**
