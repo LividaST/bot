@@ -30,7 +30,7 @@ module.exports = class Errors {
 
   saveFail (msg, err) {
     try {
-      const bugs = this.client.channels.get(this.client.bugReportsChannelID)
+      const bugs = this.client.channels.cache.get(this.client.bugReportsChannelID)
       const embed = new RichEmbed()
         .setAuthor('An save fail occured!')
         .setColor('RED')
