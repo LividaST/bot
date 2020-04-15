@@ -16,8 +16,8 @@ module.exports = {
     if (!user) user = msg.author;
     
     const embed = new client.Embed()
-      .setAuthor(`${user.tag}'s avatar • Requested by ${message.author.tag}`, msg.author.avatarURL)
-      .setDescription(`\`\`\`${user.avatarURL}\`\`\``)
+      .setAuthor(`${user.tag}'s avatar • Requested by ${message.author.tag}`, msg.author.avatarURL())
+      .setDescription(`\`\`\`${user.avatarURL()}\`\`\``)
       .setColor(msg.guild.me.highestRole.color || 'PURPLE')
       .setImage(user.avatarURL)
     msg.channel.send(embed)
