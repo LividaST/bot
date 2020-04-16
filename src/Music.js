@@ -1,4 +1,4 @@
-const  { client } = require(`${process.cwd()}/src/bot.js`);
+const  client = require(`${process.cwd()}/src/index.js`);
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
 
@@ -23,4 +23,4 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     } catch (e) {
       client.debugLog(e)
     }
-    })
+  })
