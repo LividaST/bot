@@ -25,6 +25,7 @@ You can tune in via [our website](https://livida.net/radio)${msg.guild.id === "6
 `
                 )
                 .setThumbnail(json.now_playing.song.art)
+            msg.channel.send(embed);
         })
     }
   }
