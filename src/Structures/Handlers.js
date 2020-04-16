@@ -34,7 +34,7 @@ class loadEvents {
         for (const folder of folders) {
           const files = readdirSync(resolve(`${__dirname}/${client.eventDir}/${folder}`)).filter(f => f.endsWith('.js'))
           for (const file of files) {
-            const event = require(resolve(`${__dirname}/${this.eventDir}/${folder}/${file}`))
+            const event = require(resolve(`${__dirname}/${client.eventDir}/${folder}/${file}`))
             const name = event.name ? event.name : file.split('.')[0]
             client.on(name, event.run.bind(null, this))
           };
