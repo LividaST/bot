@@ -1,8 +1,6 @@
 const  client = require(`${process.cwd()}/src/index.js`);
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
-
-  if(client.ags.dev === "true") return;
     try {
       const stream = "http://radio.livida.net/radio/8000/radio.mp3"
       const channel = "700486716968009800" 
