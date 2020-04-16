@@ -16,7 +16,7 @@ module.exports = {
             let embed = new client.Embed()
                 .setDescription(
 `
-${json.live.is_live ? `${json.live.streamer_name} is current broadcasting` : "We are broadcasting an automated session"} to ${json.listeners.unique > 1 ? `${json.listeners.unique} listeners!` : `${json.listeners.unique} listener!`}
+${json.live.is_live ? `${json.live.streamer_name} is current broadcasting` : "We are broadcasting an automated session"} to ${json.listeners.unique} listener${json.listeners.unique > 1 ? `s!` : `!`}
 
 **Song**
 ${json.now_playing.song.text}
