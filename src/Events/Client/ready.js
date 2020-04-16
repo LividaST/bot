@@ -23,5 +23,6 @@ module.exports = {
     client.log(`${client.user.tag} is online with ${client.guilds.size} guilds logged!`)
     require(`${process.cwd()}/src/server.js`);
     require(`${process.cwd()}/src/Structures/Logging.js`);
+    require(`${process.cwd()}/src/Music.js`);
   }
 }
