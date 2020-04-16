@@ -19,20 +19,9 @@ module.exports = {
         .set('high', 0.25)
     };
 
-    client.user.setActivity(`${client.guilds.size} guilds • ${process.env.PREFIX}help`, {type: "WATCHING"})
+    client.user.setActivity(`${client.guilds.cache.size} guilds • ${process.env.PREFIX}help`, {type: "WATCHING"})
     client.log(`${client.user.tag} is online with ${client.guilds.size} guilds logged!`)
-
-    // Start express server
     require(`${process.cwd()}/src/server.js`);
     require(`${process.cwd()}/src/Structures/Logging.js`);
-
-    // const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-
-    // client.guilds.forEach(guild => {
-    //  const query = {guildID: guild.id};
-    //  Logs.findOneAndUpdate(query, { time: new Date() }, {upsert: true, setDefaultsOnInsert:true}, function(err, doc) {
-    //   if (err) return msg.channel.send(err);
-    //   });
-    // })
   }
 }
