@@ -25,6 +25,7 @@ module.exports = class Bot extends Client {
     this.Errors = new Errors(this)
     this.Models = require('./Constants/Models')
     this.Emojis = require('./Constants/Emojis')
+    this.fetch = require("node-fetch");
   };
 
   log (msg) {
