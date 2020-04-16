@@ -1,10 +1,9 @@
 const { Client, Collection } = require('discord.js')
-const mongoose = require('mongoose')
-const { resolve } = require('path')
-const { readdirSync, statSync } = require('fs')
-const moment = require('moment')
-const Errors = require('./Errors')
-const Embed = require('./Embed')
+    , mongoose = require('mongoose')
+    , moment = require('moment')
+    , Errors = require('./Errors.js')
+    , Embed = require('./Embed.js')
+    , Handlers = require('./Handlers.js')
 
 module.exports = class Bot extends Client {
   constructor (options = {}) {
@@ -98,42 +97,16 @@ module.exports = class Bot extends Client {
   };
 
   loadCommands () {
-    function find_nested (dir, pattern) {
-      let results = []
-      readdirSync(dir).forEach(inner_dir => {
-        inner_dir = resolve(dir, inner_dir)
-        const stat = statSync(inner_dir)
-        if (stat.isDirectory()) {
-          results = results.concat(find_nested(inner_dir, pattern))
-        };
-        if (stat.isFile() && inner_dir.endsWith(pattern)) {
-          results.push(inner_dir)
-        };
-      })
-      return results
-    };
-    const cmd_files = find_nested(resolve(`${__dirname}/${this.commandDir}`), '.js')
-    cmd_files.forEach(file => {
-      const props = require(file)
-      this.commands.set(props.name, props)
-      props.aliases.forEach(alias => {
-        this.aliases.set(alias, props.name)
-      })
-    })
+    new Handlers.loadCommands(this);
   };
 
   loadEvents () {
-    const folders = readdirSync(resolve(`${__dirname}/${this.eventDir}`))
-    for (const folder of folders) {
-      const files = readdirSync(resolve(`${__dirname}/${this.eventDir}/${folder}`)).filter(f => f.endsWith('.js'))
-      for (const file of files) {
-        const event = require(resolve(`${__dirname}/${this.eventDir}/${folder}/${file}`))
-        const name = event.name ? event.name : file.split('.')[0]
-        this.on(name, event.run.bind(null, this))
-      };
-    };
+    new Handlers.loadEvents(this);
   };
-
+  
+  addCommand(options) {
+    new Handlers.addCommand(this, options);
+  }
   connectToDB () {
     return mongoose.connect(process.env.URI, {
       useNewUrlParser: true,
