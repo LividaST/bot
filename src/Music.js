@@ -4,7 +4,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
   if(client.ags.dev === "true") return;
     try {
-      // bounce code is MY CODE
       const stream = "http://radio.livida.net/radio/8000/radio.mp3"
       const channel = "700486716968009800" 
         let newUserChannel = newMember.voiceChannel
