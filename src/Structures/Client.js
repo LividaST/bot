@@ -114,4 +114,8 @@ module.exports = class Bot extends Client {
       useUnifiedTopology: true
     })
   };
+
+  debugLog(i) {
+    console.log(chalk.yellow("[DEBUG] ") + i)
+  }
 }

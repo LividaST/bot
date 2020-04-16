@@ -1,6 +1,6 @@
 module.exports = {
     name: 'statistics',
-    aliases: ["stats"],
+    aliases: ["stats", "nowplaying", "onair"],
     category: 'Radio',
     description: 'Get current live statistics for Livida Radio!',
     usage: '',
