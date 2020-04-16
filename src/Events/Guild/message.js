@@ -15,11 +15,9 @@ module.exports = {
 
     if (msg.author.bot) return
 
-    const confPrefix = await client.Models.Prefix.findOne({
-      guildID: msg.guild.id
-    })
+ 
     const prefixMention = new RegExp(`^<@!?${client.user.id}> `)
-    const prefix = msg.content.match(prefixMention) ? msg.content.match(prefixMention)[0] : confPrefix ? confPrefix.prefix : client.prefix
+    const prefix = msg.content.match(prefixMention) ? msg.content.match(prefixMention)[0] : client.prefix
 
     if (msg.content.startsWith(prefix)) {
       const args = msg.content.slice(prefix.length).trim().split(' ')
