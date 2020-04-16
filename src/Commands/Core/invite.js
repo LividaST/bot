@@ -13,7 +13,7 @@ module.exports = {
   run: async (client, msg, args) => {
     const embed = new client.Embed()
       .setColor(msg.guild.me.roles.color || 'PURPLE')
-      .setDescription(`You can invite \`${client.user.username} to your server by clicking \`[here](https://discordapp.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=2146958847&scope=bot)!`)
+      .setDescription(`You can invite \`${client.user.username}\` to your server by clicking [here](https://discordapp.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=2146958847&scope=bot)!`)
     msg.channel.send(embed)
   }
 }
