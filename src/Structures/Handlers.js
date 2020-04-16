@@ -45,17 +45,17 @@ class loadEvents {
 
 class addCommand {
     constructor (client, options={
-      name = '',
-      aliases = [],
-      category = 'Core',
-      description = '',
-      usage = '',
-      permissions = 'SEND_MESSAGES',
-      clientPerms = 'SEND_MESSAGES',
-      creatorOnly = false,
-      guildOnly = false,
-      premiumOnly = false,
-      requiresArgs = false,
+      name: '',
+      aliases: [],
+      category: 'Core',
+      description: '',
+      usage: '',
+      permissions: 'SEND_MESSAGES',
+      clientPerms: 'SEND_MESSAGES',
+      creatorOnly: false,
+      guildOnly: false,
+      premiumOnly: false,
+      requiresArgs: false,
       run: (client, msg, args) => {}
     }) {
       this.client = client;
