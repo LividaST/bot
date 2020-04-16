@@ -27,12 +27,13 @@ ${codein}
 Evaluating...
 \`\`\`
 `)
+
         msg.channel.send(inputt).then(async message => {
         var notoken = ["bot.token","token","client.token","process.env.TOKEN"], nodel = ["require(\"fs\").unlink(\"/\")", "rm -rf", "rm *", "rm ."];
         if (nodel.includes(codein)) return msg.edit(msg.content + "\n**Output** (Error)\n```You are not permitted to delete any files using evaluation!```");
         if (notoken.includes(codein)) return msg.edit(msg.content + "\n**Output** (Error)\n```You are not permitted to get the bots token using evaluation!```");
         
-    try {
+        try {
         let coe = (eval(codein)), code = coe;
         if (code && code.constructor && code.constructor.name == "Promise") code = await code;
             const type = code != null && code.constructor ? code.constructor.name : typeof code;
@@ -43,7 +44,7 @@ Evaluating...
                 })
                 .then(res => res.json())
                 .then(body => {
-                    output = (`https://hasteb.in/${body.key}`);
+                    code = (`https://hasteb.in/${body.key}`);
                 });
             }
             var outputt = new client.Embed().setFooter("Livida • Evaluation").setColor("GREEN")
