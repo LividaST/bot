@@ -19,7 +19,7 @@ module.exports = {
         .set('high', 0.25)
     };
 
-    client.user.setPresence({ game: { name: `${process.env.PREFIX}help | ${client.guilds.size} guilds` }, status: 'online' })
+    client.user.setActivity({ game: { name: `${process.env.PREFIX}help | ${client.guilds.size} guilds` }, status: 'online' })
     client.log(`${client.user.tag} is online with ${client.guilds.size} guilds logged!`)
 
     // Start express server
