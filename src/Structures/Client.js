@@ -5,7 +5,7 @@ const { Client, Collection } = require('discord.js')
     , Embed = require('./Embed.js')
     , Handlers = require('./Handlers.js')
 
-module.exports = class Bot extends Client {
+class Bot extends Client {
   constructor (options = {}) {
     super(options)
     this.bugReportsChannelID = '688496042903207951'
@@ -120,4 +120,4 @@ module.exports = class Bot extends Client {
   }
 }
 
-module.exports.client = Bot;
+module.exports = Bot;
