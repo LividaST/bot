@@ -18,9 +18,10 @@ module.exports = {
     , prefix = msg.content.match(prefixMention) ? msg.content.match(prefixMention)[0] : confPrefix ? confPrefix.prefix : client.prefix;
     if (msg.content.startsWith(prefix)) {
       const args = msg.content.slice(prefix.length).trim().split(' ')
-      , cmd = args.shift().toLowerCase()
+      , cmd = args.shift().toLowerCase(),
+      inp = args.shift()
       try {
-        const command = client.commands.has(cmd) ? client.commands.get(cmd) : client.commands.get(client.aliases.get(cmd))
+        const command = client.commands.has(cmd) ? client.commands.get(cmd) || client.commands.get(inp) : client.commands.get(client.aliases.get(cmd)) || client.commands.get(client.aliases.get(inp))
         if (command) {
           if (command.premiumOnly === true && await client.Models.Premium.findOne({ guildID: msg.guild.id }) === null) return client.Errors.premiumOnly(msg.channel);
           if (command.permissions && !msg.member.hasPermission(command.permissions) && !client.creators.ids.includes(msg.author.id)) return client.Errors.noPerms(msg.channel, command.permissions);
