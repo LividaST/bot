@@ -1,4 +1,4 @@
-const client = require(`${process.cwd()}/src/Structures/Client.js`).Client;
+const client = require(`${process.cwd()}/src/Structures/Client.js`);
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     try {
