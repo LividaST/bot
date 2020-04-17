@@ -5,7 +5,7 @@ module.exports = class Errors {
 
   unknownErr (msg, err) {
     try {
-      const bugs = this.client.channels.get(this.client.bugReportsChannelID)
+      const bugs = this.client.channels.cache.get(this.client.bugReportsChannelID)
       const embed = new this.client.Embed()
         .setAuthor('An unknown error occured!')
         .setColor('RED')
