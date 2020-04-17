@@ -11,7 +11,7 @@ module.exports = {
     guildOnly: false,
     premiumOnly: false,
     requiresArgs: true,
-    run: async (client, msg, args) => {
+    run: (client, msg, args) => {
         if(args[1]) {
             switch(args[1].toLowerCase()) {
                 case "ps4":

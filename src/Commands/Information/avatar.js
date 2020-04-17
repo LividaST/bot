@@ -10,10 +10,9 @@ module.exports = {
   guildOnly: true,
   premiumOnly: false,
   requiresArgs: false,
-  run: async (client, msg, args) => {
+  run: (client, msg, args) => {
     let user;
-    if (msg.mentions.users.size) user = msg.mentions.users.first()
-    if (!user) user = msg.author;
+    if(client.getUser(args[0])) user = client.getUser(args[0]);
     
     const embed = new client.Embed()
       .setAuthor(`${user.tag}'s avatar • Requested by ${msg.author.tag}`, msg.author.avatarURL())

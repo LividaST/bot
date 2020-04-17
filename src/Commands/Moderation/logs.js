@@ -10,15 +10,12 @@ module.exports = {
     guildOnly: true,
     premiumOnly: false,
     requiresArgs: false,
-    run: async (client, msg, args) => {
+    run: (client, msg, args) => {
         const cases = ["channelUpdates", "memberUpdates", "emojiUpdates", "messageUpdates"]
         var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
             query = {guildID: msg.guild.id};
             const data = await Logs.find({guildID: msg.guild.id})
                 const config = data[0]
-        // const values = {
-
-        // }
         if(!args[0]) return msg.channel.send("Please provide one of the following arguments: `list, enable, disable, setChannel`").then(message => {
             msg.delete(5000);
             message.delete(5000);

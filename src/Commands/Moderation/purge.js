@@ -10,7 +10,7 @@ module.exports = {
     guildOnly: true,
     premiumOnly: false,
     requiresArgs: true,
-    run: async (client, msg, args) => {
+    run: (client, msg, args) => {
 
         if(isNaN(args[0])) {
             msg.channel.send("The provided value is not a number!").then(message => {
@@ -32,4 +32,3 @@ module.exports = {
         }
     }
   };
-  

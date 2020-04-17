@@ -2,7 +2,6 @@ module.exports = class Errors {
   constructor (client) {
     this.client = client
   };
-
   unknownErr (msg, err) {
     try {
       const bugs = this.client.channels.cache.get(this.client.bugReportsChannelID)
@@ -21,10 +20,7 @@ module.exports = class Errors {
   };
 
   async noArgs (guild, channel, commandName) {
-    const prefix = await this.client.Models.Prefix.findOne({
-      guildID: guild.id
-    })
-    channel.send(new this.client.Embed().error(`That command requires arguments! Correct usage \`${prefix ? prefix.prefix : '-'}${commandName} ${this.client.commands.get(commandName).usage}\``))
+    channel.send(new this.client.Embed().error(`That command requires arguments! Correct usage \`${process.env.PREFIX}${commandName} ${this.client.commands.get(commandName).usage}\``))
   };
 
   cooldown (channel) {
@@ -32,10 +28,7 @@ module.exports = class Errors {
   };
 
   async invalidArgs (guild, channel, commandName) {
-    const prefix = await this.client.Models.Prefix.findOne({
-      guildID: guild.id
-    })
-    channel.send(new this.client.Embed().error(`That is not the correct usage for that command! Correct usage \`${prefix ? prefix.prefix : '?'}${commandName} ${client.commands.get(commandName).usage}\``))
+    channel.send(new this.client.Embed().error(`That is not the correct usage for that command! Correct usage \`${process.env.PREFIX}${commandName} ${client.commands.get(commandName).usage}\``))
   };
 
   noClientPerms (channel, permission) {
