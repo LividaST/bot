@@ -12,7 +12,11 @@ module.exports = {
   requiresArgs: false,
   run: (client, msg, args) => {
     let user;
-    if(client.getUser(args[0])) user = client.getUser(args[0]);
+    if(args[0]) {
+      if(client.getUser(args[0])) user = client.getUser(args[0]);
+    } else {
+      user = msg.author;
+    }
     
     const embed = new client.Embed()
       .setAuthor(`${user.tag}'s avatar • Requested by ${msg.author.tag}`, msg.author.avatarURL())
