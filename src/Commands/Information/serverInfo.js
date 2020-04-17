@@ -25,9 +25,9 @@ module.exports = {
             .addField(`Member Count`, guild.memberCount)
             .setThumbnail(guild.iconURL())
             .setFooter("Livida • Information");
-            if(guild.premiumSubscriptionCount > 0) embed.addField(`Boost Information`, `Boost Count: **${guild.premiumSubscriptionCount}**, Boost Level: **${guild.premiumTier}**`, true)
-            if(guild.afkChannelID) embed.addField(`AFK Voice Channel`, `${client.getChannel(msg, guild.afkChannelID).name} • Timeout: **${guild.afkTimeout} Seconds**`, true)
-            if(guild.emojis.size > 0) embed.addField(`Emoji Count`, `${guild.emojis.size}`, true)
+            if(guild.premiumSubscriptionCount > 0) embed.addField(`Boost Information`, `Boost Count: **${guild.premiumSubscriptionCount}**, Boost Level: ${guild.premiumTier}`, true)
+            if(guild.afkChannelID) embed.addField(`AFK Voice Channel`, `Name: ${client.getChannel(msg, guild.afkChannelID).name} • Timeout: ${guild.afkTimeout} Seconds`, true)
+            if(guild.emojis > 0) embed.addField(`Emoji Count`, `${guild.emojis.size}`, true)
             if(guild.vanityURLCode) embed.addField(`Vanity Code`, `discord.gg/**${guild.vanityURLCode}**`, true)
             msg.channel.send(embed);
         }
