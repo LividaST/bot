@@ -119,3 +119,5 @@ module.exports = class Bot extends Client {
     console.log(chalk.yellow("[DEBUG] ") + i)
   }
 }
+
+module.exports.client = Bot;
