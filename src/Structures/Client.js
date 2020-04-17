@@ -32,7 +32,7 @@ module.exports = class Bot extends Client {
   };
 
   getUser (query) {
-    const target = this.users.cache.get(query) || this.users.cache.filter(u => u.username.toLowerCase().includes(query.toLowerCase())).first() || this.users.filter(u => u.tag.toLowerCase().includes(query.toLowerCase())).first()
+    const target = this.users.cache.get(query) || this.users.cache.filter(u => u.username.toLowerCase().includes(query.toLowerCase())).first() || this.users.cache.filter(u => u.tag.toLowerCase().includes(query.toLowerCase())).first()
     return target;
   };
 
