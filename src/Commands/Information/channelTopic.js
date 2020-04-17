@@ -15,11 +15,11 @@ module.exports = {
         if(args[0]) {
             channel = client.getChannel(msg, args[0]);
         } else {
-            channel = msg.channel.id;
+            channel = msg.channel;
         }
         let embed = new client.Embed()
             .setAuthor(`${channel.name} • Topic`, channel.guild.iconURL())
-            .setDescription(channel.topic)
+            .setDescription(channel.topic ? channel.topic : "The specified channel has no topic!")
             .setFooter("Livida • Information")
         msg.channel.send(embed);
     }

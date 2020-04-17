@@ -15,7 +15,7 @@ module.exports = {
         if(args[0]) {
             guild = client.getChannel(msg, args[0]);
         } else {
-            guild = msg.guild.id;
+            guild = msg.guild;
         }
         let embed = new client.Embed()
             .setAuthor(`${guild.verified ? "<:Verified:700835981133217823>":""}${guild.name} • Information`, guild.iconURL())
