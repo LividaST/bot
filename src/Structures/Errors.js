@@ -1,4 +1,3 @@
-const { RichEmbed } = require('discord.js')
 module.exports = class Errors {
   constructor (client) {
     this.client = client
@@ -7,7 +6,7 @@ module.exports = class Errors {
   unknownErr (msg, err) {
     try {
       const bugs = this.client.channels.get(this.client.bugReportsChannelID)
-      const embed = new RichEmbed()
+      const embed = new this.client.Embed()
         .setAuthor('An unknown error occured!')
         .setColor('RED')
         .addField('Error', err.message)
@@ -28,33 +27,8 @@ module.exports = class Errors {
     channel.send(new this.client.Embed().error(`That command requires arguments! Correct usage \`${prefix ? prefix.prefix : '-'}${commandName} ${this.client.commands.get(commandName).usage}\``))
   };
 
-  saveFail (msg, err) {
-    try {
-      const bugs = this.client.channels.cache.get(this.client.bugReportsChannelID)
-      const embed = new RichEmbed()
-        .setAuthor('An save fail occured!')
-        .setColor('RED')
-        .addField('Error', err.message)
-        .addField('In server', `**${msg.guild.name}** | \`${msg.guild.id}\``, true)
-        .addField('By user', `${msg.author} | **${msg.author.tag}** | \`${msg.author.id}\``, true)
-        .setTimestamp()
-      bugs.send(embed)
-    } catch (err) {
-      this.client.log(err)
-    };
-    msg.channel.send(new this.client.Embed().error('There was an error saving your data. This error has been automaticaly reported to the developers! Please try again.'))
-  };
-
   cooldown (channel) {
     channel.send(new this.client.Embed().error('The cooldown for that command has not expired. Please try again later!'))
-  };
-
-  invalidChan (channel) {
-    channel.send(new this.client.Embed().error('I could not find that channel!'))
-  };
-
-  invalidTarget (channel) {
-    channel.send(new this.client.Embed().error('I could not get a target for that command! Please try again!'))
   };
 
   async invalidArgs (guild, channel, commandName) {

@@ -17,7 +17,7 @@ class loadCommands {
             })
             return results
           };
-          const cmd_files = find_nested(resolve(`${__dirname}/${client.commandDir}`), '.js')
+          const cmd_files = find_nested(resolve(`${__dirname}/${process.env.COMMAND_DIR}`), '.js')
           cmd_files.forEach(file => {
             const props = require(file)
             client.commands.set(props.name, props)
@@ -30,12 +30,12 @@ class loadCommands {
 
 class loadEvents {
     constructor(client) {
-        const folders = readdirSync(resolve(`${__dirname}/${client.eventDir}`))
+        const folders = readdirSync(resolve(`${__dirname}/${process.env.EVENT_DIR}`))
         for (const folder of folders) {
-          const files = readdirSync(resolve(`${__dirname}/${client.eventDir}/${folder}`)).filter(f => f.endsWith('.js'))
+          const files = readdirSync(resolve(`${__dirname}/${process.env.EVENT_DIR}/${folder}`)).filter(f => f.endsWith('.js'))
           for (const file of files) {
-            const event = require(resolve(`${__dirname}/${client.eventDir}/${folder}/${file}`))
-            const name = event.name ? event.name : file.split('.')[0]
+            const event = require(resolve(`${__dirname}/${process.env.EVENT_DIR}/${folder}/${file}`))
+            , name = event.name ? event.name : file.split('.')[0]
             client.on(name, event.run.bind(null, client))
           };
         };
