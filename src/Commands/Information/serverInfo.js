@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'serverInfo',
+    name: 'serverinfo',
     aliases: ["si"],
     category: 'Information',
     description: 'View a servers information',
