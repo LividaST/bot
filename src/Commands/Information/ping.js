@@ -24,8 +24,8 @@ module.exports = {
                 return `Days: ${days} • Hours: ${hours} • Minutes: ${mins} • Seconds: ${realTotalSecs}`;
             }
             let color = "GREEN";
-            if(client.ws.pings > 150) {color = "ORANGE"};
-            if(client.ws.pings > 250) {color = "RED"};
+            if(client.ws.ping > 150) {color = "ORANGE"};
+            if(client.ws.ping > 250) {color = "RED"};
             setTimeout(() => {
                 let embed = new client.Embed()
                 .setAuthor("Livida • Ping & Uptime")

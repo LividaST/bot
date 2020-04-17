@@ -20,9 +20,9 @@ class loadCommands {
           const cmd_files = find_nested(resolve(`${__dirname}/${process.env.COMMAND_DIR}`), '.js')
           cmd_files.forEach(file => {
             const props = require(file)
-            client.commands.set(props.name, props)
+            new addCommand(client, props, props.name)
             props.aliases.forEach(alias => {
-              client.aliases.set(alias, props.name)
+              new addAlias(client, alias, props.name)
             })
           })
     }
@@ -44,24 +44,30 @@ class loadEvents {
 
 
 class addCommand {
-    constructor (client, options={
-      name: '',
-      aliases: [],
-      category: 'Core',
-      description: '',
-      usage: '',
-      permissions: 'SEND_MESSAGES',
-      clientPerms: 'SEND_MESSAGES',
-      creatorOnly: false,
-      guildOnly: false,
-      premiumOnly: false,
-      requiresArgs: false,
-      run: (client, msg, args) => {}
-    }) {
-      this.client = client;
-      client.commands.set(options.name, options);
-    }
+  constructor (client, options={
+    name: '',
+    aliases: [],
+    category: 'Core',
+    description: '',
+    usage: '',
+    permissions: 'SEND_MESSAGES',
+    clientPerms: 'SEND_MESSAGES',
+    creatorOnly: false,
+    guildOnly: false,
+    premiumOnly: false,
+    requiresArgs: false,
+    run: (client, msg, args) => {}
+  }) {
+    this.client = client;
+    client.commands.set(options.name, options);
   }
+}
+class addAlias {
+  constructor (client, alias, name) {
+    this.client = client;
+      client.aliases.set(alias, name)
+  }
+}
   
 
 module.exports = {

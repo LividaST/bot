@@ -33,7 +33,7 @@ module.exports = {
         .setImage(user.avatarURL())
       msg.channel.send(embed)
     } catch {
-      msg.reply("the specified user was not found!");
+      msg.channel.send({embed: {description: `The specified user '${args[0]}' was not found!`}});
     }
   }
 }

@@ -36,6 +36,29 @@ module.exports = class Bot extends Client {
     return target;
   };
 
+  getGuild (msg, query) {
+    const target = this.guilds.cache.get(query) || this.guild.cache.filter(u => u.name.toLowerCase().includes(query.toLowerCase())).first() || this.guilds.cache.filter(u => u.id.toLowerCase().includes(query.toLowerCase())).first()
+    return target;
+  };
+
+  getChannel (msg, query) {
+    let target
+    if (query.length > 3) {
+      target = msg.mentions.channels.first() || this.channels.cache.get(query) || this.channels.cache.filter(ch => ch.name.includes(query.toLowerCase()) && ch.type === 'text').first()
+    } else {
+      target = msg.mentions.channels.first() || this.channels.cache.get(query)
+    }
+    return target
+  };
+
+  getMember (query, msg) {
+    let target
+      target = msg.guild.members.cache.get(query) || msg.mentions.members.first() || msg.member
+      if (query.length > 3) {
+        target = msg.guild.members.filter(m => m.displayName.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.filter(m => m.user.username.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.filter(m => m.user.tag.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.get(query) || msg.mentions.members.first() || msg.member
+      }
+    return target
+  };
 
   addCommand(options) {
     new Handlers.addCommand(this, options);
