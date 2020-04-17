@@ -11,10 +11,14 @@ module.exports = {
     premiumOnly: false,
     requiresArgs: false,
     run: async (client, msg, args) => {
-        const guild = client.getGuild(msg, args[0]);
-
+        let guild;
+        if(args[0]) {
+            guild = client.getChannel(msg, args[0]);
+        } else {
+            guild = msg.guild.id;
+        }
         let embed = new client.Embed()
-            .setAuthor(`${guild.verified ? ":white_check_mark:":""}${guild.name} • Information`, guild.iconURL())
+            .setAuthor(`${guild.verified ? "<:Verified:700835981133217823>":""}${guild.name} • Information`, guild.iconURL())
             .addField(`Guild`, `${guild.name} • ${guild.id}`)
             .addField(`Owner`, `${guild.owner.user.username} • ${guild.owner.user.id}`, true)
             .addField(`Region`, `${guild.region}`, true)
