@@ -37,7 +37,7 @@ module.exports = class Bot extends Client {
   };
 
   getGuild (msg, query) {
-    const target = this.guilds.cache.get(query) || this.guild.cache.filter(u => u.name.toLowerCase().includes(query.toLowerCase())).first() || this.guilds.cache.filter(u => u.id.toLowerCase().includes(query.toLowerCase())).first()
+    const target = this.guilds.cache.get(query) || this.guilds.cache.filter(u => u.name.toLowerCase().includes(query.toLowerCase())).first() || this.guilds.cache.filter(u => u.id.toLowerCase().includes(query.toLowerCase())).first()
     return target;
   };
 

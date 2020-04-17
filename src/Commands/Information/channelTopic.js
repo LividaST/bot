@@ -11,7 +11,7 @@ module.exports = {
     premiumOnly: false,
     requiresArgs: false,
     run: async (client, msg, args) => {
-        const channel = client.getChannel(msg, args[0]);
+        const channel = client.getChannel(msg, args[0] || msg.channel);
         let embed = new client.Embed()
             .setAuthor(`${channel.name} • Topic`, channel.guild.iconURL())
             .setDescription(channel.topic)

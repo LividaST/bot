@@ -14,14 +14,18 @@ module.exports = {
         const guild = client.getGuild(msg, args[0]);
 
         let embed = new client.Embed()
-            .setAuthor(`${guild.name} • Information`, guild.iconURL())
+            .setAuthor(`${guild.verified ? ":white_check_mark:":""}${guild.name} • Information`, guild.iconURL())
             .addField(`Guild`, `${guild.name} • ${guild.id}`)
             .addField(`Owner`, `${guild.owner.user.username} • ${guild.owner.user.id}`, true)
-            .addField(`Region`, `${guild.region}`)
+            .addField(`Region`, `${guild.region}`, true)
+            .addField(`Member Count`, guild.memberCount)
             .setThumbnail(guild.iconURL())
             .setFooter("Livida • Information");
-            if(guild.premiumSubscriptionCount > 0) embed.addField(`Boost Information`, `Boost Count: **${guild.premiumSubscriptionCount}**, Boost Level: **${guild.premiumTier}**`)
-            if(guild.afkChannelID) embed.addField(`AFK Voice Channel`, `${client.getChannel(guild.afkChannelID).name} • Timeout: **${guild.afkTimeout} Seconds**`)
-    }
+            if(guild.premiumSubscriptionCount > 0) embed.addField(`Boost Information`, `Boost Count: **${guild.premiumSubscriptionCount}**, Boost Level: **${guild.premiumTier}**`, true)
+            if(guild.afkChannelID) embed.addField(`AFK Voice Channel`, `${client.getChannel(guild.afkChannelID).name} • Timeout: **${guild.afkTimeout} Seconds**`, true)
+            if(guild.emojis.size > 0) embed.addField(`Emoji Count`, `${guild.emojis.size}`, true)
+            if(guild.vanityURLCode) embed.addField(`Vanity Code`, `discord.gg/**${guild.vanityURLCode}**`, true)
+            msg.channel.send(embed);
+        }
   }
   
