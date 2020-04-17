@@ -13,7 +13,7 @@ module.exports = {
     run: async (client, msg, args) => {
         let guild;
         if(args[0]) {
-            guild = client.getChannel(msg, args[0]);
+            guild = client.getGuild(msg, args[0]);
         } else {
             guild = msg.guild;
         }
