@@ -10,7 +10,7 @@ module.exports = {
     guildOnly: true,
     premiumOnly: false,
     requiresArgs: true,
-    run: (client, msg, args) => {
+    run: async (client, msg, args) => {
 
         if(isNaN(args[0])) {
             msg.channel.send("The provided value is not a number!").then(message => {
