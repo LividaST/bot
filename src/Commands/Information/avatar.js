@@ -13,7 +13,11 @@ module.exports = {
   run: (client, msg, args) => {
     let user;
     if(args[0]) {
-      if(client.getUser(args[0])) user = client.getUser(args[0]);
+      if(msg.mentions.users.size) {
+        user = mgs.mentions.user.first()
+      } else {
+        if(client.getUser(args[0])) user = client.getUser(args[0]);
+      }
     } else {
       user = msg.author;
     }
