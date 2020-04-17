@@ -14,7 +14,7 @@ module.exports = {
     let user;
     if(args[0]) {
       if(msg.mentions.users.size) {
-        user = mgs.mentions.user.first()
+        user = mgs.mentions.users.first()
       } else {
         if(client.getUser(args[0])) user = client.getUser(args[0]);
       }
