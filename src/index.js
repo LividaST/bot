@@ -21,7 +21,7 @@ module.exports = client
 
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
-
+  console.log("the person reading this is naughty")
     const stream = "http://radio.livida.net/radio/8000/radio.mp3"
     const channel = "700486716968009800" 
       let newUserChannel = newMember.voiceChannel
