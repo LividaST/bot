@@ -10,7 +10,7 @@ module.exports = {
     guildOnly: true,
     premiumOnly: false,
     requiresArgs: false,
-    run: (client, msg, args) => {
+    run: async (client, msg, args) => {
         const cases = ["channelUpdates", "memberUpdates", "emojiUpdates", "messageUpdates"]
         var { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
             query = {guildID: msg.guild.id};
