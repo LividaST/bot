@@ -11,22 +11,26 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: false,
   run: (client, msg, args) => {
-    let user;
-    if(args[0]) {
-      if(msg.mentions.users.size) {
-        user = msg.mentions.users.first()
+    try {
+      let user;
+      if(args[0]) {
+        if(msg.mentions.users.size) {
+          user = msg.mentions.users.first()
+        } else {
+          if(client.getUser(args[0])) user = client.getUser(args[0]);
+        }
       } else {
-        if(client.getUser(args[0])) user = client.getUser(args[0]);
+        user = msg.author;
       }
-    } else {
-      user = msg.author;
+      
+      const embed = new client.Embed()
+        .setAuthor(`${user.tag}'s avatar • Requested by ${msg.author.tag}`, msg.author.avatarURL())
+        .setDescription(`\`\`\`${user.avatarURL()}\`\`\``)
+        .setColor(msg.guild.me.roles.color || 'PURPLE')
+        .setImage(user.avatarURL())
+      msg.channel.send(embed)
+    } catch {
+      msg.reply("the specified user was not found!");
     }
-    
-    const embed = new client.Embed()
-      .setAuthor(`${user.tag}'s avatar • Requested by ${msg.author.tag}`, msg.author.avatarURL())
-      .setDescription(`\`\`\`${user.avatarURL()}\`\`\``)
-      .setColor(msg.guild.me.roles.color || 'PURPLE')
-      .setImage(user.avatarURL())
-    msg.channel.send(embed)
   }
 }
