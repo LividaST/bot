@@ -20,12 +20,14 @@ client.on('voiceStateUpdate', async (oldMember, newMember) => {
   , oldUserChannel = client.channels.cache.get(oldMember.channelID)
   , { RadioBindings } = require(`${process.cwd()}/src/Structures/Constants/Models.js`)
   , data = await RadioBindings.find({guildID: (newMember.channelID ? client.channels.cache.get(newMember.channelID).guild.id : client.channels.cache.get(oldMember.channelID).guild.id)});
-  if((newMember.channelID === data[1].channelID && data.binded) || newMember.channelID === "700486716968009800") {
+  console.log("ur a poopoo head")
+  if((newMember.channelID == data[1].channelID && data.binded) || newMember.channelID == "700486716968009800") {
+    console.log("pppppppppppppp")
    if(newUserChannel.members.size > 2)  return;
       newUserChannel.join().then(connection => {
       connection.playStream(stream,  {bitrate: 96000, volume: 0.1});
     })      
-      } else if(oldUserChannel && oldMember.channelID === data[1].channelID){
+      } else if(oldUserChannel && oldMember.channelID == data[1].channelID){
         if(oldUserChannel.members.size < 2) {
           if(oldUserChannel.members.map(x => x.id).includes(client.user.id)) {
             oldUserChannel.leave();
