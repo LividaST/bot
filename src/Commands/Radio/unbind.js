@@ -15,7 +15,7 @@ module.exports = {
         const data = await RadioBindings.find({guildID: msg.guild.id});
         if(data[1].channelID !== client.getChannel(msg, args[0]).id) return msg.channel.send({embed: {description: "The bot is not bound to the specified voice channel!"}});
         query = {channelID: client.getChannel(msg, args[0]).id, binded: false};
-        RadioBindings.findOneAndUpdate(query, {guildID: msg.guild.id}, {upsert: false}, function(err, doc) {
+        RadioBindings.findOneAndUpdate(query, {guildID: msg.guild.id}, {upsert: true}, function(err, doc) {
           if (err) return msg.channel.send(err);
         });
         let embed = new client.Embed()
