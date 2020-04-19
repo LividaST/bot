@@ -16,8 +16,8 @@ module.exports = {
         if(data[0].channelID === client.getChannel(msg, args[0]).id) return msg.channel.send({embed: {description: "The bot is already bound to this channel!"}});
         if(client.getChannel(msg, args[0]).type !== "voice") return msg.reply("the specified channel is not a voice channel!");
         var query = {channelID: client.getChannel(msg, args[0]).id, binded: true};
-        RadioBindings.findOneAndUpdate(query, {guildID: msg.guild.id}, {upsert: false}, function(err, doc) {
-          if (err) return msg.channel.send(err);
+        RadioBindings.update({guildID: msg.guild.id}, query, {upsert: true}, function(err, doc) {
+            if (err) return msg.channel.send(err);
         });
         let embed = new client.Embed()
             .setDescription(`Successfully bound the specified voice channel to the bot, when a user joins this channel, Livida Radio will be streamed to it!`)
