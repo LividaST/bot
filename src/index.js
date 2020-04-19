@@ -25,7 +25,7 @@ client.on('voiceStateUpdate', async (oldMember, newMember) => {
       newUserChannel.join().then(connection => {
       connection.play(stream,  {bitrate: 96000, volume: 0.5});
     })      
-      } else if(oldUserChannel && oldMember.channelID == data[1].channelID){
+      } else if(oldUserChannel && oldMember.channelID == data[0].channelID){
         if(oldUserChannel.members.size < 2) {
           if(oldUserChannel.members.map(x => x.id).includes(client.user.id)) {
             oldUserChannel.leave();
