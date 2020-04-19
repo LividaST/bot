@@ -23,7 +23,7 @@ client.on('voiceStateUpdate', async (oldMember, newMember) => {
   if((newMember.channelID == data[1].channelID && data[1].binded) || newMember.channelID == "700486716968009800") {
    if(newUserChannel.members.size > 2)  return;
       newUserChannel.join().then(connection => {
-      connection.playStream(stream,  {bitrate: 96000, volume: 0.1});
+      connection.play(stream,  {bitrate: 96000, volume: 0.1});
     })      
       } else if(oldUserChannel && oldMember.channelID == data[1].channelID){
         if(oldUserChannel.members.size < 2) {

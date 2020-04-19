@@ -12,7 +12,7 @@ module.exports = {
     requiresArgs: true,
     run: async (client, msg, args) => {
         const { RadioBindings } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
-        const data = await RadioBindings.find({guildID: msg.guild.id})[0];
+        const data = await RadioBindings.find({guildID: msg.guild.id})[1];
         if(data.channelID === client.getChannel(msg, args[0]).id) return msg.channel.send({embed: {description: "The bot is already bound to this channel!"}})
         query = {channelID: client.getChannel(msg, args[0]).id, binded: true};
         RadioBindings.findOneAndUpdate(query, {guildID: msg.guild.id}, {upsert: true}, function(err, doc) {
