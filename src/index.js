@@ -19,7 +19,7 @@ client.on('voiceStateUpdate', async (oldMember, newMember) => {
   , newUserChannel = client.channels.cache.get(newMember.channelID)
   , oldUserChannel = client.channels.cache.get(oldMember.channelID)
   , { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`)
-  , data = await Logs.find({guildID: channel.guild.id})[0];
+  , data = await Logs.find({guildID: (newMember ? client.channels.cache.get(newMember.channelID).guild : client.channels.cache.get(oldMember.channelID).guild)})[0];
   if((newMember.voice.channel.id === data.channelID && data.binded) || newMember.channelID === "700486716968009800") {
    if(newUserChannel.members.size > 2)  return;
       newUserChannel.join().then(connection => {
