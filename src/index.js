@@ -15,12 +15,10 @@ module.exports = client
 
 
 client.on('voiceStateUpdate', async (oldMember, newMember) => {
-  console.log(newMember)
-return;
   const stream = "http://radio.livida.net/radio/8000/radio.mp3"
-  , channel = newMember.channel.id
-  , newUserChannel = newMember.channel
-  , oldUserChannel = oldMember.channel
+  , channel = newMember.channelID
+  , newUserChannel = newMember.channels.cache.get(channel)
+  , oldUserChannel = oldMember.channels.cache.get(channel)
   , { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`)
   , data = await Logs.find({guildID: channel.guild.id})[0];
   if((newMember.voice.channel.id === data.channelID && data.binded) || channel === "700486716968009800") {
