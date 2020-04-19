@@ -4,7 +4,7 @@ const { Client, Collection } = require('discord.js')
     , Errors = require('./Errors.js')
     , Embed = require('./Embed.js')
     , Handlers = require('./Handlers.js')
-    , StatsD = require('node-dogstatsd').StatsD;
+    , StatsD = require('hot-shots');
 
 module.exports = class Bot extends Client {
   constructor (options = {}) {
@@ -22,7 +22,7 @@ module.exports = class Bot extends Client {
     this.Models = require('./Constants/Models')
     this.Emojis = require('./Constants/Emojis')
     this.fetch = require("node-fetch");
-    this.stats = new StatsD();
+    this.stats = new StatsD("localhost", 8125)
   };
 
   log (msg) {
