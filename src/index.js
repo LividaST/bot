@@ -15,6 +15,8 @@ module.exports = client
 
 
 client.on('voiceStateUpdate', async (oldMember, newMember) => {
+  console.log(newMember)
+return;
   const stream = "http://radio.livida.net/radio/8000/radio.mp3"
   , channel = newMember.channel.id
   , newUserChannel = newMember.channel
