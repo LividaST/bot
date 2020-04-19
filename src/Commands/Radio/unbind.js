@@ -2,7 +2,7 @@ module.exports = {
     name: 'unbind',
     aliases: [],
     category: 'Radio',
-    description: '',
+    description: 'Unbinds the radio from the channel.',
     usage: '[voice_channel]',
     permissions: 'MANAGE_SERVER',
     clientPerms: 'SEND_MESSAGES',

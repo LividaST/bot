@@ -2,7 +2,7 @@ module.exports = {
     name: 'bind',
     aliases: [],
     category: 'Radio',
-    description: '',
+    description: 'Binds Livida Radio to the following channel',
     usage: '[voice_channel]',
     permissions: 'MANAGE_SERVER',
     clientPerms: 'SEND_MESSAGES',
