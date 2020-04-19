@@ -3,11 +3,12 @@ module.exports = {
   run: async (client, msg) => {
   if(msg.guild) {
     var { Logs, RadioBindings } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
-    query = {guildID: msg.guild.id};
-    Logs.findOneAndUpdate(query, {guildID: msg.guild.id}, {upsert: true}, function(err, doc) {
+    query1 = {guildID: msg.guild.id},
+    query2 = {guildID: msg.guild.id, channel: "", binded: false};
+    Logs.findOneAndUpdate(query1, {guildID: msg.guild.id}, {upsert: true}, function(err, doc) {
       if (err) return msg.channel.send(err);
     });
-    RadioBindings.findOneAndUpdate(query, {guildID: msg.guild.id}, {upsert: true}, function(err, doc) {
+    RadioBindings.findOneAndUpdate(query2, {guildID: msg.guild.id}, {upsert: true}, function(err, doc) {
       if (err) return msg.channel.send(err);
     });
   }
