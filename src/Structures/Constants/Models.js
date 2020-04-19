@@ -15,7 +15,9 @@ const xpSchema = new mongoose.Schema({
 const Logs = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   // Guild ID
-  guildID: { type: String },
+  guildID: {
+    type: String
+  },
 
   // Log Channels
   channelUpdatesEnabled: {
@@ -52,14 +54,23 @@ const Logs = new mongoose.Schema({
   }
 })
 
-const Premium = new mongoose.Schema({
-  guildID: String,
-  embedColour: String
+const RadioBindings = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  guildID: {
+    type: String
+  },
+  channelID: {
+    type: String,
+    default: ""
+  },
+  binded: {
+    type: Boolean,
+    default: false
+  }
 })
-
 module.exports = {
   Prefix: mongoose.model('Prefix', prefixSchema),
   Xp: mongoose.model('Xp', xpSchema),
   Logs: mongoose.model('Logs', Logs),
-  Premium: mongoose.model('PremiumGuilds', Premium)
+  RadioBindings: mongoose.model("RadioBindings", RadioBindings)
 }

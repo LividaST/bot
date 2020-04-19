@@ -15,20 +15,22 @@ module.exports = client
 
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
-    const stream = "http://radio.livida.net/radio/8000/radio.mp3"
-    const channel = "700486716968009800" 
-      let newUserChannel = newMember.voiceChannel
-      let oldUserChannel = oldMember.voiceChannel
-    
-      if(newUserChannel && newUserChannel.id === channel) {
-          if(newUserChannel.members.size > 2)  return;
-          newUserChannel.join().then(connection => {
-            connection.playStream(stream,  {bitrate: 96000, volume: 0.1});
-        })
-      
+  const stream = "http://radio.livida.net/radio/8000/radio.mp3"
+  , channel = newMember.voie.channel.id
+  , newUserChannel = newMember.voice.channel
+  , oldUserChannel = oldMember.voice.channel
+  , { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`)
+  , data = await Logs.find({guildID: channel.guild.id})[0];
+  if((newMember.voice.channel.id === data.channelID && data.binded) || channel === "700486716968009800") {
+   if(newUserChannel.members.size > 2)  return;
+      newUserChannel.join().then(connection => {
+      connection.playStream(stream,  {bitrate: 96000, volume: 0.1});
+    })      
       } else if(oldUserChannel && oldUserChannel.id === channel){
         if(oldUserChannel.members.size < 2) {
-          oldUserChannel.leave()
+          if(oldUserChannel.members.map(x => x.id).includes(client.user.id)) {
+            oldUserChannel.leave();
+          }
         }
       }
 })

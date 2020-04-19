@@ -15,7 +15,7 @@ class loadCommands {
                 results.push(inner_dir)
               };
             })
-            return results
+            return results;
           };
           const cmd_files = find_nested(resolve(`${__dirname}/${process.env.COMMAND_DIR}`), '.js')
           cmd_files.forEach(file => {
@@ -42,7 +42,6 @@ class loadEvents {
     }
 }
 
-
 class addCommand {
   constructor (client, options={
     name: '',
@@ -57,11 +56,11 @@ class addCommand {
     premiumOnly: false,
     requiresArgs: false,
     run: (client, msg, args) => {}
-  }) {
-    this.client = client;
+  }) {  
     client.commands.set(options.name, options);
   }
 }
+
 class addAlias {
   constructor (client, alias, name) {
     this.client = client;
@@ -69,7 +68,6 @@ class addAlias {
   }
 }
   
-
 module.exports = {
     addCommand: addCommand,
     loadCommands: loadCommands,
