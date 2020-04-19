@@ -43,5 +43,6 @@ module.exports = {
         msg.channel.send(new client.Embed().none(`Hey there! I am **${client.user.username}**, here to help! To get started just type \`${prefix}help\` and everything will come up!`).setFooter('This message will delete in 20 secodns')).then(m => m.delete(20000))
       };
     };
+    client.stats.increment("bot.newMessage");
   }
 };
