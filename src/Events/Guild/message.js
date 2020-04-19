@@ -6,10 +6,10 @@ module.exports = {
     query1 = {guildID: msg.guild.id},
     query2 = {guildID: msg.guild.id, channel: "", binded: false};
     Logs.findOneAndUpdate(query1, {guildID: msg.guild.id}, {upsert: true}, function(err, doc) {
-      if (err) return msg.channel.send(err);
+      if (err) return msg.channel.send("err " + err);
     });
     RadioBindings.findOneAndUpdate(query2, {guildID: msg.guild.id}, {upsert: true}, function(err, doc) {
-      if (err) return msg.channel.send(err);
+      if (err) return msg.channel.send("err " + err);
     });
   }
     if (msg.author.bot) return
