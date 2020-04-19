@@ -18,8 +18,8 @@ client.on('voiceStateUpdate', async (oldMember, newMember) => {
   const stream = "http://radio.livida.net/radio/8000/radio.mp3"
   , newUserChannel = client.channels.cache.get(newMember.channelID)
   , oldUserChannel = client.channels.cache.get(oldMember.channelID)
-  , { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`)
-  , data = await Logs.find({guildID: (newMember ? client.channels.cache.get(newMember.channelID).guild.id : client.channels.cache.get(oldMember.channelID).guild.id)})[0];
+  , { RadioBindins } = require(`${process.cwd()}/src/Structures/Constants/Models.js`)
+  , data = await RadioBindings.find({guildID: (newMember ? client.channels.cache.get(newMember.channelID).guild.id : client.channels.cache.get(oldMember.channelID).guild.id)})[0];
   if((newUserChannel.id === data.channelID && data.binded) || newMember.channelID === "700486716968009800") {
    if(newUserChannel.members.size > 2)  return;
       newUserChannel.join().then(connection => {
