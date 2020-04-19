@@ -4,7 +4,7 @@ module.exports = {
   if(msg.guild) {
     var { Logs, RadioBindings } = require(`${process.cwd()}/src/Structures/Constants/Models.js`),
     query1 = {guildID: msg.guild.id},
-    query2 = {guildID: msg.guild.id, channelID: "", binded: false};
+    query2 = {guildID: msg.guild.id};
     Logs.findOneAndUpdate(query1, {guildID: msg.guild.id}, {upsert: true}, function(err, doc) {
       if (msg.author.bot) return
       if (err) return msg.channel.send("err " + err);
