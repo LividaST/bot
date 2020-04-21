@@ -7,7 +7,7 @@ const client = new Bot({
 const Sentry = require('@sentry/node')
 Sentry.init({ 
   dsn: process.env.DSN,
-  release: 'discord-bot@' + process.env.npm_package_version
+  release: 'discord-bot@' + '2.0.1'
 });
 client.start();
 module.exports = client
