@@ -2,12 +2,12 @@ module.exports = {
   name: 'help',
   aliases: ['cmds', 'commands'],
   category: 'Core',
-  description: 'Get help on the bot',
+  description: 'Get a list of commands the bot has.',
   usage: '<command | category>',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
   creatorOnly: false,
-  guildOnly: true,
+  guildOnly: false,
   premiumOnly: false,
   requiresArgs: false,
   run: async (client, msg, args) => {
@@ -16,7 +16,7 @@ module.exports = {
     })
     let commandSize = client.commands.size
     const embed = new client.Embed()
-      .setColor(msg.guild.me.highestRole.color || 'BLUE')
+      .setColor(msg.guild.me.roles.color || 'BLUE')
       .setFooter(`Currently running ${commandSize} commands! | < optional >  [ required ]`)
 
     if (!args[0]) {

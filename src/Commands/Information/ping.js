@@ -24,14 +24,14 @@ module.exports = {
                 return `Days: ${days} • Hours: ${hours} • Minutes: ${mins} • Seconds: ${realTotalSecs}`;
             }
             let color = "GREEN";
-            if(client.pings[0] > 150) {color = "ORANGE"};
-            if(client.pings[0] > 250) {color = "RED"};
+            if(client.ws.ping > 150) {color = "ORANGE"};
+            if(client.ws.ping > 250) {color = "RED"};
             setTimeout(() => {
                 let embed = new client.Embed()
                 .setAuthor("Livida • Ping & Uptime")
                 .setDescription(`
-**Bot Ping:** ${client.pings[0]}ms
-**API Latency:** ${message.createdTimestamp - msg.createdTimestamp}
+**Bot Ping:** ${client.ws.ping}ms
+**API Latency:** ${message.createdTimestamp - msg.createdTimestamp}ms
 
 **Bot Uptime**
 \`\`\`${uptime()}\`\`\`

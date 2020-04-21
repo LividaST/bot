@@ -1,10 +1,10 @@
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const { x, check } = require('./Constants/Emojis')
 
-module.exports = class Embed extends RichEmbed {
+module.exports = class Embed extends MessageEmbed {
   constructor (data) {
     super(data)
-    this.setColor('#8800FF')
+    this.setColor('8800FF')
   };
 
   error (msg) {

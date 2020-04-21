@@ -1,144 +1,79 @@
 const { Client, Collection } = require('discord.js')
-const mongoose = require('mongoose')
-const { resolve } = require('path')
-const { readdirSync, statSync } = require('fs')
-const moment = require('moment')
-const Errors = require('./Errors')
-const Embed = require('./Embed')
+    , mongoose = require('mongoose')
+    , moment = require('moment')
+    , Errors = require('./Errors.js')
+    , Embed = require('./Embed.js')
+    , Handlers = require('./Handlers.js')
+    , StatsD = require('hot-shots');
 
 module.exports = class Bot extends Client {
   constructor (options = {}) {
     super(options)
     this.bugReportsChannelID = '688496042903207951'
-    this.token = process.env.TOKEN
-    this.commandDir = process.env.COMMAND_DIR
-    this.eventDir = process.env.EVENT_DIR
     this.commands = new Collection()
     this.aliases = new Collection()
-    this.afk = new Map()
     this.prefix = process.env.PREFIX
     this.creators = {
       tags: ["Callum#6052", "MegaJoshy#0001"],
       ids: ["506899274748133376", "264617372227338241"]
     }
-    this.Colours = { yellow: '#F7DC6F', orange: '#FB8C00' }
     this.Embed = Embed
     this.Errors = new Errors(this)
     this.Models = require('./Constants/Models')
     this.Emojis = require('./Constants/Emojis')
+    this.fetch = require("node-fetch");
+    this.stats = new StatsD("localhost", 8125)
   };
 
   log (msg) {
-    return console.log(`[LOG • ${moment().format('HH:mm')}]: ${msg}`)
+    return console.log(`[LOG • ${moment().format('HH:mm')}]: ${msg}`);
   };
 
   capitalise (str) {
-    return str.slice(0, 1).toUpperCase() + str.slice(1)
+    return str.slice(0, 1).toUpperCase() + str.slice(1);
   };
 
   getUser (query) {
-    const target = this.users.get(query) ||
-                    this.users.filter(u => u.username.toLowerCase().includes(query.toLowerCase())).first() ||
-                    this.users.filter(u => u.tag.toLowerCase().includes(query.toLowerCase())).first()
-    return target
+    const target = this.users.cache.get(query) || this.users.cache.filter(u => u.username.toLowerCase().includes(query.toLowerCase())).first() || this.users.cache.filter(u => u.tag.toLowerCase().includes(query.toLowerCase())).first()
+    return target;
   };
 
-  getMember (includeAuthor, query, msg) {
-    let target
-    if (includeAuthor === true) {
-      target = msg.guild.members.get(query) ||
-                    msg.mentions.members.first() ||
-                    msg.member
-      if (query.length > 3) {
-        target = msg.guild.members.filter(m => m.displayName.toLowerCase().includes(query.toLowerCase())).first() ||
-                        msg.guild.members.filter(m => m.user.username.toLowerCase().includes(query.toLowerCase())).first() ||
-                        msg.guild.members.filter(m => m.user.tag.toLowerCase().includes(query.toLowerCase())).first() ||
-                        msg.guild.members.get(query) ||
-                        msg.mentions.members.first() ||
-                        msg.member
-      }
-    } else {
-      target = msg.guild.members.get(query) ||
-                    msg.mentions.members.first()
-      if (query.length > 3) {
-        target = msg.guild.members.get(query) ||
-                        msg.guild.members.filter(m => m.displayName.toLowerCase().includes(query.toLowerCase())).first() ||
-                        msg.guild.members.filter(m => m.user.username.toLowerCase().includes(query.toLowerCase())).first() ||
-                        msg.guild.members.filter(m => m.user.tag.toLowerCase().includes(query.toLowerCase())).first() ||
-                        msg.mentions.members.first()
-      }
-    };
-    return target
+  getGuild (msg, query) {
+    const target = this.guilds.cache.get(query) || this.guilds.cache.filter(u => u.name.toLowerCase().includes(query.toLowerCase())).first() || this.guilds.cache.filter(u => u.id.toLowerCase().includes(query.toLowerCase())).first()
+    return target;
   };
 
-  getChannelTarget (msg, query) {
+  getChannel (msg, query) {
     let target
     if (query.length > 3) {
-      target = msg.mentions.channels.first() ||
-                    msg.guild.channels.get(query) ||
-                    msg.guild.channels.filter(ch => ch.name.includes(query.toLowerCase()) && ch.type === 'text').first()
+      target = msg.mentions.channels.first() || this.channels.cache.get(query) || this.channels.cache.filter(ch => ch.name.includes(query.toLowerCase()) && ch.type === 'text').first()
     } else {
-      target = msg.mentions.channels.first() ||
-                    msg.guild.channels.get(query)
+      target = msg.mentions.channels.first() || this.channels.cache.get(query)
     }
     return target
   };
 
-  getRoleTarget (msg, query) {
+  getMember (query, msg) {
     let target
-    if (query.length > 3) {
-      target = msg.mentions.roles.first() ||
-                    msg.guild.roles.get(query) ||
-                    msg.guild.roles.find(r => r.name.toLowerCase().includes(query.toLowerCase()))
-    } else {
-      target = msg.mentions.roles.first() ||
-                    msg.guild.roles.get(query)
-    };
+      target = msg.guild.members.cache.get(query) || msg.mentions.members.first() || msg.member
+      if (query.length > 3) {
+        target = msg.guild.members.filter(m => m.displayName.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.filter(m => m.user.username.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.filter(m => m.user.tag.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.get(query) || msg.mentions.members.first() || msg.member
+      }
     return target
   };
 
-  loadCommands () {
-    function find_nested (dir, pattern) {
-      let results = []
-      readdirSync(dir).forEach(inner_dir => {
-        inner_dir = resolve(dir, inner_dir)
-        const stat = statSync(inner_dir)
+  addCommand(options) {
+    new Handlers.addCommand(this, options);
+  }
+  
+  debugLog(i) {
+    console.log(chalk.yellow("[DEBUG] ") + i)
+  }
 
-        if (stat.isDirectory()) {
-          results = results.concat(find_nested(inner_dir, pattern))
-        };
-        if (stat.isFile() && inner_dir.endsWith(pattern)) {
-          results.push(inner_dir)
-        };
-      })
-      return results
-    };
-    const cmd_files = find_nested(resolve(`${__dirname}/${this.commandDir}`), '.js')
-    cmd_files.forEach(file => {
-      const props = require(file)
-      this.commands.set(props.name, props)
-      props.aliases.forEach(alias => {
-        this.aliases.set(alias, props.name)
-      })
-    })
-  };
-
-  loadEvents () {
-    const folders = readdirSync(resolve(`${__dirname}/${this.eventDir}`))
-    for (const folder of folders) {
-      const files = readdirSync(resolve(`${__dirname}/${this.eventDir}/${folder}`)).filter(f => f.endsWith('.js'))
-      for (const file of files) {
-        const event = require(resolve(`${__dirname}/${this.eventDir}/${folder}/${file}`))
-        const name = event.name ? event.name : file.split('.')[0]
-        this.on(name, event.run.bind(null, this))
-      };
-    };
-  };
-
-  connectToDB () {
-    return mongoose.connect(process.env.URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
-  };
-}
+  start() {
+    mongoose.connect(process.env.URI, {useNewUrlParser: true, useUnifiedTopology: true});
+    new Handlers.loadCommands(this);
+    new Handlers.loadEvents(this);
+    this.login(process.env.TOKEN);
+  }
+};

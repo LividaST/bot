@@ -1,12 +1,9 @@
-const client = require(`${process.cwd()}/src/index.js`), mongoose = require("mongoose");
-
+const client = require(`${process.cwd()}/src/index.js`);
 async function executer(type, guildID) {
-    const audit = await client.guilds.get(guildID).fetchAuditLogs({type: type}).then(audit => audit.entries.first());
+    const audit = await client.guilds.cache.get(guildID).fetchAuditLogs({type: type}).then(audit => audit.entries.first());
     return audit.executor;
 }
 client
-    // Guild Logs
-    // Channel Logs
     .on("channelCreate", async (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const data = await Logs.find({guildID: channel.guild.id});
@@ -18,8 +15,7 @@ client
             .setColor('GREEN')
             .setTimestamp();
         if(config.channelUpdatesChannel.toLowerCase() === "not set") return;
-        client.channels.get(config.channelUpdatesChannel).send(embed);
-
+        client.channels.cache.get(config.channelUpdatesChannel).send(embed);
     })
     .on("channelDelete", async (channel) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
@@ -32,7 +28,7 @@ client
             .setColor('RED')
             .setTimestamp();
         if(config.channelUpdatesChannel.toLowerCase() === "not set") return;
-        client.channels.get(config.channelUpdatesChannel).send(embed);
+        client.channels.cache.get(config.channelUpdatesChannel).send(embed);
     })
     .on("emojiCreate", async (emoji) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
@@ -45,7 +41,7 @@ client
             .setColor('GREEN')
             .setTimestamp();
         if(config.emojiUpdatesChannel.toLowerCase() === "not set") return;
-        client.channels.get(config.emojiUpdatesChannel).send(embed);  
+        client.channels.cache.get(config.emojiUpdatesChannel).send(embed);  
     })
     .on("emojiDelete", async (emoji) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
@@ -58,7 +54,7 @@ client
             .setColor('RED')
             .setTimestamp();
         if(config.emojiUpdatesChannel.toLowerCase() === "not set") return;
-        client.channels.get(config.emojiUpdatesChannel).send(embed);  
+        client.channels.cache.get(config.emojiUpdatesChannel).send(embed);  
     })
     .on("emojiUpdate", async (oldEmoji, newEmoji) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
@@ -70,7 +66,7 @@ client
             .setDescription(`An emoji called \`${oldEmoji.name}\` has been updated by **${await await executer("EMOJI_CREATE", oldEmoji.guild.id)}**, the emoji's new name is \`${newEmoji.name}\``)
             .setTimestamp();
         if(config.emojiUpdatesChannel.toLowerCase() === "not set") return;
-        client.channels.get(config.emojiUpdatesChannel).send(embed);  
+        client.channels.cache.get(config.emojiUpdatesChannel).send(embed);  
     })
     .on("guildMemberAdd", async (member) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
@@ -83,7 +79,7 @@ client
             .setColor('GREEN')
             .setTimestamp();
         if(config.memberUpdatesChannel.toLowerCase() === "not set") return;
-        client.channels.get(config.memberUpdatesChannel).send(embed);  
+        client.channels.cache.get(config.memberUpdatesChannel).send(embed);  
     })
     .on("guildMemberRemove", async (member) => {
         const { Logs } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
@@ -96,6 +92,5 @@ client
             .setColor('RED')
             .setTimestamp();
         if(config.memberUpdatesChannel.toLowerCase() === "not set") return;
-        client.channels.get(config.memberUpdatesChannel).send(embed);  
+        client.channels.cache.get(config.memberUpdatesChannel).send(embed);  
     })
-    // TODO Add rest of events for logging
