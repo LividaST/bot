@@ -16,7 +16,6 @@ module.exports = {
     })
     let commandSize = client.commands.size
     const embed = new client.Embed()
-      .setColor(msg.guild.me.roles.color || 'BLUE')
       .setFooter(`Currently running ${commandSize} commands! | < optional >  [ required ]`)
 
     if (!args[0]) {
