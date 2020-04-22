@@ -14,6 +14,7 @@ module.exports = {
         const { RadioBindings } = require(`${process.cwd()}/src/Structures/Constants/Models.js`);
         const data = await RadioBindings.find({guildID: msg.guild.id})[0];
         console.log(data)
+        console.log('this is something')
         let guild;
         if(args[0]) {
             guild = client.getGuild(msg, args[0]);
