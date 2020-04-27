@@ -46,12 +46,12 @@ module.exports = {
       } catch (err) {
         client.log(err);
         client.Errors.unknownErr(msg, err);
-        Sentry.captureException(err);
         Sentry.configureScope(function(scope) {
           scope.setUser({
             "id": msg.author.id,
             "username": msg.author.tag
           });
+          Sentry.captureException(err);  
         });                
       };
     } else {
