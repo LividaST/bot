@@ -1,3 +1,5 @@
+const cooldown = new Set();
+
 module.exports = {
   name: 'message',
   run: async (client, msg) => {
@@ -31,7 +33,15 @@ module.exports = {
           if (command.clientPerms && !msg.guild.me.hasPermission(command.clientPerms)) return client.Errors.noClientPerms(msg.channel, command.clientPerms);
           if (command.requiresArgs === true && args.length < 1) return client.Errors.noArgs(msg.guild, msg.channel, command.name);
           if (command.creatorOnly && !client.creators.ids.includes(msg.author.id)) return;
-          command.run(client, msg, args)
+          if (cooldown.has(msg.author.id)) {
+            return;
+          } else {
+            command.run(client, msg, args)
+            cooldown.add(msg.author.id);
+            setTimeout(() => {
+              cooldown.delete(msg.author.id);
+            }, 10000);
+          }
         };
       } catch (err) {
         client.log(err);
