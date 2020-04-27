@@ -7,7 +7,7 @@ const client = new Bot({
 const Sentry = require('@sentry/node')
 Sentry.init({ 
   dsn: process.env.DSN,
-  release: 'discord-bot@' + process.env.npm_package_version
+  release: 'discord-bot@' + '2.0.1'
 });
 client.start();
 module.exports = client
@@ -15,7 +15,7 @@ module.exports = client
 
 
 client.on('voiceStateUpdate', async (oldMember, newMember) => {
-  const stream = "http://radio.livida.net/radio/8000/radio.mp3"
+  const stream = "https://radio.risefm.net/radio/8000/radio.mp3"
   , newUserChannel = client.channels.cache.get(newMember.channelID)
   , oldUserChannel = client.channels.cache.get(oldMember.channelID)
   , { RadioBindings } = require(`${process.cwd()}/src/Structures/Constants/Models.js`)
