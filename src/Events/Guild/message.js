@@ -64,11 +64,11 @@ module.exports = {
         client.log(err);
         client.Errors.unknownErr(msg, err);
         Sentry.configureScope(function (scope) {
-          scope.setTag("userid", msg.author.id);
-          scope.setTag("username", msg.author.tag);
+          scope.setExtra("userid", msg.author.id);
+          scope.setExtra("username", msg.author.tag);
           if(msg.guild.available) {
-            scope.setTag("serverid", msg.guild.id);
-            scope.setTag("server", msg.guild.name);
+            scope.setExtra("serverid", msg.guild.id);
+            scope.setExtra("server", msg.guild.name);
           }
         });
         Sentry.captureException(err);
