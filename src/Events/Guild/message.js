@@ -1,5 +1,5 @@
 const cooldown = new Set();
-
+const Sentry = require('@sentry/node');
 module.exports = {
   name: 'message',
   run: async (client, msg) => {
@@ -46,7 +46,13 @@ module.exports = {
       } catch (err) {
         client.log(err);
         client.Errors.unknownErr(msg, err);
-        require('@sentry/node').captureException(err);
+        Sentry.captureException(err);
+        Sentry.configureScope(function(scope) {
+          scope.setUser({
+            "id": msg.author.id,
+            "username": msg.author.tag
+          });
+        });                
       };
     } else {
       if (msg.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
