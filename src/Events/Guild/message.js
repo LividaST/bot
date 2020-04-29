@@ -63,13 +63,8 @@ module.exports = {
       } catch (err) {
         client.log(err);
         client.Errors.unknownErr(msg, err);
-        Sentry.configureScope(function (scope) {
-          scope.setExtra("userid", msg.author.id);
-          scope.setExtra("username", msg.author.tag);
-          if(msg.guild.available) {
-            scope.setExtra("serverid", msg.guild.id);
-            scope.setExtra("server", msg.guild.name);
-          }
+        Sentry.configureScope(function(scope) {
+          scope.setUser({"id": msg.author.id});
         });
         Sentry.captureException(err);
       };
