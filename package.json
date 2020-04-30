@@ -5,7 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -30,9 +32,11 @@
     "mongoose": "^5.9.11",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
-    "node-opus": "^0.3.3"
+    "node-opus": "^0.3.3",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "standard": "^14.3.3"
-  }
+  },
+  "snyk": true
 }
