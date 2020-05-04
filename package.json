@@ -28,7 +28,7 @@
     "fortnite.js": "^2.1.4",
     "hastebin.js": "^1.3.2",
     "hot-shots": "^7.4.1",
-    "moment": "^2.25.1",
+    "moment": "^2.25.2",
     "mongoose": "^5.9.11",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
