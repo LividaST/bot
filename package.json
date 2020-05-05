@@ -33,7 +33,7 @@
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
     "node-opus": "^0.3.3",
-    "snyk": "^1.316.1"
+    "snyk": "^1.319.0"
   },
   "devDependencies": {
     "standard": "^14.3.3"
