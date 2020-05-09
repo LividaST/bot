@@ -31,7 +31,6 @@
     "mongoose": "^5.9.11",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
-    "node-opus": "^0.3.3",
     "snyk": "^1.316.1"
   },
   "devDependencies": {
