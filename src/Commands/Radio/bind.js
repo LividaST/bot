@@ -20,7 +20,7 @@ module.exports = {
             if (err) return msg.channel.send(err);
         });
         let embed = new client.Embed()
-            .setDescription(`Successfully bound the specified voice channel to the bot, when a user joins this channel, Livida Radio will be streamed to it!`)
+            .setDescription(`Successfully bound the specified voice channel to the bot, when a user joins this channel, RiseFM will be streamed to it!`)
         msg.channel.send(embed);
     }
   } 
