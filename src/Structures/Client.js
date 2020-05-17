@@ -6,7 +6,7 @@ const { Client, Collection } = require('discord.js')
     , Handlers = require('./Handlers.js')
     , StatsD = require('hot-shots')
     , ErelaClient = require("erela.js")
-    , nodes = require("./nodes.json");
+    , nodes = require(`${process.cwd()}/nodes.json`);
 
 module.exports = class Bot extends Client {
   constructor (options = {}) {
