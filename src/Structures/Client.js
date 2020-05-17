@@ -4,7 +4,9 @@ const { Client, Collection } = require('discord.js')
     , Errors = require('./Errors.js')
     , Embed = require('./Embed.js')
     , Handlers = require('./Handlers.js')
-    , StatsD = require('hot-shots');
+    , StatsD = require('hot-shots')
+    , ErelaClient = require("erela.js")
+    , nodes = require("./nodes.json");
 
 module.exports = class Bot extends Client {
   constructor (options = {}) {
@@ -23,6 +25,7 @@ module.exports = class Bot extends Client {
     this.Emojis = require('./Constants/Emojis')
     this.fetch = require("node-fetch");
     this.stats = new StatsD("localhost", 8125)
+    this.music = new ErelaClient(client, nodes);
   };
 
   log (msg) {
