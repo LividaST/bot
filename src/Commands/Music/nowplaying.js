@@ -22,7 +22,7 @@ module.exports = {
         let embed = new client.Embed()
             .setTitle(`${player.playing ? "▶️" : "⏸️"} Currently Playing ${title}`)
             .setURL(uri)
-            .setImage(thumbnail)
+            .setThumbnail(thumbnail)
             .addField('Remaining', `${"▬".repeat(part) + "🔘" + "▬".repeat(10 - part)} [${amount} / ${Utils.formatTime(duration, true)}]`)
             .addField('Request By', requester)
         msg.channel.send(embed) // Requested By: ${requester.tag}`)); 
