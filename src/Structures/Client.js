@@ -9,6 +9,9 @@ const { Client, Collection } = require('discord.js')
 module.exports = class Bot extends Client {
   constructor (options = {}) {
     super(options)
+    this.nodes = [
+      { host: process.env.LAVAHOST, port: "2333", password: process.env.LAVAPASS}
+  ];
     this.bugReportsChannelID = '688496042903207951'
     this.commands = new Collection()
     this.aliases = new Collection()
