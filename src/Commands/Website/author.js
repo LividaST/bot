@@ -18,7 +18,8 @@ module.exports = {
                 .setTitle(json.name)
                 .setURL(json.link)
                 .setDescription(json.description)
-                .setThumbnail(avatar) 
+                .setThumbnail(avatar)
+                .addField('Personal Site', json.url)
             msg.channel.send(embed);
         })
     }
