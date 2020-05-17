@@ -54,10 +54,10 @@ module.exports = {
             return;
           } else {
             command.run(client, msg, args)
-            cooldown.add(msg.author.id);
-            setTimeout(() => {
-              cooldown.delete(msg.author.id);
-            }, 10000);
+            // cooldown.add(msg.author.id);
+            // setTimeout(() => {
+            //   cooldown.delete(msg.author.id);
+            // }, 10000);
           }
         };
       } catch (err) {
