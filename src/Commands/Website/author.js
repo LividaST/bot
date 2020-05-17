@@ -3,7 +3,7 @@ module.exports = {
     aliases: [],
     category: 'Website',
     description: 'Get information of the specified author',
-    usage: '',
+    usage: '[id]',
     permissions: 'SEND_MESSAGES',
     clientPerms: 'SEND_MESSAGES',
     creatorOnly: false,
