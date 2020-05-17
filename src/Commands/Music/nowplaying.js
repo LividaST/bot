@@ -17,7 +17,7 @@ module.exports = {
         const { title, author, duration, requester, uri } = player.queue[0];
         let amount = `00:${Utils.formatTime(player.position, true)}`;
         const part = Math.floor((player.position / duration) * 10);
-        const thumbnail = player.queue[0].displayThumbnail("maxresdefault")
+        const thumbnail = player.queue[0].displayThumbnail("sddefault")
 
         let embed = new client.Embed()
             .setTitle(`${player.playing ? "▶️" : "⏸️"} Currently Playing ${title}`)
