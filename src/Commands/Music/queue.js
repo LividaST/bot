@@ -1,5 +1,3 @@
-const { Utils } = require("erela.js");
-
 module.exports = {
     name: "queue",
     aliases: [""],
