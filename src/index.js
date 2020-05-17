@@ -11,8 +11,9 @@ Sentry.init({
 });
 client.start();
 module.exports = client
-
-
+const { ErelaClient } = require("erela.js");
+const nodes = require("./nodes.json");
+client.music = new ErelaClient(client, nodes);
 
 client.on('voiceStateUpdate', async (oldMember, newMember) => {
   const stream = "https://radio.risefm.net/radio/8000/radio.mp3"
