@@ -21,7 +21,7 @@ module.exports = {
         let embed = new client.Embed()
             .setTitle(`${player.playing ? "▶️" : "⏸️"} Currently Playing ${title}`)
             .setURL(uri)
-            .setThumbnail(player.queue[0].displayThumbnail("maxresdefault"))
+            .setImage(player.queue[0].displayThumbnail("maxresdefault"))
             .addField('Remaining', `${"▬".repeat(part) + "🔘" + "▬".repeat(10 - part)} [${amount} / ${Utils.formatTime(duration, true)}]`)
             .addField('Request By', requester)
         msg.channel.send(embed) // Requested By: ${requester.tag}`)); 
