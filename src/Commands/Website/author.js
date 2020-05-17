@@ -13,11 +13,12 @@ module.exports = {
     run: async (client, msg, args) => {
         client.fetch(`https://livida.net/wp-json/wp/v2/users/${args}`).then(res => res.json())
         .then(json => {
+            let avatar = json.avatar_urls["48"];
             let embed = new client.Embed()
                 .setTitle(json.name)
                 .setURL(json.link)
                 .setDescription(json.description)
-                //.setThumbnail(json.avatar_urls) this won't work because i don't know js
+                .setThumbnail(avatar) 
             msg.channel.send(embed);
         })
     }
