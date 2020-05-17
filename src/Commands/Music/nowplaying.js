@@ -15,7 +15,7 @@ module.exports = {
         const player = client.music.players.get(msg.guild.id);
         if (!player || !player.queue[0]) return msg.channel.send(new client.Embed().error(`No songs currently playing within this server!`));
         const { title, author, duration, requester, uri } = player.queue[0];
-        let amount = `00:${Utils.formatTime(player.position, true)}`;
+        let amount = `${Utils.formatTime(player.position, true)}`;
         const part = Math.floor((player.position / duration) * 10);
         const thumbnail = player.queue[0].displayThumbnail("sddefault")
 

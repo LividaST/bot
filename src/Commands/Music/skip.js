@@ -16,6 +16,5 @@ module.exports = {
       if(!channel || channel.id !== player.voiceChannel.id) return msg.channel.send(new client.Embed().error(`You need to be in the same voice channel as me to use the leave command!`));
       player.stop();
       return msg.channel.send("Skipped the current song!");
-
     }
   }
