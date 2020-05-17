@@ -17,11 +17,12 @@ module.exports = {
         const { title, author, duration, requester, uri } = player.queue[0];
         let amount = `00:${Utils.formatTime(player.position, true)}`;
         const part = Math.floor((player.position / duration) * 10);
+        const thumbnail = player.queue[0].displayThumbnail("maxresdefault")
 
         let embed = new client.Embed()
             .setTitle(`${player.playing ? "▶️" : "⏸️"} Currently Playing ${title}`)
             .setURL(uri)
-            .setImage(player.queue[0].displayThumbnail("maxresdefault"))
+            .setImage(thumbnail)
             .addField('Remaining', `${"▬".repeat(part) + "🔘" + "▬".repeat(10 - part)} [${amount} / ${Utils.formatTime(duration, true)}]`)
             .addField('Request By', requester)
         msg.channel.send(embed) // Requested By: ${requester.tag}`)); 
