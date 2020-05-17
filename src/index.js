@@ -12,7 +12,7 @@ Sentry.init({
 client.start();
 module.exports = client
 const { ErelaClient } = require("erela.js");
-const nodes = require("./nodes.json");
+const nodes = require("../nodes.json");
 client.music = new ErelaClient(client, nodes);
 
 client.on('voiceStateUpdate', async (oldMember, newMember) => {
