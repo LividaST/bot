@@ -14,15 +14,16 @@ module.exports = {
     run: async (client, msg, args) => {
         const player = client.music.players.get(msg.guild.id);
         if (!player || !player.queue[0]) return msg.channel.send(new client.Embed().error(`No songs currently playing within this server!`));
-        const { title, author, duration, thumbnail, requester, uri } = player.queue[0];
+        const { title, author, duration, requester, uri } = player.queue[0];
         let amount = `00:${Utils.formatTime(player.position, true)}`;
         const part = Math.floor((player.position / duration) * 10);
 
         let embed = new client.Embed()
             .setTitle(`${player.playing ? "▶️" : "⏸️"} Currently Playing ${title}`)
             .setURL(uri)
-            .setThumbnail(thumbnail)
+            .setThumbnail(player.queue[0].displayThumbnail("maxresdefault"))
             .addField('Remaining', `${"▬".repeat(part) + "🔘" + "▬".repeat(10 - part)} [${amount} / ${Utils.formatTime(duration, true)}]`)
+            .addField('Request By', requester)
         msg.channel.send(embed) // Requested By: ${requester.tag}`)); 
     }
 };
