@@ -1,8 +1,8 @@
 const { Utils } = require("erela.js");
 
 module.exports = {
-    name: "nowplaying",
-    aliases: ["np", "currenttrack", "current"],
+    name: "queue",
+    aliases: [""],
     category: "Music",
     description: "Check what the current song is",
     usage: "",
