@@ -22,9 +22,15 @@ client.on('voiceStateUpdate', async (oldMember, newMember) => {
   , data = await RadioBindings.find({guildID: (newMember.channelID ? client.channels.cache.get(newMember.channelID).guild.id : client.channels.cache.get(oldMember.channelID).guild.id)});
   if((newMember.channelID == data[0].channelID && data[0].binded) || newMember.channelID == "700486716968009800") {
    if(newUserChannel.members.size > 2)  return;
-      newUserChannel.join().then(connection => {
-      connection.play(stream,  {bitrate: 96000, volume: 1});
-    })      
+      const player = client.music.players.spawn({
+        guild: msg.guild,
+        voiceChannel: newUserChannel,
+        textChannel: msg.channel
+       }); 
+       {
+      player.queue.add('https://radio.risefm.net/radio/8000/radio.mp3')
+      if (!player.playing) player.play();
+    }      
       } else if(oldUserChannel && oldMember.channelID == data[0].channelID){
         if(oldUserChannel.members.size < 2) {
           if(oldUserChannel.members.map(x => x.id).includes(client.user.id)) {
