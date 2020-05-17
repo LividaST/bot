@@ -20,7 +20,6 @@
   },
   "homepage": "https://gitlab.com/livida/discord/bot#readme",
   "dependencies": {
-    "@discordjs/opus": "^0.3.2",
     "@sentry/node": "^5.15.5",
     "discord.js": "^12.1.1",
     "dotenv": "^8.2.0",
@@ -32,6 +31,7 @@
     "mongoose": "^5.9.13",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
+    "shoukaku": "^1.4.1",
     "snyk": "^1.319.2"
   },
   "devDependencies": {
