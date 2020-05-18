@@ -35,8 +35,6 @@
     "numeral": "^2.0.6",
     "snyk": "^1.319.2"
   },
-  "devDependencies": {
-    "standard": "^14.3.3"
-  },
+  "devDependencies": {},
   "snyk": true
 }
