@@ -32,7 +32,7 @@
     "mongoose": "^5.9.13",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
-    "snyk": "^1.319.2"
+    "snyk": "^1.327.0"
   },
   "devDependencies": {
     "standard": "^14.3.3"
