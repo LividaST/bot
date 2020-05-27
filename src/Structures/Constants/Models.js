@@ -26,7 +26,7 @@ const Logs = new mongoose.Schema({
   },
   channelUpdatesChannel: {
     type: String,
-    default: "Not Set"
+    default: 'Not Set'
   },
   memberUpdatesEnabled: {
     type: Boolean,
@@ -34,7 +34,7 @@ const Logs = new mongoose.Schema({
   },
   memberUpdatesChannel: {
     type: String,
-    default: "Not Set"
+    default: 'Not Set'
   },
   messageUpdatesEnabled: {
     type: Boolean,
@@ -42,7 +42,7 @@ const Logs = new mongoose.Schema({
   },
   messageUpdatesChannel: {
     type: String,
-    default: "Not Set"
+    default: 'Not Set'
   },
   emojiUpdatesEnabled: {
     type: Boolean,
@@ -50,7 +50,7 @@ const Logs = new mongoose.Schema({
   },
   emojiUpdatesChannel: {
     type: String,
-    default: "Not Set"
+    default: 'Not Set'
   }
 })
 
@@ -61,7 +61,7 @@ const RadioBindings = new mongoose.Schema({
   },
   channelID: {
     type: String,
-    default: ""
+    default: ''
   },
   binded: {
     type: Boolean,
@@ -72,5 +72,5 @@ module.exports = {
   Prefix: mongoose.model('Prefix', prefixSchema),
   Xp: mongoose.model('Xp', xpSchema),
   Logs: mongoose.model('Logs', Logs),
-  RadioBindings: mongoose.model("RadioBindings", RadioBindings)
+  RadioBindings: mongoose.model('RadioBindings', RadioBindings)
 }

@@ -5,11 +5,11 @@ const client = new Bot({
   sync: true
 })
 const Sentry = require('@sentry/node')
-Sentry.init({ 
+Sentry.init({
   dsn: process.env.DSN,
   release: 'discord-bot@' + '2.0.1'
-});
-client.start();
+})
+client.start()
 module.exports = client
 
 // client.on('voiceStateUpdate', async (oldMember, newMember) => {
@@ -24,11 +24,11 @@ module.exports = client
 //         guild: msg.guild,
 //         voiceChannel: newUserChannel,
 //         textChannel: msg.channel
-//        }); 
+//        });
 //        {
 //       player.queue.add('https://radio.risefm.net/radio/8000/radio.mp3')
 //       if (!player.playing) player.play();
-//     }      
+//     }
 //       } else if(oldUserChannel && oldMember.channelID == data[0].channelID){
 //         if(oldUserChannel.members.size < 2) {
 //           if(oldUserChannel.members.map(x => x.id).includes(client.user.id)) {
