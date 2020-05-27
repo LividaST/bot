@@ -12,28 +12,28 @@ module.exports = {
   requiresArgs: false,
   run: (client, msg, args) => {
     try {
-      let user;
-      if(args[0]) {
-        if(args[0].toLowerCase() == "random") {
-          user = client.users.cache.random();
+      let user
+      if (args[0]) {
+        if (args[0].toLowerCase() == 'random') {
+          user = client.users.cache.random()
         } else {
-          if(msg.mentions.users.size) {
+          if (msg.mentions.users.size) {
             user = msg.mentions.users.first()
           } else {
-            if(client.getUser(args[0])) user = client.getUser(args[0]);
+            if (client.getUser(args[0])) user = client.getUser(args[0])
           }
         }
       } else {
-        user = msg.author;
+        user = msg.author
       }
-      
+
       const embed = new client.Embed()
         .setAuthor(`${user.tag}'s avatar • Requested by ${msg.author.tag}`, msg.author.avatarURL())
         .setDescription(`\`\`\`${user.avatarURL()}\`\`\``)
         .setImage(user.avatarURL())
       msg.channel.send(embed)
     } catch {
-      msg.channel.send({embed: {description: `The specified user '${args[0]}' was not found!`}});
+      msg.channel.send({ embed: { description: `The specified user '${args[0]}' was not found!` } })
     }
   }
 }

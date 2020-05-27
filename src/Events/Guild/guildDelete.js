@@ -1,7 +1,6 @@
 module.exports = {
-    name: 'guildDelete',
-    run: async (client) => {
-        client.stats.increment("bot.guildDelete");
-    }
+  name: 'guildDelete',
+  run: async (client) => {
+    client.stats.increment('bot.guildDelete')
   }
-  
+}

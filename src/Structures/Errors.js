@@ -2,6 +2,7 @@ module.exports = class Errors {
   constructor (client) {
     this.client = client
   };
+
   unknownErr (msg, err) {
     try {
       const bugs = this.client.channels.cache.get(this.client.bugReportsChannelID)

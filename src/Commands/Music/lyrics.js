@@ -1,9 +1,9 @@
 module.exports = {
-  name: 'error',
+  name: 'lyrics',
   aliases: [],
-  category: 'Core',
-  description: 'I spit out an error.',
-  usage: '',
+  category: 'Music',
+  description: 'Get lyrics of current song!',
+  usage: '<song title>',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
   creatorOnly: true,
@@ -11,7 +11,6 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: false,
   run: async (client, msg, args) => {
-    myUndefinedFunction()
-    msg.channel.send('I\'ve spat out an error')
+    msg.channel.send('Will be sorted out soon.')
   }
 }
