@@ -13,7 +13,7 @@ module.exports = {
     const { channel } = msg.member.voice
     const player = client.music.players.get(msg.guild.id)
     if (!player) return msg.channel.send(new client.Embed().error('There is nothing playing!'))
-    if (channel.id !== player.voiceChannel.id || !channel) return msg.channel.send(new client.Embed().error('You are not in the same voice channel as me!'))
+    if (!channel || channel.id !== player.voiceChannel.id) return msg.channel.send(new client.Embed().error('You are not in the same voice channel as me!'))
 
     player.pause(player.playing)
     return msg.channel.send(new client.Embed().success(`The queue is now **${player.playing ? 'resumed' : 'paused'}**!`))

@@ -1,6 +1,6 @@
 module.exports = {
   name: 'apod',
-  aliases: [''],
+  aliases: [],
   category: 'Fun',
   description: 'Get a random dog!',
   usage: '',

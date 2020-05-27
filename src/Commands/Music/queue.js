@@ -1,6 +1,6 @@
 module.exports = {
   name: 'queue',
-  aliases: [''],
+  aliases: [],
   category: 'Music',
   description: 'Check what the current song is',
   usage: '',

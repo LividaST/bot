@@ -1,6 +1,6 @@
 module.exports = {
   name: 'radio',
-  aliases: [''],
+  aliases: [],
   category: 'Music',
   description: 'Play a radio station!',
   usage: '',
@@ -23,7 +23,7 @@ module.exports = {
       .setTitle('Radio List')
       .setDescription(res.join('\n'))
       .setFooter('Type your option to play')
-    const m = await msg.channel.send(embed)
+    await msg.channel.send(embed)
 
     const filter = m => m.author.id == msg.author.id
     const collector = msg.channel.createMessageCollector(filter, { time: 15000 })

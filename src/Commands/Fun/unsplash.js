@@ -1,6 +1,6 @@
 module.exports = {
   name: 'unsplash',
-  aliases: [''],
+  aliases: [],
   category: 'Fun',
   description: 'Get a random image from Unsplash!',
   usage: '',

@@ -1,6 +1,6 @@
 module.exports = {
   name: 'lyrics',
-  aliases: [''],
+  aliases: [],
   category: 'Music',
   description: 'Get lyrics of current song!',
   usage: '<song title>',

@@ -1,6 +1,6 @@
 module.exports = {
   name: 'cat',
-  aliases: [''],
+  aliases: [],
   category: 'Fun',
   description: 'Get a random cat!',
   usage: '',

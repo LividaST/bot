@@ -1,6 +1,6 @@
 module.exports = {
   name: 'kanye',
-  aliases: [''],
+  aliases: [],
   category: 'Fun',
   description: 'Get a kanye quote!',
   usage: '',
