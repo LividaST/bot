@@ -49,7 +49,7 @@ module.exports = {
         if (command.permissions !== null) embed.addField('Required Permissions', `User: \`${command.permissions}\`\nClient: \`${command.clientPerms}\``)
         embed.addField('Premium Only', command.premiumOnly ? command.premiumOnly : false, true)
         return msg.channel.send(embed)
-      } 
+      }
     };
   }
 }
