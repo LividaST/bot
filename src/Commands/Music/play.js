@@ -8,7 +8,7 @@ module.exports = {
   usage: '[query | url]',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SPEAK',
-  creatorOnly: false,
+  creatorOnly: true,
   guildOnly: true,
   premiumOnly: false,
   requiresArgs: true,
