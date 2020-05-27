@@ -9,7 +9,7 @@ module.exports = {
             player.textChannel.send(new client.Embed().success(`The queue has ended!`));
             return client.music.players.destroy(player.guild.id);
         })
-        .on("trackStart", ({ textChannel }, { title, duration }) => textChannel.send(new client.Embed().success(`Started playing **${title}**! This song will play for \`${Utils.formatTime(duration, true)}\``)));
+        .on("trackStart", ({ textChannel }, { title, duration }) => textChannel.send(new client.Embed().success(`Started playing **${title}**!`))); // This song will play for \`${Utils.formatTime(duration, true)}\`
     client.levels = new Map()
         .set("none", 0.0)
         .set("low", 0.10)
