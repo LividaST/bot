@@ -4,7 +4,8 @@ const { Client, Collection } = require('discord.js')
     , Errors = require('./Errors.js')
     , Embed = require('./Embed.js')
     , Handlers = require('./Handlers.js')
-    , StatsD = require('hot-shots');
+    , StatsD = require('hot-shots')
+    , { KSoftClient } = require('@ksoft/api');
 
 module.exports = class Bot extends Client {
   constructor (options = {}) {
@@ -25,7 +26,8 @@ module.exports = class Bot extends Client {
     this.Models = require('./Constants/Models')
     this.Emojis = require('./Constants/Emojis')
     this.fetch = require("node-fetch")
-    this.stats = new StatsD("localhost", 8125);
+    this.stats = new StatsD("localhost", 8125)
+    this.ksoft = new KSoftClient(process.env.KSOFTTOKEN);
   };
 
   log (msg) {
