@@ -1,7 +1,7 @@
 module.exports = {
   name: 'mcuser',
   aliases: [],
-  category: 'Information',
+  category: 'Games',
   description: 'View information about a minecraft user',
   usage: '<username / uuid>',
   permissions: 'SEND_MESSAGES',

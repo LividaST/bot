@@ -2,7 +2,7 @@ const fortnite = require('fortnite.js')
 module.exports = {
   name: 'fortnite',
   aliases: ['fn', 'fnstats'],
-  category: 'Core',
+  category: 'Games',
   description: 'View user statistics for fortnite!',
   usage: '<username> [device]',
   permissions: 'SEND_MESSAGES',

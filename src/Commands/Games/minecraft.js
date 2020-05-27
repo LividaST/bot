@@ -1,7 +1,7 @@
 module.exports = {
   name: 'minecraft',
   aliases: ['mc'],
-  category: 'Information',
+  category: 'Games',
   description: 'View information about a server',
   usage: '<server ip>',
   permissions: 'SEND_MESSAGES',
