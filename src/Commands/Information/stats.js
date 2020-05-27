@@ -1,4 +1,4 @@
-const osutils = require('os-utils')
+// const osutils = require('os-utils')
 module.exports = {
   name: 'statistics',
   aliases: ['stats'],

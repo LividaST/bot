@@ -1,4 +1,4 @@
-const { ErelaClient, Utils } = require('erela.js')
+const { ErelaClient } = require('erela.js')
 module.exports = {
   name: 'ready',
   run: async (client) => {
