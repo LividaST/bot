@@ -11,7 +11,7 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: false,
   run: async (client, msg, args) => {
-    var { UserProfile } = require(`${process.cwd()}/src/Structures/Constants/Models.js`)
+    var { UserProfile } = client.Models
     const data = await UserProfile.find({ userID: msg.author.id })
     const profile = data[0]
     const user = client.users.cache.get(profile.userID)
