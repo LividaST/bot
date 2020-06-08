@@ -28,7 +28,7 @@
     "express": "^4.17.1",
     "fortnite.js": "^2.1.4",
     "hastebin.js": "^1.3.2",
-    "hot-shots": "^7.4.2",
+    "hot-shots": "^7.5.0",
     "moment": "^2.25.3",
     "mongoose": "^5.9.13",
     "ms": "^2.1.2",
