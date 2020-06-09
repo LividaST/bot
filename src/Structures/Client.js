@@ -13,7 +13,7 @@ module.exports = class Bot extends Client {
     this.nodes = [
       { host: process.env.LAVAHOST, port: '2333', password: process.env.LAVAPASS }
     ]
-    this.bugReportsChannelID = '688496042903207951'
+    this.bugReportsChannelID = '719760089342410772'
     this.commands = new Collection()
     this.aliases = new Collection()
     this.prefix = process.env.PREFIX
@@ -73,6 +73,12 @@ module.exports = class Bot extends Client {
 
   debugLog (i) {
     console.log(chalk.yellow('[DEBUG] ') + i)
+  }
+
+  formatString (str) {
+    return str
+      .replace(/(\B)[^ ]*/g, match => (match.toLowerCase()))
+      .replace(/^[^ ]/g, match => (match.toUpperCase()))
   }
 
   start () {
