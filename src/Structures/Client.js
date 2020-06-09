@@ -75,12 +75,6 @@ module.exports = class Bot extends Client {
     console.log(chalk.yellow('[DEBUG] ') + i)
   }
 
-  formatString (str) {
-    return str
-      .replace(/(\B)[^ ]*/g, match => (match.toLowerCase()))
-      .replace(/^[^ ]/g, match => (match.toUpperCase()))
-  }
-
   start () {
     mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
     new Handlers.loadCommands(this)
