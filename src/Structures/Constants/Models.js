@@ -68,9 +68,32 @@ const RadioBindings = new mongoose.Schema({
     default: false
   }
 })
+
+const UserProfile = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  userID: {
+    type: String
+  },
+  position: {
+    type: String
+  },
+  developer: {
+    type: Boolean,
+    default: false
+  },
+  verified: {
+    type: Boolean,
+    default: false
+  },
+  birthday: {
+    type: Date
+  }
+})
+
 module.exports = {
   Prefix: mongoose.model('Prefix', prefixSchema),
   Xp: mongoose.model('Xp', xpSchema),
   Logs: mongoose.model('Logs', Logs),
-  RadioBindings: mongoose.model('RadioBindings', RadioBindings)
+  RadioBindings: mongoose.model('RadioBindings', RadioBindings),
+  UserProfile: mongoose.model('UserProfile', UserProfile)
 }
