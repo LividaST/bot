@@ -1,7 +1,7 @@
 module.exports = {
   name: 'addprofile',
   aliases: [],
-  category: 'Information',
+  category: 'Developer',
   description: 'Adds a profile',
   usage: '',
   permissions: 'SEND_MESSAGES',
