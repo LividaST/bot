@@ -9,7 +9,15 @@ module.exports = {
         player.textChannel.send(new client.Embed().success('The queue has ended!'))
         return client.music.players.destroy(player.guild.id)
       })
-      .on('trackStart', ({ textChannel }, { title, duration }) => textChannel.send(new client.Embed().success(`Started playing **${title}**!`))) // This song will play for \`${Utils.formatTime(duration, true)}\`
+      .on('trackStart', ({ textChannel }, { title, isStream, author }) => {
+        client.fetch('https://api.livida.net/api/nowplaying/list').then(res => res.json())
+          .then(json => {
+            if (isStream && (author.toLowerCase() === json.find(a => author.toLowerCase() === a.toLowerCase()))) {
+              title = author
+            }
+            textChannel.send(new client.Embed().success(`Started playing **${title}**!`))
+          })
+      })
     client.levels = new Map()
       .set('none', 0.0)
       .set('low', 0.10)
