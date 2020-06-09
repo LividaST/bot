@@ -35,7 +35,7 @@ module.exports = {
     let radio = false
     if (isStream && (author.toLowerCase() === api.find(a => author.toLowerCase() === a.toLowerCase()))) {
       radio = true
-      const api = await client.fetch(`https://api.livida.net/api/nowplaying/${author.toLowerCase()}`).then(res => res.json())
+      const api = await client.fetch(`https://api.livida.net/api/nowplaying/${author}`).then(res => res.json())
       const { data } = api
       title = data.song.name
       artist = data.song.artist
