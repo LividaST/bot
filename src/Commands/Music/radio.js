@@ -11,7 +11,7 @@ module.exports = {
   premiumOnly: false,
   run: async (client, msg, args) => {
     const { channel } = msg.member.voice
-    const res = await client.fetch('https://livida-api.glitch.me/api/nowplaying').then(res => res.json())
+    const res = await client.fetch('https://api.livida.net/api/nowplaying').then(res => res.json())
     if (!channel) return msg.channel.send(new client.Embed().error('You need to be in a voice channel to play music!'))
 
     const permissions = channel.permissionsFor(client.user)
@@ -30,10 +30,8 @@ module.exports = {
       collector.stop()
       const radioname = res.find(a => a.toLowerCase() === m.content.toLowerCase())
       if (!radioname) return msg.channel.send('stap wrong input not found okok')
-      console.log(radioname)
-      const data = await client.fetch(`https://livida-api.glitch.me/api/nowplaying/${radioname}`).then(res => res.json())
+      const data = await client.fetch(`https://api.livida.net/api/nowplaying/${radioname}`).then(res => res.json())
       const { stream } = data.data
-      console.log(stream)
       const player = client.music.players.spawn({
         guild: msg.guild,
         textChannel: msg.channel,
