@@ -1,4 +1,5 @@
 // const osutils = require('os-utils')
+const pjson = require(`${process.cwd()}/package.json`)
 module.exports = {
   name: 'statistics',
   aliases: ['stats'],
@@ -18,6 +19,7 @@ module.exports = {
       .addField('Total Users', client.users.cache.size, true)
       .addField('Total Commands', client.commands.size, true)
       .addField('Developers', client.creators.tags.join(', '), true)
+      .setFooter('v' + pjson.version)
     msg.channel.send(embed)
   }
 }

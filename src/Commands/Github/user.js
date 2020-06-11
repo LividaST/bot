@@ -13,6 +13,8 @@ module.exports = {
   run: (client, msg, args) => {
     client.fetch(`https://api.github.com/users/${args}`).then(res => res.json())
       .then(json => {
+        const error = new client.Embed().error(`The user specified \`${args}\` was not found.`)
+        if (json.message === 'Not Found') return msg.channel.send(error)
         const embed = new client.Embed()
           .setTitle(json.name)
           .setURL(json.html_url)
@@ -22,7 +24,7 @@ module.exports = {
           .addField('Public Repos', json.public_repos)
           .setFooter('Created at')
           .setTimestamp(json.created_at)
-          .setDescription(json.bio)
+        if (json.bio != null) embed.setDescription(json.bio)
         msg.channel.send(embed)
       })
   }
