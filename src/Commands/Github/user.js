@@ -22,7 +22,7 @@ module.exports = {
           .addField('Public Repos', json.public_repos)
           .setFooter('Created at')
           .setTimestamp(json.created_at)
-          .setDescription(json.bio)
+        if (json.bio != null) embed.setDescription(json.bio)
         msg.channel.send(embed)
       })
   }
