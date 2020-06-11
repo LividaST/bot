@@ -3,34 +3,6 @@ const Sentry = require('@sentry/node')
 module.exports = {
   name: 'message',
   run: async (client, msg) => {
-    if (msg.guild) {
-      var {
-        Logs,
-        RadioBindings
-      } = require(`${process.cwd()}/src/Structures/Constants/Models.js`)
-      var query1 = {
-        guildID: msg.guild.id
-      }
-      var query2 = {
-        guildID: msg.guild.id
-      }
-      Logs.findOneAndUpdate(query1, {
-        guildID: msg.guild.id
-      }, {
-        upsert: true
-      }, function (err, doc) {
-        if (msg.author.bot) return
-        if (err) return msg.channel.send('err ' + err)
-      })
-      RadioBindings.findOneAndUpdate(query2, {
-        guildID: msg.guild.id
-      }, {
-        upsert: true
-      }, function (err, doc) {
-        if (msg.author.bot) return
-        if (err) return msg.channel.send('err ' + err)
-      })
-    }
     if (msg.author.bot) return
     const confPrefix = await client.Models.Prefix.findOne({
       guildID: msg.guild.id
