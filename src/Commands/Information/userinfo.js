@@ -22,7 +22,7 @@ module.exports = {
         .addField('**Game**', user.presence.activities[0].name || 'None', true)
         .setFooter(`Requested by ${msg.author.tag}`)
       if (member.displayHexColor !== '#000000') embed.setColor(member.displayHexColor)
-      embed.addField(`**Roles [${msg.member.roles.cache.size}]**`, member.roles.cache.map(x => `${x.name}`).join(', '))
+      embed.addField(`**Roles [${msg.member.roles.cache.filter(x => x !== "@everyone").size}]**`, member.roles.cache.filter(x => x !== "@everyone").map(x => `${x.name}`).join(', '))
       embed.addField('**Joined at**', moment(member.joinedTimestamp).format('dddd, MMM DD, YYYY hh:mm a'), true)
       embed.addField('**Registered at**', moment(user.createdTimestamp).format('dddd, MMM DD, YYYY hh:mm a'), true)
       msg.channel.send(embed)
