@@ -19,6 +19,9 @@ module.exports = {
         case 'developer':
           developer(msg.mentions.members.first().id)
           break
+        case 'staff':
+          staff(msg.mentions.members.first().id)
+          break
         default:
           msg.channel.send({
             embed: {
@@ -42,6 +45,14 @@ module.exports = {
       UserProfile.findOneAndUpdate(query, { developer: true }, { upsert: true }, function (err, doc) {
         if (err) return msg.channel.send(err)
         msg.channel.send('Successfully set as developer!')
+      })
+    }
+    function staff (userID) {
+      var { UserProfile } = client.Models
+      var query = { userID: userID }
+      UserProfile.findOneAndUpdate(query, { staff: true }, { upsert: true }, function (err, doc) {
+        if (err) return msg.channel.send(err)
+        msg.channel.send('Successfully set as staff!')
       })
     }
   }
