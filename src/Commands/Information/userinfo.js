@@ -13,10 +13,8 @@ module.exports = {
   requiresArgs: false,
   run: async (client, msg, args) => {
     try {
-      console.log(args[0])
-      console.log(args[0] ? 1 : 2)
-      const user = client.getUser(args[0] ? args[0] : msg.author.id),
-        member = client.getMember(args[0] ? args[0] : msg.author.id, msg)
+      const user = client.getUser(args[0] ? args[0] : msg.author.id)
+      const member = client.getMember(args[0] ? args[0] : msg.author.id, msg)
 
       const embed = new client.Embed()
         .setAuthor(`${user.username}'s Information`, user.avatarURL())
@@ -24,7 +22,7 @@ module.exports = {
         .addField('**Game**', user.presence.activities[0].name || 'None', true)
         .setFooter(`Requested by ${msg.author.tag}`)
       if (member.displayHexColor !== '#000000') embed.setColor(member.displayHexColor)
-      embed.addField(`**Roles [${msg.member.roles.cache.filter(x => x !== "@everyone").size}]**`, member.roles.cache.filter(x => x !== "@everyone").map(x => `${x.name}`).join(', '))
+      embed.addField(`**Roles [${msg.member.roles.cache.filter(x => x !== '@everyone').size}]**`, member.roles.cache.filter(x => x !== '@everyone').map(x => `${x.name}`).join(', '))
       embed.addField('**Joined at**', moment(member.joinedTimestamp).format('dddd, MMM DD, YYYY hh:mm a'), true)
       embed.addField('**Registered at**', moment(user.createdTimestamp).format('dddd, MMM DD, YYYY hh:mm a'), true)
       msg.channel.send(embed)

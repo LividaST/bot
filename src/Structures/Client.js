@@ -39,7 +39,7 @@ module.exports = class Bot extends Client {
   };
 
   getUser (queryy) {
-    const query = queryy.toString();
+    const query = queryy.toString()
     const target = this.users.cache.get(query) || this.users.cache.filter(u => u.username.toLowerCase().includes(query.toLowerCase())).first() || this.users.cache.filter(u => u.tag.toLowerCase().includes(query.toLowerCase())).first()
     return target
   };
@@ -60,7 +60,7 @@ module.exports = class Bot extends Client {
   };
 
   getMember (queryy, msg) {
-    const query = queryy.toString();
+    const query = queryy.toString()
     let target
     target = msg.guild.members.cache.get(query) || msg.mentions.members.first() || msg.member
     if (query.length > 3) {
