@@ -14,7 +14,7 @@ module.exports = {
     try {
       let user
       if (args[0]) {
-        if (args[0].toLowerCase() == 'random') {
+        if (args[0].toLowerCase() === 'random') {
           user = client.users.cache.random()
         } else {
           if (msg.mentions.users.size) {
