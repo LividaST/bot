@@ -3,7 +3,7 @@ module.exports = {
   aliases: [],
   category: 'Developer',
   description: 'Sets information on a profile a profile',
-  usage: '<verify | developer>',
+  usage: '<verify | developer | staff>',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
   creatorOnly: true,
@@ -25,7 +25,7 @@ module.exports = {
         default:
           msg.channel.send({
             embed: {
-              description: 'The only options are `verify`, `developer`.'
+              description: 'The only options are `verify`, `developer`, `staff`.'
             }
           })
       }
