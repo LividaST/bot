@@ -1,4 +1,3 @@
-const cooldown = new Set()
 const Sentry = require('@sentry/node')
 module.exports = {
   name: 'message',
@@ -18,24 +17,16 @@ module.exports = {
       try {
         const command = client.commands.has(cmd) ? client.commands.get(cmd) : client.commands.get(client.aliases.get(cmd))
         if (command) {
-          if (command.guildOnly && msg.channel.type === 'dm') return client.Errors.guildOnly(msg.channel);
-          if (command.premiumOnly === true && await client.Models.Premium.findOne({guildID: msg.guild.id}) === null) return client.Errors.premiumOnly(msg.channel);
-          if (msg.channel.type !== "dm") {
-            if (!msg.guild.me.hasPermission("EMBED_LINKS")) return msg.channel.send(`I am missing the \`EMBED_LINKS\` permission!`);
-            if (command.permissions && !msg.member.hasPermission(command.permissions) && !client.creators.ids.includes(msg.author.id)) return client.Errors.noPerms(msg.channel, command.permissions);
+          if (command.guildOnly && msg.channel.type === 'dm') return client.Errors.guildOnly(msg.channel)
+          if (command.premiumOnly === true && await client.Models.Premium.findOne({ guildID: msg.guild.id }) === null) return client.Errors.premiumOnly(msg.channel)
+          if (msg.channel.type !== 'dm') {
+            if (!msg.guild.me.hasPermission('EMBED_LINKS')) return msg.channel.send('I am missing the `EMBED_LINKS` permission!')
+            if (command.permissions && !msg.member.hasPermission(command.permissions) && !client.creators.ids.includes(msg.author.id)) return client.Errors.noPerms(msg.channel, command.permissions)
           }
-          if (command.clientPerms && !msg.guild.me.hasPermission(command.clientPerms)) return client.Errors.noClientPerms(msg.channel, command.clientPerms);
-          if (command.requiresArgs === true && args.length < 1) return client.Errors.noArgs(msg.guild, msg.channel, command.name);
-          if (command.creatorOnly && !client.creators.ids.includes(msg.author.id)) return;
-          if (cooldown.has(msg.author.id)) {
-            return
-          } else {
-            command.run(client, msg, args)
-            // cooldown.add(msg.author.id);
-            // setTimeout(() => {
-            //   cooldown.delete(msg.author.id);
-            // }, 10000);
-          }
+          if (command.clientPerms && !msg.guild.me.hasPermission(command.clientPerms)) return client.Errors.noClientPerms(msg.channel, command.clientPerms)
+          if (command.requiresArgs === true && args.length < 1) return client.Errors.noArgs(msg.guild, msg.channel, command.name)
+          if (command.creatorOnly && !client.creators.ids.includes(msg.author.id)) return
+          command.run(client, msg, args)
         };
       } catch (err) {
         client.log(err)
