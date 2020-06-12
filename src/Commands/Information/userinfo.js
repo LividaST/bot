@@ -15,8 +15,8 @@ module.exports = {
     try {
       console.log(args[0])
       console.log(args[0] ? 1 : 2)
-      const user = client.getUser(args[0] ? args[0] : msg.author),
-        member = client.getMember(args[0] ? args[0] : msg.member, msg)
+      const user = client.getUser(args[0] ? args[0] : msg.author.id),
+        member = client.getMember(args[0] ? args[0] : msg.author.id, msg)
 
       const embed = new client.Embed()
         .setAuthor(`${user.username}'s Information`, user.avatarURL())
