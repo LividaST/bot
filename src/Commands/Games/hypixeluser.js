@@ -7,6 +7,10 @@ module.exports = {
   usage: '<username / uuid>',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
+  cooldown: {
+    time: 10,
+    uses: 2
+  },
   creatorOnly: false,
   guildOnly: false,
   premiumOnly: false,
