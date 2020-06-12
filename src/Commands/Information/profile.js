@@ -28,11 +28,14 @@ module.exports = {
       })
       return
     }
-    const user = client.users.cache.get(profile.userID)
-    const badges = (profile.verified ? client.Emojis.verified + ' ' : '') + (profile.developer ? client.Emojis.developer + ' ' : '') + (profile.staff ? client.Emojis.staff + ' ' : '')
+    const user = client.users.cache.get(profile.userID);
+    let badges = [];
+    if(profile.developer) badges.push(client.Emojis.developer);
+    if(profile.verified) badges.push(client.Emojis.verified);
+    if(profile.staff) badges.push(client.Emojis.staff);
     const embed = new client.Embed()
       .setTitle(`${user.tag}'s Profile`)
-      .setDescription(badges)
+      .setDescription(badges.join(" "))
     if (profile.birthday) embed.addField('Birthday', profile.birthday)
     msg.channel.send(embed)
   }
