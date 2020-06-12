@@ -28,9 +28,10 @@ module.exports = {
       }
 
       const embed = new client.Embed()
-        .setAuthor(`${user.tag}'s avatar • Requested by ${msg.author.tag}`, msg.author.avatarURL())
+        .setAuthor(`${user.tag}'s avatar`, msg.author.avatarURL())
         .setDescription(`\`\`\`${user.avatarURL()}\`\`\``)
         .setImage(user.avatarURL())
+        .setFooter(`Requested by ${msg.author.tag}`)
       msg.channel.send(embed)
     } catch {
       msg.channel.send({ embed: { description: `The specified user '${args[0]}' was not found!` } })
