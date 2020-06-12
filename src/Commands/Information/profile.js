@@ -1,5 +1,3 @@
-const { Canvas } = require('canvas-constructor')
-const { resolve, join } = require('path')
 module.exports = {
   name: 'profile',
   aliases: [],
