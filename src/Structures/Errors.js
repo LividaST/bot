@@ -43,4 +43,8 @@ module.exports = class Errors {
   premiumOnly (channel) {
     channel.send(new this.client.Embed().error('That command is premium only!'))
   };
+
+  guildOnly (channel) {
+    channel.send(new this.client.Embed().error('That command is guild only!'))
+  };
 }

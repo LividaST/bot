@@ -11,9 +11,12 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: false,
   run: async (client, msg, args) => {
-    const prefixDB = await client.Models.Prefix.findOne({
-      guildID: msg.guild.id
-    })
+    let prefixDB = ''
+    if (msg.channel.type !== 'dm') {
+      prefixDB = await client.Models.Prefix.findOne({
+        guildID: msg.guild.id
+      })
+    }
     let commandSize = client.commands.size
     const embed = new client.Embed()
       .setFooter(`Currently running ${commandSize} commands! | < optional >  [ required ]`)
