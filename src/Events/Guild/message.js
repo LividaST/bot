@@ -22,7 +22,7 @@ module.exports = {
           if (command.premiumOnly === true && await client.Models.Premium.findOne({guildID: msg.guild.id}) === null) return client.Errors.premiumOnly(msg.channel);
           if (msg.channel.type !== "dm") {
             if (command.permissions && !msg.member.hasPermission(command.permissions) && !client.creators.ids.includes(msg.author.id)) return client.Errors.noPerms(msg.channel, command.permissions);
-            if (command.permissions && !msg.member.hasPermission("EMBED_LINKS") && !client.creators.ids.includes(msg.author.id)) return client.Errors.noPerms(msg.channel, "EMBED_LINKS");
+            if (command.permissions && !msg.guild.me.hasPermission("EMBED_LINKS") && !client.creators.ids.includes(msg.author.id)) return client.Errors.noPerms(msg.channel, "EMBED_LINKS");
           }
           if (command.clientPerms && !msg.guild.me.hasPermission(command.clientPerms)) return client.Errors.noClientPerms(msg.channel, command.clientPerms);
           if (command.requiresArgs === true && args.length < 1) return client.Errors.noArgs(msg.guild, msg.channel, command.name);
