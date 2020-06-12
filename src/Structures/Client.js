@@ -62,7 +62,7 @@ module.exports = class Bot extends Client {
     let target
     target = msg.guild.members.cache.get(query) || msg.mentions.members.first() || msg.member
     if (query.length > 3) {
-      target = msg.guild.members.filter(m => m.displayName.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.filter(m => m.user.username.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.filter(m => m.user.tag.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.get(query) || msg.mentions.members.first() || msg.member
+      target = msg.guild.members.cache.filter(m => m.displayName.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.filter(m => m.user.username.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.filter(m => m.user.tag.toLowerCase().includes(query.toLowerCase())).first() || msg.guild.members.cache.get(query) || msg.mentions.members.first() || msg.member
     }
     return target
   };
