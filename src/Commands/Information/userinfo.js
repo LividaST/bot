@@ -13,6 +13,8 @@ module.exports = {
   requiresArgs: false,
   run: async (client, msg, args) => {
     try {
+      console.log(args[0])
+      console.log(args[0] ? 1 : 2)
       const user = client.getUser(args[0] ? args[0] : msg.author),
         member = client.getMember(args[0] ? args[0] : msg.member, msg)
 
