@@ -26,9 +26,10 @@ module.exports = {
           })
         })
       })
+      return
     }
     const user = client.users.cache.get(profile.userID)
-    const badges = (profile.verified ? client.Emojis.verified : '') + (profile.developer ? client.Emojis.developer : '') + (profile.staff ? client.Emojis.staff : '')
+    const badges = (profile.verified ? client.Emojis.verified + ' ' : '') + (profile.developer ? client.Emojis.developer + ' ' : '') + (profile.staff ? client.Emojis.staff + ' ' : '')
     const embed = new client.Embed()
       .setTitle(`${user.tag}'s Profile`)
       .setDescription(badges)
