@@ -2,7 +2,7 @@ var moment = require('moment')
 module.exports = {
   name: 'profile',
   aliases: [],
-  category: 'Information',
+  category: 'Profile',
   description: 'Gets the user profile of the user',
   usage: '',
   permissions: 'SEND_MESSAGES',
