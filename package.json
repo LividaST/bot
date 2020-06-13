@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/livida/discord/bot.git"
+    "url": "git+https://github.com/LividaST/bot.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/livida/discord/bot/issues"
+    "url": "https://github.com/LividaST/botissues"
   },
-  "homepage": "https://gitlab.com/livida/discord/bot#readme",
+  "homepage": "https://github.com/LividaST/bot#readme",
   "dependencies": {
     "@ksoft/api": "^3.1.9",
     "@sentry/node": "^5.17.0",
