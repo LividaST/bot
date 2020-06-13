@@ -35,7 +35,7 @@ Evaluating...
 
       try {
         const coe = (eval(codein)); let code = coe
-        if (code && code.constructor && code.constructor.name == 'Promise') code = await code
+        if (code && code.constructor && code.constructor.name === 'Promise') code = await code
         const type = code != null && code.constructor ? code.constructor.name : typeof code
         if (typeof code !== 'string')code = require('util').inspect(code, { depth: 0 })
         var output
