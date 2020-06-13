@@ -29,7 +29,7 @@ module.exports = {
     collector.on('collect', async m => {
       collector.stop()
       const radioname = res.find(a => a.toLowerCase() === m.content.toLowerCase())
-      if (!radioname) return msg.channel.send('stap wrong input not found okok')
+      if (!radioname) return msg.channel.send('The radio you inputted was not found, please issue the command again.')
       const data = await client.fetch(`https://api.livida.net/api/nowplaying/${radioname}`).then(res => res.json())
       const { stream } = data.data
       const player = client.music.players.spawn({
