@@ -34,7 +34,7 @@
     "hastebin.js": "^1.3.2",
     "hot-shots": "^7.5.0",
     "moment": "^2.26.0",
-    "mongoose": "^5.9.18",
+    "mongoose": "^5.9.19",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
     "numeral": "^2.0.6",
