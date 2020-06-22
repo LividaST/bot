@@ -11,8 +11,6 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: false,
   run: async (client, msg, args) => {
-    const { RadioBindings } = require(`${process.cwd()}/src/Structures/Constants/Models.js`)
-    const data = await RadioBindings.find({ guildID: msg.guild.id })
     let guild
     if (args[0]) {
       guild = client.getGuild(msg, args[0])
@@ -31,7 +29,6 @@ module.exports = {
     if (guild.afkChannelID) embed.addField('AFK Voice Channel', `Name: ${client.getChannel(msg, guild.afkChannelID).name} • Timeout: ${guild.afkTimeout} Seconds`, true)
     if (guild.emojis.cache.size >= 1) embed.addField('Emoji Count', `${guild.emojis.cache.size}`, true)
     if (guild.vanityURLCode) embed.addField('Vanity Code', `discord.gg/**${guild.vanityURLCode}**`, true)
-    if (data[0].binded) embed.addField('Binded Radio Channel', `<#${data[0].channelID}>`)
     msg.channel.send(embed)
   }
 }
