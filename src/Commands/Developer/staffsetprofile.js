@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'setprofile',
+  name: 'staffsetprofile',
   aliases: [],
   category: 'Developer',
   description: 'Sets information on a profile a profile',

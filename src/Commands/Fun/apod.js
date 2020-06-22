@@ -2,7 +2,7 @@ module.exports = {
   name: 'apod',
   aliases: [],
   category: 'Fun',
-  description: 'Get a random dog!',
+  description: 'Gets the astronomy picture of the day!',
   usage: '',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
