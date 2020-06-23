@@ -1,4 +1,4 @@
-// const crypto = require('crypto')
+const crypto = require('crypto')
 module.exports = {
   name: 'gravatar',
   aliases: [],
@@ -12,13 +12,12 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: true,
   run: async (client, msg, args) => {
-    // var hash = crypto.createHash('md5').update(args).digest("hex");
-    // client.fetch(`https://gravatar.com/${hash}.json`).then(res => res.json())
-    //     .then(json => {
-    //         let embed = new client.Embed()
-    //            .setDescription(json.id)
-    //         msg.channel.send(embed);
-    //     })
-    msg.channel.send('I will be fixed one day.')
+    var hash = crypto.createHash('md5').update(args[0]).digest('hex')
+    client.fetch(`https://gravatar.com/${hash}.json`).then(res => res.json())
+      .then(json => {
+        const embed = new client.Embed()
+          .setDescription(json.id)
+        msg.channel.send(embed)
+      })
   }
 }
