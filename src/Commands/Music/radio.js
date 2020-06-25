@@ -11,7 +11,7 @@ module.exports = {
   premiumOnly: false,
   run: async (client, msg, args) => {
     const { channel } = msg.member.voice
-    const res = await client.fetch('https://api.livida.net/api/nowplaying/list').then(res => res.json())
+    const res = await client.fetch('https://api.livida.net/api/radio').then(res => res.json())
     if (!channel) return msg.channel.send(new client.Embed().error('You need to be in a voice channel to play music!'))
 
     const permissions = channel.permissionsFor(client.user)
