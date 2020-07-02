@@ -51,7 +51,7 @@ module.exports = {
           }, { time: 30000, max: 1 })
 
           collector.on('collect', m => {
-            if (/cancel/i.test(m.content)) return collector.stop(new client.Embed().error('Cancelled')).then(m => m.delete(10000))
+            if (/cancel/i.test(m.content)) return collector.stop(new client.Embed().error('Cancelled'))
 
             const track = tracks[Number(m.content) - 1]
             player.queue.add(track)

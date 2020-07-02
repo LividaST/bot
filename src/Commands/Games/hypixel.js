@@ -1,7 +1,7 @@
 var numeral = require('numeral')
 module.exports = {
-  name: 'hypixeluser',
-  aliases: ['hyuser'],
+  name: 'hypixel',
+  aliases: ['hy'],
   category: 'Games',
   description: 'View information about a user on Hypixel',
   usage: '<username / uuid>',

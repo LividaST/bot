@@ -1,7 +1,7 @@
 module.exports = {
   name: 'error',
   aliases: [],
-  category: 'Core',
+  category: 'Developer',
   description: 'I spit out an error.',
   usage: '',
   permissions: 'SEND_MESSAGES',

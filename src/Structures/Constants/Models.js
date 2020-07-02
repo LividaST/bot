@@ -74,10 +74,11 @@ const UserProfile = new mongoose.Schema({
   userID: {
     type: String
   },
-  position: {
-    type: String
-  },
   developer: {
+    type: Boolean,
+    default: false
+  },
+  staff: {
     type: Boolean,
     default: false
   },

@@ -17,6 +17,8 @@ module.exports = {
           .setTitle(json.hostname)
           .setThumbnail(`https://api.mcsrvstat.us/icon/${args}`)
           .addField('Players', json.players.online + '/' + json.players.max, true)
+          .addField('Version', json.version)
+          .addField('MOTD', json.motd.clean[0] + '\n' + json.motd.clean[1])
         msg.channel.send(embed)
       })
   }

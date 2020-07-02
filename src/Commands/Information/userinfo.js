@@ -1,3 +1,4 @@
+var moment = require('moment')
 module.exports = {
   name: 'userinfo',
   aliases: ['ui'],
@@ -11,14 +12,22 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: false,
   run: async (client, msg, args) => {
-    const member = msg.member
-    const user = msg.author
-    const embed = new client.Embed()
-      .setAuthor(`${user.username}'s Information`, user.displayAvatarURL())
-      .setThumbnail(user.displayAvatarURL())
-      .addField('Presence', member.presence.status, true)
-    if (member.displayHexColor !== '#000000') embed.setColor(member.displayHexColor)
-    if (member.presence.activities[0]) embed.addField(client.formatString(msg.member.presence.activities[0].type), member.presence.activities[0], true)
-    msg.channel.send(embed)
+    try {
+      const user = client.getUser(args[0] ? args[0] : msg.author.id)
+      const member = client.getMember(args[0] ? args[0] : msg.author.id, msg)
+
+      const embed = new client.Embed()
+        .setAuthor(`${user.username}'s Information`, user.avatarURL())
+        .addField('**Status**', member.presence.status, true)
+        .addField('**Game**', user.presence.activities[0].name || 'None', true)
+        .setFooter(`Requested by ${msg.author.tag}`)
+        .addField(`**Roles [${msg.member.roles.cache.filter(x => x !== '@everyone').size}]**`, member.roles.cache.filter(x => x !== '@everyone').map(x => `${x.name}`).join(', '))
+      if (member.displayHexColor !== '#000000') embed.setColor(member.displayHexColor)
+      embed.addField('**Joined at**', moment(member.joinedTimestamp).format('dddd, MMM DD, YYYY hh:mm a'), true)
+      embed.addField('**Registered at**', moment(user.createdTimestamp).format('dddd, MMM DD, YYYY hh:mm a'), true)
+      msg.channel.send(embed)
+    } catch {
+      msg.channel.send(new client.Embed().error(`The specified user \`${args[0]}\` was not found!`))
+    }
   }
 }

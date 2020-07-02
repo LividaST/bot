@@ -4,7 +4,7 @@ module.exports = {
   aliases: ['fn', 'fnstats'],
   category: 'Games',
   description: 'View user statistics for fortnite!',
-  usage: '<username> [device]',
+  usage: '[username] <device>',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
   creatorOnly: false,

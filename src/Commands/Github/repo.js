@@ -11,6 +11,6 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: true,
   run: (client, msg, args) => {
-    msg.channel.send('something here')
+    msg.channel.send('Someone remind me to finish this: MegaJoshy#0001')
   }
 }
