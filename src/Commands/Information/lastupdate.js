@@ -1,5 +1,5 @@
 const LCL = require('last-commit-log')
-const git = new LCL();
+const git = new LCL()
 module.exports = {
   name: 'lastupdate',
   aliases: ['update'],
