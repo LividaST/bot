@@ -1,4 +1,5 @@
-const git = require('git-last-commit')
+const LCL = require('last-commit-log')
+const git = new LCL();
 module.exports = {
   name: 'lastupdate',
   aliases: ['update'],
@@ -12,14 +13,15 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: false,
   run: async (client, msg, args) => {
-    git.getLastCommit(function (commit) {
+    git.getLastCommit().then(commit => {
       const embed = new client.Embed()
         .setAuthor(commit.author.name)
         .setTitle(commit.subject)
+        .setURL(commit.gitURL)
         .setDescription(commit.body)
         .addField('Hash', `\`${commit.shortHash}\``)
         .setFooter('Authored on')
-        .setTimestamp(commit.authoredOn)
+        .setTimestamp(commit.author.date)
       msg.channel.send(embed)
     })
   }
