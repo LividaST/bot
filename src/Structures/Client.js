@@ -89,4 +89,10 @@ module.exports = class Bot extends Client {
     new Handlers.loadEvents(this)
     this.login(process.env.TOKEN)
   }
+
+  pause (ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms)
+    })
+  }
 }

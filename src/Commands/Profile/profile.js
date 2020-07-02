@@ -18,14 +18,18 @@ module.exports = {
 
     if (!profile) {
       msg.channel.send(new client.Embed().error('No profile has been found, a profile will now be created for you.')).then(message => {
-        var query = { userID: msg.author.id }
-        UserProfile.findOneAndUpdate(query, { userID: msg.author.id }, { upsert: true }, function (err, doc) {
-          if (err) return msg.channel.send(err)
-          const embed = new client.Embed().setDescription('Profile Created')
-          message.edit(embed).then(message => {
-            message.delete({ timeout: 5000 })
+        (async () => {
+          await client.pause(2500)
+          var query = { userID: msg.author.id }
+          UserProfile.findOneAndUpdate(query, { userID: msg.author.id }, { upsert: true }, function (err, doc) {
+            if (err) return msg.channel.send(err)
+            const embed = new client.Embed().setDescription('Profile Created')
+            message.edit(embed).then(message => {
+              message.delete({ timeout: 5000 })
+              msg.delete()
+            })
           })
-        })
+        })()
       })
       return
     }
