@@ -11,12 +11,7 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: false,
   run: async (client, msg, args) => {
-    let guild
-    if (args[0]) {
-      guild = client.getGuild(msg, args[0])
-    } else {
-      guild = msg.guild
-    }
+    const guild = msg.guild
     const embed = new client.Embed()
       .setAuthor(`${guild.verified ? '<:Verified:700835981133217823>' : ''} ${guild.name} • Information`, guild.iconURL() || '')
       .addField('Guild', `${guild.name} • ${guild.id}`)
