@@ -5,7 +5,7 @@ module.exports = {
   aliases: [],
   category: 'Profile',
   description: 'Sets birthday of yourself.',
-  usage: '',
+  usage: '[birthday dd/mm/yyyy]',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
   creatorOnly: true,
