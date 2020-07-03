@@ -21,7 +21,7 @@ module.exports = {
 
     UserProfile.findOneAndUpdate(query, { birthday: birthdate }, { upsert: true }, function (err, doc) {
       if (err) return msg.channel.send(err)
-      msg.channel.send(new client.Embed().sucess(`Set brithday to ${birthdate}`))
+      msg.channel.send(new client.Embed().success(`Set brithday to ${birthdate}`))
     })
   }
 }
