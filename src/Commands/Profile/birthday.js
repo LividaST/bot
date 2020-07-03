@@ -8,7 +8,7 @@ module.exports = {
   usage: '[birthday dd/mm/yyyy]',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
-  creatorOnly: true,
+  creatorOnly: false,
   guildOnly: false,
   premiumOnly: false,
   requiresArgs: true,
