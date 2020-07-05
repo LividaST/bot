@@ -18,9 +18,8 @@ module.exports = {
     if (!birthdate) return msg.channel.send(new client.Embed().error('Incorrect birthdate'))
     var { UserProfile } = client.Models
     var query = { userID: msg.author.id }
-
     UserProfile.findOneAndUpdate(query, { birthday: birthdate }, { upsert: true }, function (err, doc) {
-      if (err) return msg.channel.send(err)
+      if (err) return console.log(err)
       msg.channel.send(new client.Embed().success(`Set brithday to ${birthdate}`))
     })
   }
