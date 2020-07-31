@@ -10,7 +10,7 @@ module.exports = {
         return client.music.players.destroy(player.guild.id)
       })
       .on('trackStart', ({ textChannel }, { title, isStream, author }) => {
-        client.fetch('https://api.livida.net/api/nowplaying/list').then(res => res.json())
+        client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
           .then(json => {
             if (isStream && (author.toLowerCase() === json.find(a => author.toLowerCase() === a.toLowerCase()))) {
               title = author

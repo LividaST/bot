@@ -20,7 +20,7 @@ module.exports = {
       duration,
       requester,
       uri,
-      seekable,
+      isSeekable,
       isStream,
       author
     } = player.queue[0]
@@ -28,7 +28,7 @@ module.exports = {
     let thumbnail = player.queue[0].displayThumbnail('sddefault')
 
     let amount; let part; let artist; let listeners
-    if (seekable) {
+    if (isSeekable) {
       amount = `${Utils.formatTime(player.position, true)}`
       part = Math.floor((player.position / duration) * 10)
     };
