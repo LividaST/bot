@@ -25,7 +25,7 @@ module.exports = {
           }
           if (command.clientPerms && !msg.guild.me.hasPermission(command.clientPerms)) return client.Errors.noClientPerms(msg.channel, command.clientPerms)
           if (command.requiresArgs === true && args.length < 1) return client.Errors.noArgs(msg.guild, msg.channel, command.name)
-          if (command.creatorOnly && !client.creators.ids.includes(msg.author.id)) return
+          if (command.creatorOnly && !client.creators.ids.includes(msg.author.id)) return msg.channel.send('This commands is creator only.')
           command.run(client, msg, args)
         };
       } catch (err) {
