@@ -1389,10 +1389,10 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-discord.js-minesweeper@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/discord.js-minesweeper/-/discord.js-minesweeper-1.0.5.tgz#9ffcf170843b64da9ac5241245fc2ae1102dc3c2"
-  integrity sha512-1aKwIH4rsb1UBDmZ31cAX1FI6TKENZuNIKhhB9vQHSHMEirIf45g/gC/OhmeYiO/IimvNmzesK3eDaWXRjyKxA==
+discord.js-minesweeper@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/discord.js-minesweeper/-/discord.js-minesweeper-1.0.6.tgz#ca0aaf9b91ed6ede89a0d9628d90e569b17464e5"
+  integrity sha512-DQPmprvE8qaMMDqCqYA+L9nBa4+bsaszb4ponnoCr/yFDsmKwM1Vv9qtvmc+jPj6IT6r9rTH6wdETjy2PAhZ9w==
 
 discord.js@^12.1.1:
   version "12.2.0"
