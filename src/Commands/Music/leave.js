@@ -16,7 +16,6 @@ module.exports = {
     if (!player) return msg.channel.send(new client.Embed().error('No songs currently playing in this server!'))
     if (!channel || channel.id !== player.voiceChannel.id) return msg.channel.send(new client.Embed().error('You need to be in the same voice channel as me to use the leave command!'))
 
-
     client.music.players.destroy(msg.guild.id)
     return msg.channel.send(new client.Embed().success('Successfully stopped the music!'))
   }
