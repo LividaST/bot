@@ -21,7 +21,7 @@ module.exports = {
         .setDescription(commit.body)
         .addField('Hash', `\`${commit.shortHash}\``)
         .setFooter('Authored on')
-        .setTimestamp(commit.author.date)
+        .setTimestamp(commit.author.date || 'Unknown Date')
       msg.channel.send(embed)
     })
   }
