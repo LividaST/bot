@@ -41,7 +41,7 @@ module.exports = {
     const embed = new client.Embed()
       .setTitle(`${user.tag}'s Profile`)
       .setDescription(badges.join(' '))
-    if (profile.birthday) embed.addField('Birthday', moment(profile.birthday).format('dddd, Do MMMM, YYYY'))
+    if (profile.birthday) embed.addField('Birthday', moment.utc(profile.birthday).format('Do MMMM, YYYY'))
     msg.channel.send(embed)
   }
 }
