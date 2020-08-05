@@ -5,20 +5,16 @@ var app = express()
 var port = process.env.PORT
 var listener = app.listen(port, () => {
   console.log('Your app is listening on port ' + listener._connectionKey.split('::::')[1])
-}); var channel = '656498579518783508'
+})
 
 app.use(bodyParser.json())
-app.post('/newBlogPost', function (req, res) {
-  const post = req.body.post.current; const thumbnail = (post.feature_image || 'https://i.imgur.com/o1KuRqv.png')
+app.post('/radioRequest', function (req, res) {
+  const request = req.body
+  if (request.model !== 'requests') return res.json({ success: false })
   const embed = new client.Embed()
-    .setTitle(post.title)
-    .setAuthor(`Author: ${post.primary_author.name}`)
-    .setURL(post.url)
-    .setDescription(post.plaintext)
-    .setColor('#45A5FC')
-    .setThumbnail(thumbnail)
-    .setTimestamp()
-    .setFooter('Published')
-  client.channels.cache.get(channel).send(embed)
+    .setAuthor(request.entry.type)
+    .setDescription(request.entry.content)
+    .setFooter(`ID: ${request.entry.id}`)
+  client.channels.cache.get('705973641048883241').send(embed)
   res.json({ success: true })
 })
