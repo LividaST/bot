@@ -15,6 +15,6 @@ app.post('/radioRequest', function (req, res) {
     .setAuthor(request.entry.type)
     .setDescription(request.entry.content)
     .setFooter(`ID: ${request.entry.id}`)
-  client.channels.cache.get('705973641048883241').send(embed)
+  client.channels.cache.get('740698608567058463').send(embed)
   res.json({ success: true })
 })
