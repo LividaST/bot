@@ -43,7 +43,7 @@ module.exports = {
 
     const embed = new client.Embed()
       .setTitle(`${player.playing ? '▶️' : '⏸️'} Currently Playing ${title} - ${artist}`)
-      .setURL(uri)
+      .setURL(radio ? 'https://livida.net' : uri)
       .setThumbnail(thumbnail)
       .setFooter('Request By ' + requester.tag)
     if (radio) {
