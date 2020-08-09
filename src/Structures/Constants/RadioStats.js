@@ -1,6 +1,6 @@
 const client = require(`${process.cwd()}/src/index.js`)
 module.exports = async function (data) {
-  const message = await client.channels.cache.get('705973641048883241').messages.fetch('742043689341419532')
+  const message = await client.channels.cache.get('742030525333504080').messages.fetch('742043689341419532')
   const embed = new client.Embed()
     .setTitle('Livida | Radio')
     .addField('Song', data.now_playing.song.text)
