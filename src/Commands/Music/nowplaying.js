@@ -12,7 +12,6 @@ module.exports = {
   guildOnly: true,
   premiumOnly: false,
   run: async (client, msg, args) => {
-    const api = await client.fetch('https://api.livida.net/api/radio').then(res => res.json())
     const player = client.music.players.get(msg.guild.id)
     if (!player || !player.queue[0]) return msg.channel.send(new client.Embed().error('No songs currently playing within this server!'))
     let {
@@ -33,10 +32,9 @@ module.exports = {
       part = Math.floor((player.position / duration) * 10)
     };
     let radio = false
-    if (isStream && (author.toLowerCase() === api.find(a => author.toLowerCase() === a.toLowerCase()))) {
+    if (isStream && (author === 'Livida')) {
       radio = true
-      const api = await client.fetch(`https://api.livida.net/api/radio/${author}`).then(res => res.json())
-      const { data } = api
+      const { data } = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
       title = data.song.name
       artist = data.song.artist
       thumbnail = data.song.art
