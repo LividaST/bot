@@ -1,5 +1,5 @@
-const { Utils } = require('erela.js')
-
+const { Canvas, resolveImage } = require('canvas-constructor')
+const { MessageAttachment } = require('discord.js')
 module.exports = {
   name: 'nowplaying',
   aliases: ['np', 'currenttrack', 'current'],
@@ -12,45 +12,32 @@ module.exports = {
   guildOnly: true,
   premiumOnly: false,
   run: async (client, msg, args) => {
-    const player = client.music.players.get(msg.guild.id)
-    if (!player || !player.queue[0]) return msg.channel.send(new client.Embed().error('No songs currently playing within this server!'))
-    let {
-      title,
-      duration,
-      requester,
-      uri,
-      isSeekable,
-      isStream,
-      author
-    } = player.queue[0]
+    const { data } = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
+    const title = data.song.name
+    const artist = data.song.artist
+    const thumbnail = data.song.art
 
-    let thumbnail = player.queue[0].displayThumbnail('sddefault')
+    const result = await client.fetch('https://cdns-images.dzcdn.net/images/cover/99e85064b5a5b9b4c04f64e5c5092c9d/1000x1000-000000-80-0-0.jpg')
+    const art = await result.buffer()
 
-    let amount; let part; let artist; let listeners
-    if (isSeekable) {
-      amount = `${Utils.formatTime(player.position, true)}`
-      part = Math.floor((player.position / duration) * 10)
-    };
-    let radio = false
-    if (isStream && (author === 'Livida')) {
-      radio = true
-      const { data } = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
-      title = data.song.name
-      artist = data.song.artist
-      thumbnail = data.song.art
-      listeners = data.listeners
+    const buffer = await nowplaying()
+    const filename = 'nowplaying.jpg'
+    const attachment = new MessageAttachment(buffer, filename)
+
+    await msg.channel.send(attachment)
+    async function nowplaying () {
+      const image = await resolveImage(`${process.cwd()}/assets/waves.png`)
+      return new Canvas(800, 360)
+        .setColor('#1F1F1F')
+        .printRectangle(0, 0, 800, 360)
+        .printImage(image, 0, 0, 800, 360)
+        // .printImage(art, 400, 360, 100, 100)
+        .setTextFont('20pt Ariel')
+        .setColor('#FFFFFF')
+        .printText(title, 520, 180)
+        .setTextFont('15pt Ariel')
+        .printText(artist, 520, 200)
+        .toBuffer()
     }
-
-    const embed = new client.Embed()
-      .setTitle(`${player.playing ? '▶️' : '⏸️'} Currently Playing ${title} - ${artist}`)
-      .setURL(radio ? 'https://livida.net' : uri)
-      .setThumbnail(thumbnail)
-      .setFooter('Request By ' + requester.tag)
-    if (radio) {
-      embed.addField('Radio', author)
-      embed.addField('Listeners', listeners)
-    }
-    if (player.queue[0].isSeekable) embed.addField('Remaining', `${'▬'.repeat(part) + '🔘' + '▬'.repeat(10 - part)} [${amount} / ${Utils.formatTime(duration, true)}]`)
-    msg.channel.send(embed)
   }
 }
