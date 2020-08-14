@@ -1,4 +1,4 @@
-const { Canvas, resolveImage } = require('canvas-constructor')
+const Canvas = require('canvas')
 const { MessageAttachment } = require('discord.js')
 module.exports = {
   name: 'nowplaying',
@@ -17,27 +17,24 @@ module.exports = {
     const artist = data.song.artist
     const thumbnail = data.song.art
 
-    const result = await client.fetch('https://cdns-images.dzcdn.net/images/cover/99e85064b5a5b9b4c04f64e5c5092c9d/1000x1000-000000-80-0-0.jpg')
-    const art = await result.buffer()
+    Canvas.registerFont(`${process.cwd()}/assets/bold.otf`, { family: 'SF Pro Display' })
+    Canvas.registerFont(`${process.cwd()}/assets/font.otf`, { family: 'SF Pro Display Light' })
+    const canvas = Canvas.createCanvas(800, 360)
+    const ctx = canvas.getContext('2d')
 
-    const buffer = await nowplaying()
-    const filename = 'nowplaying.jpg'
-    const attachment = new MessageAttachment(buffer, filename)
+    const background = await Canvas.loadImage(`${process.cwd()}/assets/waves.png`)
+    ctx.fillStyle = '#1f1f1f'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+    const songimage = await Canvas.loadImage(thumbnail)
+    ctx.drawImage(songimage, 100, canvas.height / 2 - 150 / 2, 150, 150)
 
+    ctx.font = '30px "SF Pro Display"'
+    ctx.fillStyle = '#ffffff'
+    ctx.fillText(title, 275, 170)
+    ctx.font = '20px "SF Pro Display Light"'
+    ctx.fillText(artist, 275, 195)
+    const attachment = new MessageAttachment(canvas.toBuffer(), 'nowplaying.png')
     await msg.channel.send(attachment)
-    async function nowplaying () {
-      const image = await resolveImage(`${process.cwd()}/assets/waves.png`)
-      return new Canvas(800, 360)
-        .setColor('#1F1F1F')
-        .printRectangle(0, 0, 800, 360)
-        .printImage(image, 0, 0, 800, 360)
-        // .printImage(art, 400, 360, 100, 100)
-        .setTextFont('20pt Ariel')
-        .setColor('#FFFFFF')
-        .printText(title, 520, 180)
-        .setTextFont('15pt Ariel')
-        .printText(artist, 520, 200)
-        .toBuffer()
-    }
   }
 }
