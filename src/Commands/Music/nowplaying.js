@@ -12,6 +12,7 @@ module.exports = {
   guildOnly: true,
   premiumOnly: false,
   run: async (client, msg, args) => {
+    msg.channel.startTyping()
     const { data } = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
     const title = data.song.name
     const artist = data.song.artist
@@ -35,6 +36,7 @@ module.exports = {
     ctx.font = '20px "SF Pro Display Light"'
     ctx.fillText(artist, 275, 195)
     const attachment = new MessageAttachment(canvas.toBuffer(), 'nowplaying.png')
+    msg.channel.stopTyping()
     await msg.channel.send(attachment)
   }
 }
