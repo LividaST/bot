@@ -1,6 +1,6 @@
 module.exports = {
   name: 'radio',
-  aliases: [],
+  aliases: ['play', 'p'],
   category: 'Music',
   description: 'Plays a radio station!',
   usage: '',
