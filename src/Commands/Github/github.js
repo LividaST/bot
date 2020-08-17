@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'user',
+  name: 'github',
   aliases: [],
   category: 'GitHub',
   description: 'View information about a GitHub user',
