@@ -14,7 +14,21 @@ app.post('/radioRequest', function (req, res) {
   const embed = new client.Embed()
     .setAuthor(request.entry.type)
     .setDescription(request.entry.content)
+    .addField('Name', request.entry.name)
     .setFooter(`ID: ${request.entry.id}`)
-  client.channels.cache.get('705973641048883241').send(embed)
+  client.channels.cache.get('740698608567058463').send(embed)
+  res.json({ success: true })
+})
+
+app.post('/radioStats', async function (req, res) {
+  const data = req.body
+  const message = await client.channels.cache.get('656498576377118760').messages.fetch('742425282572714232')
+  const embed = new client.Embed()
+    .setTitle('Livida | Radio')
+    .addField('Song', data.now_playing.song.text)
+    .addField('DJ', data.live.is_live ? data.live.streamer_name : 'Auto DJ')
+    .setThumbnail('https://api.livida.net/api/radio/cover')
+  message.edit(embed)
+  client.log('Updated radio stats')
   res.json({ success: true })
 })

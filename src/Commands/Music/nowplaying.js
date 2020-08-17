@@ -1,5 +1,5 @@
-const { Utils } = require('erela.js')
-
+const Canvas = require('canvas')
+const { MessageAttachment } = require('discord.js')
 module.exports = {
   name: 'nowplaying',
   aliases: ['np', 'currenttrack', 'current'],
@@ -12,47 +12,31 @@ module.exports = {
   guildOnly: true,
   premiumOnly: false,
   run: async (client, msg, args) => {
-    const api = await client.fetch('https://api.livida.net/api/radio').then(res => res.json())
-    const player = client.music.players.get(msg.guild.id)
-    if (!player || !player.queue[0]) return msg.channel.send(new client.Embed().error('No songs currently playing within this server!'))
-    let {
-      title,
-      duration,
-      requester,
-      uri,
-      isSeekable,
-      isStream,
-      author
-    } = player.queue[0]
+    msg.channel.startTyping()
+    const { data } = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
+    const title = data.song.name
+    const artist = data.song.artist
+    const thumbnail = data.song.art
 
-    let thumbnail = player.queue[0].displayThumbnail('sddefault')
+    Canvas.registerFont(`${process.cwd()}/assets/bold.otf`, { family: 'SF Pro Display' })
+    Canvas.registerFont(`${process.cwd()}/assets/font.otf`, { family: 'SF Pro Display Light' })
+    const canvas = Canvas.createCanvas(800, 360)
+    const ctx = canvas.getContext('2d')
 
-    let amount; let part; let artist; let listeners
-    if (isSeekable) {
-      amount = `${Utils.formatTime(player.position, true)}`
-      part = Math.floor((player.position / duration) * 10)
-    };
-    let radio = false
-    if (isStream && (author.toLowerCase() === api.find(a => author.toLowerCase() === a.toLowerCase()))) {
-      radio = true
-      const api = await client.fetch(`https://api.livida.net/api/radio/${author}`).then(res => res.json())
-      const { data } = api
-      title = data.song.name
-      artist = data.song.artist
-      thumbnail = data.song.art
-      listeners = data.listeners
-    }
+    const background = await Canvas.loadImage(`${process.cwd()}/assets/waves.png`)
+    ctx.fillStyle = '#1f1f1f'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+    const songimage = await Canvas.loadImage(thumbnail)
+    ctx.drawImage(songimage, 100, canvas.height / 2 - 150 / 2, 150, 150)
 
-    const embed = new client.Embed()
-      .setTitle(`${player.playing ? '▶️' : '⏸️'} Currently Playing ${title} - ${artist}`)
-      .setURL(uri)
-      .setThumbnail(thumbnail)
-      .setFooter('Request By ' + requester.tag)
-    if (radio) {
-      embed.addField('Radio', author)
-      embed.addField('Listeners', listeners)
-    }
-    if (player.queue[0].isSeekable) embed.addField('Remaining', `${'▬'.repeat(part) + '🔘' + '▬'.repeat(10 - part)} [${amount} / ${Utils.formatTime(duration, true)}]`)
-    msg.channel.send(embed)
+    ctx.font = '30px "SF Pro Display"'
+    ctx.fillStyle = '#ffffff'
+    ctx.fillText(title, 275, 170)
+    ctx.font = '20px "SF Pro Display Light"'
+    ctx.fillText(artist, 275, 195)
+    const attachment = new MessageAttachment(canvas.toBuffer(), 'nowplaying.png')
+    msg.channel.stopTyping()
+    await msg.channel.send(attachment)
   }
 }
