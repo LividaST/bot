@@ -24,7 +24,7 @@
     "@sentry/node": "^5.20.1",
     "body-parser": "^1.19.0",
     "canvas": "^2.6.1",
-    "discord.js": "^12.1.1",
+    "discord.js": "^12.3.1",
     "discord.js-minesweeper": "^1.0.6",
     "dotenv": "^8.2.0",
     "erela.js": "^1.1.8",
@@ -34,12 +34,12 @@
     "hot-shots": "^7.7.1",
     "last-commit-log": "^3.0.4",
     "moment": "^2.27.0",
-    "mongoose": "^5.9.26",
+    "mongoose": "^5.10.0",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
     "numeral": "^2.0.6",
     "os-utils": "0.0.14",
-    "snyk": "^1.369.3"
+    "snyk": "^1.374.0"
   },
   "devDependencies": {
     "snazzy": "^8.0.0",
