@@ -2,8 +2,8 @@ module.exports = {
   name: 'minecraft',
   aliases: ['mc'],
   category: 'Games',
-  description: 'View information about a server',
-  usage: '<server ip>',
+  description: 'View information about a minecraft user',
+  usage: '<username / uuid>',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
   creatorOnly: false,
@@ -11,14 +11,13 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: true,
   run: (client, msg, args) => {
-    client.fetch(`https://api.mcsrvstat.us/2/${args}`).then(res => res.json())
+    client.fetch(`https://playerdb.co/api/player/minecraft/${args}`).then(res => res.json())
       .then(json => {
+        if (!json.success) return msg.channel.send(new client.Embed().error(json.message))
         const embed = new client.Embed()
-          .setTitle(json.hostname)
-          .setThumbnail(`https://api.mcsrvstat.us/icon/${args}`)
-          .addField('Players', json.players.online + '/' + json.players.max, true)
-          .addField('Version', json.version)
-          .addField('MOTD', json.motd.clean[0] + '\n' + json.motd.clean[1])
+          .setTitle(json.data.player.username)
+          .setThumbnail(`https://crafatar.com/avatars/${json.data.player.id}?size=512&default=MHF_Steve&overlay`)
+          .addField('UUID', `\`${json.data.player.id}\``)
         msg.channel.send(embed)
       })
   }
