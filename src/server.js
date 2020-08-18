@@ -27,8 +27,17 @@ app.post('/radioStats', async function (req, res) {
     .setTitle('Livida | Radio')
     .addField('Song', data.now_playing.song.text)
     .addField('DJ', data.live.is_live ? data.live.streamer_name : 'Auto DJ')
-    .setThumbnail('https://api.livida.net/api/radio/cover')
+    .setThumbnail(await deezer(data.now_playing.song.text))
   message.edit(embed)
   client.log('Updated radio stats')
   res.json({ success: true })
 })
+
+async function deezer (songname) {
+  try {
+    const { data } = await client.fetch(`https://api.deezer.com/search?q=${encodeURIComponent(songname)}&limit=1`).then(res => res.json())
+    return data[0].album.cover_xl
+  } catch (error) {
+    console.log(error)
+  }
+}
