@@ -3,7 +3,7 @@ module.exports = {
   aliases: ['si'],
   category: 'Information',
   description: 'View a servers information',
-  usage: '<guild_id>',
+  usage: '',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
   creatorOnly: false,
