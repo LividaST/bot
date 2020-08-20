@@ -20,7 +20,6 @@ module.exports = {
       .set('low', 0.10)
       .set('medium', 0.15)
       .set('high', 0.25)
-    client.user.setActivity(`${client.guilds.cache.size} guilds • ${process.env.PREFIX}help`, { type: 'WATCHING' })
     client.log(`${client.user.tag} is online with ${client.guilds.cache.size} guilds logged!`)
     require(`${process.cwd()}/src/server.js`)
   }
