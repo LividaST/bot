@@ -22,7 +22,7 @@ app.post('/radioRequest', function (req, res) {
 
 app.post('/radioStats', async function (req, res) {
   const data = req.body
-  const message = await client.channels.cache.get('656498576377118760').messages.fetch('746001135726231623')
+  const message = await client.channels.cache.get('656498576377118760').messages.fetch('746002329928597545')
   const embed = new client.Embed()
     .setTitle('Livida | Radio')
     .addField('Song', data.now_playing.song.text)
