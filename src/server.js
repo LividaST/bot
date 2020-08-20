@@ -22,13 +22,14 @@ app.post('/radioRequest', function (req, res) {
 
 app.post('/radioStats', async function (req, res) {
   const data = req.body
-  const message = await client.channels.cache.get('656498576377118760').messages.fetch('742425282572714232')
+  const message = await client.channels.cache.get('656498576377118760').messages.fetch('746002329928597545')
   const embed = new client.Embed()
     .setTitle('Livida | Radio')
     .addField('Song', data.now_playing.song.text)
     .addField('DJ', data.live.is_live ? data.live.streamer_name : 'Auto DJ')
     .setThumbnail(await deezer(data.now_playing.song.text))
   message.edit(embed)
+  client.user.setActivity(`to ${data.now_playing.song.text} • ${process.env.PREFIX}help`, { type: 'LISTENING' })
   client.log('Updated radio stats')
   res.json({ success: true })
 })
