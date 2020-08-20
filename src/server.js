@@ -29,7 +29,7 @@ app.post('/radioStats', async function (req, res) {
     .addField('DJ', data.live.is_live ? data.live.streamer_name : 'Auto DJ')
     .setThumbnail(await deezer(data.now_playing.song.text))
   message.edit(embed)
-  client.user.setActivity(`to ${data.now_playing.song.text} • ${process.env.PREFIX}help`, { type: 'LISTENING' })
+  client.user.setActivity(`${data.now_playing.song.text} • ${process.env.PREFIX}help`, { type: 'LISTENING' })
   client.log('Updated radio stats')
   res.json({ success: true })
 })
