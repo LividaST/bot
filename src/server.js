@@ -59,7 +59,7 @@ app.post('/djConnect', async function (req, res) {
   ctx.font = '20px "SF Pro Display Light"'
   ctx.fillText('livida.net/radio', 275, 195)
   const attachment = new MessageAttachment(canvas.toBuffer(), 'nowplaying.png')
-  channel.send('<@&746373269845835797>', attachment)
+  channel.send(attachment)
   client.log('Sent DJ connect message.')
   res.json({ success: true })
 })
