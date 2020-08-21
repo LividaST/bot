@@ -1,5 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const Canvas = require('canvas')
+const { MessageAttachment } = require('discord.js')
 const client = require(`${process.cwd()}/src/index.js`)
 var app = express()
 var port = process.env.PORT
@@ -31,6 +33,34 @@ app.post('/radioStats', async function (req, res) {
   message.edit(embed)
   client.user.setActivity(`${data.now_playing.song.text} • ${process.env.PREFIX}help`, { type: 'LISTENING' })
   client.log('Updated radio stats')
+  res.json({ success: true })
+})
+
+app.post('/djConnect', async function (req, res) {
+  const channel = await client.channels.cache.get('735344974245396581')
+  const { data } = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
+  const thumbnail = data.slot.avatar
+
+  Canvas.registerFont(`${process.cwd()}/assets/bold.otf`, { family: 'SF Pro Display' })
+  Canvas.registerFont(`${process.cwd()}/assets/font.otf`, { family: 'SF Pro Display Light' })
+  const canvas = Canvas.createCanvas(800, 360)
+  const ctx = canvas.getContext('2d')
+
+  const background = await Canvas.loadImage(`${process.cwd()}/assets/waves.png`)
+  ctx.fillStyle = '#1f1f1f'
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+  const songimage = await Canvas.loadImage(thumbnail)
+  ctx.drawImage(songimage, 100, canvas.height / 2 - 150 / 2, 150, 150)
+
+  ctx.font = '30px "SF Pro Display"'
+  ctx.fillStyle = '#ffffff'
+  ctx.fillText(`${data.slot.username} has gone live!`, 275, 170)
+  ctx.font = '20px "SF Pro Display Light"'
+  ctx.fillText('livida.net/radio', 275, 195)
+  const attachment = new MessageAttachment(canvas.toBuffer(), 'nowplaying.png')
+  channel.send('<@&746373269845835797>', attachment)
+  client.log('Sent DJ connect message.')
   res.json({ success: true })
 })
 
