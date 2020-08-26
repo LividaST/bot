@@ -38,7 +38,7 @@ module.exports = {
         message: content,
         requestOrigin: 'Discord'
       }
-      client.fetch('https://api.livida.net/api/radio/requsts', {
+      client.fetch('https://api.livida.net/api/radio/request', {
         method: 'post',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' }
@@ -48,9 +48,9 @@ module.exports = {
           const { data } = json
           const embed = new client.Embed()
             .setAuthor(`Request by ${data.name}`)
-            .setDescription(data.messafe)
+            .setDescription(data.message)
             .addField('Type', client.formatString(data.type))
-            .setFooter(`ID: ${data.uuid} • Created at`)
+            .setFooter('Created at')
             .setTimestamp(data.createdAt)
           msg.channel.send(embed)
         })
