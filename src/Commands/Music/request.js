@@ -33,11 +33,12 @@ module.exports = {
 
     function sendRequest (content, request) {
       const body = {
-        content,
+        name: msg.author.tag,
         type: request,
-        name: msg.author.tag
+        message: content,
+        requestOrigin: 'Discord'
       }
-      client.fetch('https://cms.livida.net/requests', {
+      client.fetch('https://api.livida.net/api/radio/requsts', {
         method: 'post',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' }
