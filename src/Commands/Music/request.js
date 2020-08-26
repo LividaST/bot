@@ -3,7 +3,7 @@ module.exports = {
   aliases: [],
   category: 'Music',
   description: 'Request a track to play when a DJ is live!',
-  usage: '',
+  usage: '[ song / shoutout ] [ request ]',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
   creatorOnly: false,
@@ -45,12 +45,13 @@ module.exports = {
       })
         .then(res => res.json())
         .then(json => {
+          const { data } = json
           const embed = new client.Embed()
-            .setAuthor(`Request by ${json.name}`)
-            .setDescription(json.content)
-            .addField('Type', client.formatString(json.type))
-            .setFooter(`ID: ${json.id} • Created at`)
-            .setTimestamp(json.created_at)
+            .setAuthor(`Request by ${data.name}`)
+            .setDescription(data.messafe)
+            .addField('Type', client.formatString(data.type))
+            .setFooter(`ID: ${data.uuid} • Created at`)
+            .setTimestamp(data.createdAt)
           msg.channel.send(embed)
         })
     }
