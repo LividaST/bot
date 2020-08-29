@@ -21,7 +21,7 @@
   "homepage": "https://github.com/LividaST/bot#readme",
   "dependencies": {
     "@ksoft/api": "^3.1.9",
-    "@sentry/node": "^5.21.4",
+    "@sentry/node": "^5.22.0",
     "body-parser": "^1.19.0",
     "canvas": "^2.6.1",
     "discord.js": "^12.3.1",
@@ -34,12 +34,12 @@
     "hot-shots": "^7.7.1",
     "last-commit-log": "^3.0.4",
     "moment": "^2.27.0",
-    "mongoose": "^5.10.0",
+    "mongoose": "^5.10.1",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
     "numeral": "^2.0.6",
     "os-utils": "0.0.14",
-    "snyk": "^1.384.0"
+    "snyk": "^1.385.0"
   },
   "devDependencies": {
     "snazzy": "^8.0.0",
