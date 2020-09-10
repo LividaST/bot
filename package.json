@@ -39,7 +39,7 @@
     "node-fetch": "^2.6.1",
     "numeral": "^2.0.6",
     "os-utils": "0.0.14",
-    "snyk": "^1.385.0"
+    "snyk": "^1.392.1"
   },
   "devDependencies": {
     "snazzy": "^8.0.0",
