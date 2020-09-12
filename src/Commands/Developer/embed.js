@@ -12,7 +12,7 @@ module.exports = {
   requiresArgs: false,
   run: (client, msg, args) => {
     const embed = new client.Embed()
-      .setDescription('This is an embed! testing something!')
+      .setDescription('This is an embed!')
     msg.channel.send(embed)
   }
 }
