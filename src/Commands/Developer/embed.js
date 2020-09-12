@@ -10,7 +10,7 @@ module.exports = {
   guildOnly: false,
   premiumOnly: false,
   requiresArgs: false,
-  run: async (client, msg, args) => {
+  run: (client, msg, args) => {
     const embed = new client.Embed()
       .setDescription('This is an embed!')
     msg.channel.send(embed)

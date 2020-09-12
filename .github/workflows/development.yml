@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Development
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ development ]
+
+jobs:
+  build:
+    name: Development
+    runs-on: ubuntu-latest
+    steps:
+    - name: push to vps
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          export NVM_DIR=~/.nvm
+          source ~/.nvm/nvm.sh
+          cd /root/discordbotdev
+          git pull
+          npm i
+          pm2 restart 1
