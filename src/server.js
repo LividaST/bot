@@ -10,21 +10,10 @@ var listener = app.listen(port, () => {
 })
 
 app.use(bodyParser.json())
-app.post('/radioRequest', function (req, res) {
-  const request = req.body
-  if (request.model !== 'requests') return res.json({ success: false })
-  const embed = new client.Embed()
-    .setAuthor(request.entry.type)
-    .setDescription(request.entry.content)
-    .addField('Name', request.entry.name)
-    .setFooter(`ID: ${request.entry.id}`)
-  client.channels.cache.get('740698608567058463').send(embed)
-  res.json({ success: true })
-})
 
 app.post('/radioStats', async function (req, res) {
   const data = req.body
-  const message = await client.channels.cache.get('656498576377118760').messages.fetch('746002329928597545')
+  const message = await client.channels.cache.get('656498576377118760').messages.fetch('754368917367029770')
   const embed = new client.Embed()
     .setTitle('Livida | Radio')
     .addField('Song', data.now_playing.song.text)
