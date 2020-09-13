@@ -16,9 +16,10 @@ module.exports = {
 
     client.fetch(`https://api.github.com/repos/${args[0]}/${args[1]}`).then(res => res.json())
       .then(json => {
+        if(json.message) return msg.reply("the specified repository was not found!");
         let embed = new client.Embed()
           .setDescription(`Viewing information for github repository: [**${json.full_name}**](${json.html_url})\n**Description:** ${json.description}`)
-        msg.channel.send(embed)
+        msg.channel.send(embed);
     })
   }
 }
