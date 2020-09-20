@@ -1,4 +1,6 @@
-const Canvas = require('canvas')
+const { Canvas, resolveImage } = require('canvas-constructor')
+const { registerFont } = require('canvas')
+const Vibrant = require('node-vibrant')
 const { MessageAttachment } = require('discord.js')
 module.exports = {
   name: 'nowplaying',
@@ -16,26 +18,36 @@ module.exports = {
     const { data } = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
     const title = data.song.name
     const artist = data.song.artist
-    const thumbnail = data.song.art
+    const dj = data.dj
+    const thumbnail = await resolveImage(data.song.art)
+    const djicon = await resolveImage(data.slot.avatar)
+    const colours = await Vibrant.from(data.song.art).maxColorCount(2).getPalette()
 
-    Canvas.registerFont(`${process.cwd()}/assets/bold.otf`, { family: 'SF Pro Display' })
-    Canvas.registerFont(`${process.cwd()}/assets/font.otf`, { family: 'SF Pro Display Light' })
-    const canvas = Canvas.createCanvas(800, 360)
-    const ctx = canvas.getContext('2d')
+    registerFont(`${process.cwd()}/assets/OpenSans-Bold.ttf`, { family: 'OpenSans Bold' })
+    registerFont(`${process.cwd()}/assets/OpenSans-Regular.ttf`, { family: 'OpenSans' })
 
-    const background = await Canvas.loadImage(`${process.cwd()}/assets/waves.png`)
-    ctx.fillStyle = '#1f1f1f'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
-    const songimage = await Canvas.loadImage(thumbnail)
-    ctx.drawImage(songimage, 100, canvas.height / 2 - 150 / 2, 150, 150)
-
-    ctx.font = '30px "SF Pro Display"'
-    ctx.fillStyle = '#ffffff'
-    ctx.fillText(title, 275, 170)
-    ctx.font = '20px "SF Pro Display Light"'
-    ctx.fillText(artist, 275, 195)
-    const attachment = new MessageAttachment(canvas.toBuffer(), 'nowplaying.png')
+    const nowplaying = new Canvas(1630, 670)
+      .save()
+      .beginPath()
+      .bezierCurveTo(0, 564, 815, 780, 1630, 564)
+      .lineTo(1630, 0)
+      .lineTo(0, 0)
+      .stroke()
+      .printLinearColorGradient(815, 0, 815, 670, [{ position: 0, color: colours.LightVibrant.getHex() }, { position: 100, color: colours.Vibrant.getHex() }])
+      .fill()
+      .restore()
+      .printRoundedImage(thumbnail, 330, 125, 350, 350, 25)
+      .setTextAlign('center')
+      .setTextFont('36px OpenSans Bold')
+      .setColor('#FFFFFF')
+      .printText(title, 505, 515)
+      .setTextFont('36px OpenSans')
+      .printText(artist, 505, 560)
+      .printCircularImage(djicon, 1125, 300, 175)
+      .setTextFont('36px OpenSans Bold')
+      .printText(dj, 1125, 515)
+      .toBuffer()
+    const attachment = new MessageAttachment(nowplaying, 'nowplaying.png')
     msg.channel.stopTyping()
     await msg.channel.send(attachment)
   }
