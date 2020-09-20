@@ -16,7 +16,7 @@ module.exports = {
   run: async (client, msg, args) => {
     msg.channel.startTyping()
     const { data } = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
-    const title = data.song.name
+    const title = data.song.name.length > 23 ? data.song.name.substring(0, 20) + '...' : data.song.name
     const artist = data.song.artist
     const dj = data.dj
     const thumbnail = await resolveImage(data.song.art)
