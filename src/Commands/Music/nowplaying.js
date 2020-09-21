@@ -16,7 +16,7 @@ module.exports = {
   run: async (client, msg, args) => {
     msg.channel.startTyping()
     const { data } = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
-    const title = data.song.name
+    const title = data.song.name.length > 30 ? data.song.name.substring(0, 27) + '...' : data.song.name
     const artist = data.song.artist
     const dj = data.dj
     const thumbnail = await resolveImage(data.song.art)
@@ -40,12 +40,12 @@ module.exports = {
       .setTextAlign('center')
       .setTextFont('36px OpenSans Bold')
       .setColor('#FFFFFF')
-      .printText(title, 505, 515)
+      .printText(title, 505, 520)
       .setTextFont('36px OpenSans')
-      .printText(artist, 505, 560)
+      .printText(artist, 505, 565)
       .printCircularImage(djicon, 1125, 300, 175)
       .setTextFont('36px OpenSans Bold')
-      .printText(dj, 1125, 515)
+      .printText(dj, 1125, 520)
       .toBuffer()
     const attachment = new MessageAttachment(nowplaying, 'nowplaying.png')
     msg.channel.stopTyping()
