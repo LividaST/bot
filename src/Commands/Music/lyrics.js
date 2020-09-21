@@ -3,14 +3,16 @@ module.exports = {
   aliases: [],
   category: 'Music',
   description: 'Get lyrics of current song!',
-  usage: '<song title>',
+  usage: '',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
-  creatorOnly: true,
+  creatorOnly: false,
   guildOnly: false,
   premiumOnly: false,
   requiresArgs: false,
   run: async (client, msg, args) => {
-    msg.channel.send('Will be sorted out soon.')
+    const { data: { song } } = await client.fetch('https://api.livida.net/api/radio').then(res => res.json())
+    const lyrics = await client.ksoft.lyrics.get(song.name + song.artist).then(x => x)
+    msg.channel.send(`**${song.name} - ${song.artist}**\n${lyrics.lyrics}`, { split: true })
   }
 }
