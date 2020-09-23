@@ -6,9 +6,7 @@
   "scripts": {
     "start": "node .",
     "dev": "nodemon",
-    "lint": "standard --verbose | snazzy",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "lint": "standard --verbose | snazzy"
   },
   "repository": {
     "type": "git",
