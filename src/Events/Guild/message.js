@@ -3,14 +3,8 @@ module.exports = {
   name: 'message',
   run: async (client, msg) => {
     if (msg.author.bot) return
-    let confPrefix = ''
-    if (msg.channel.type !== 'dm') {
-      confPrefix = await client.Models.Prefix.findOne({
-        guildID: msg.guild.id
-      })
-    }
     const prefixMention = new RegExp(`^<@!?${client.user.id}> `)
-    const prefix = msg.content.match(prefixMention) ? msg.content.match(prefixMention)[0] : confPrefix ? confPrefix.prefix : client.prefix
+    const prefix = msg.content.match(prefixMention) ? msg.content.match(prefixMention)[0] : client.prefix
     if (msg.content.startsWith(prefix)) {
       const args = msg.content.slice(prefix.length).trim().split(' ')
       const cmd = args.shift().toLowerCase()
@@ -26,6 +20,7 @@ module.exports = {
           if (command.clientPerms && !msg.guild.me.hasPermission(command.clientPerms)) return client.Errors.noClientPerms(msg.channel, command.clientPerms)
           if (command.requiresArgs === true && args.length < 1) return client.Errors.noArgs(msg.guild, msg.channel, command.name)
           if (command.creatorOnly && !client.creators.ids.includes(msg.author.id)) return msg.channel.send('This commands is creator only.')
+          client.log(`${msg.author.tag} (${msg.author.id}) issued the command ${command.name} in the server ${msg.guild.name} (${msg.guild.id})`)
           command.run(client, msg, args)
         };
       } catch (err) {
