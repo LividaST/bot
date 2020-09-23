@@ -8,6 +8,5 @@ updates:
   target-branch: development
   reviewers:
   - MegaJoshy
-  - callumok2004
   labels:
   - dependencies
