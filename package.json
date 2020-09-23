@@ -42,7 +42,7 @@
     "node-vibrant": "^3.1.5",
     "numeral": "^2.0.6",
     "os-utils": "0.0.14",
-    "snyk": "^1.398.1"
+    "snyk": "^1.399.1"
   },
   "devDependencies": {
     "snazzy": "^8.0.0",
