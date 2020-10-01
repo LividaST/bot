@@ -10,7 +10,13 @@ module.exports = {
   guildOnly: false,
   premiumOnly: false,
   requiresArgs: false,
-  run: (client, msg, args) => {
+  run: async (client, msg, args) => {
+    if (msg.attachments.size !== 0) {
+      msg.channel.send({ files: [msg.attachments.values().next().value.attachment] })
+      msg.delete()
+      return
+    }
     msg.channel.send(args.join(' '))
+    msg.delete()
   }
 }
