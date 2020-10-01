@@ -11,6 +11,6 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: false,
   run: (client, msg, args) => {
-    msg.channel.send(args)
+    msg.channel.send(args.join(' '))
   }
 }
