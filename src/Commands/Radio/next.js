@@ -4,7 +4,7 @@ const { MessageAttachment } = require('discord.js')
 module.exports = {
   name: 'next',
   aliases: [],
-  category: 'Music',
+  category: 'Radio',
   description: 'See what\'s coming next',
   usage: '',
   permissions: 'SEND_MESSAGES',

@@ -1,8 +1,8 @@
 module.exports = {
-  name: 'leave',
-  aliases: ['stop'],
-  category: 'Music',
-  description: 'Stop the music playing',
+  name: 'pause',
+  aliases: ['unpause', 'resume'],
+  category: 'Radio',
+  description: 'Pause or unpause the music!',
   usage: '',
   permissions: 'SEND_MESSAGES',
   clientPerms: 'SEND_MESSAGES',
@@ -16,7 +16,7 @@ module.exports = {
     if (!player) return msg.channel.send(new client.Embed().error('No songs currently playing in this server!'))
     if (!channel || channel.id !== player.voiceChannel.id) return msg.channel.send(new client.Embed().error('You need to be in the same voice channel as me to use the leave command!'))
 
-    client.music.players.destroy(msg.guild.id)
-    return msg.channel.send(new client.Embed().success('Successfully stopped the music!'))
+    player.pause(player.playing)
+    return msg.channel.send(new client.Embed().success(`The queue is now **${player.playing ? 'resumed' : 'paused'}**!`))
   }
 }

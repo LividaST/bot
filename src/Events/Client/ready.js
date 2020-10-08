@@ -13,7 +13,7 @@ module.exports = {
         if (isStream && (author === 'Livida')) {
           title = 'Livida Radio'
         }
-        textChannel.send(new client.Embed().success(`Started playing **${title}**!`))
+        if (textChannel) textChannel.send(new client.Embed().success(`Started playing **${title}**!`))
       })
     client.levels = new Map()
       .set('none', 0.0)
