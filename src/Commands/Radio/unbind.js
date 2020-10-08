@@ -4,7 +4,7 @@ module.exports = {
   category: 'Radio',
   description: 'Unbinds the radio from the channel.',
   usage: '[voice_channel ID]',
-  permissions: 'MANAGE_SERVER',
+  permissions: 'MANAGE_GUILD',
   clientPerms: 'SEND_MESSAGES',
   creatorOnly: true,
   guildOnly: true,
