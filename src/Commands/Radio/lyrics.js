@@ -1,7 +1,7 @@
 module.exports = {
   name: 'lyrics',
   aliases: [],
-  category: 'Music',
+  category: 'Radio',
   description: 'Get lyrics of current song!',
   usage: '',
   permissions: 'SEND_MESSAGES',

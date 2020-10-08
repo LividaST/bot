@@ -1,7 +1,7 @@
 module.exports = {
   name: 'request',
   aliases: [],
-  category: 'Music',
+  category: 'Radio',
   description: 'Request a track to play when a DJ is live!',
   usage: '[ song / shoutout ] [ request ]',
   permissions: 'SEND_MESSAGES',

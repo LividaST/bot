@@ -5,7 +5,7 @@ const { MessageAttachment } = require('discord.js')
 module.exports = {
   name: 'nowplaying',
   aliases: ['np', 'currenttrack', 'current'],
-  category: 'Music',
+  category: 'Radio',
   description: 'Check what the current song is',
   usage: '',
   permissions: 'SEND_MESSAGES',
