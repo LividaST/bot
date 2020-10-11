@@ -4,7 +4,7 @@ module.exports = {
   category: 'Radio',
   description: 'Binds Livida Radio to the following channel',
   usage: '[voice_channel ID]',
-  permissions: 'MANAGE_SERVER',
+  permissions: 'MANAGE_GUILD',
   clientPerms: 'SEND_MESSAGES',
   creatorOnly: true,
   guildOnly: true,
