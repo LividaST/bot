@@ -6,13 +6,15 @@ const Embed = require('./Embed.js')
 const Handlers = require('./Handlers.js')
 const StatsD = require('hot-shots')
 const { KSoftClient } = require('@ksoft/api')
+const DBL = require('dblapi.js')
+const { Shoukaku } = require('shoukaku')
+
+const LavalinkServer = [{ name: 'lavalink', host: process.env.LAVAHOST, port: 2333, auth: process.env.LAVAPASS }]
+const ShoukakuOptions = { moveOnDisconnect: false, resumable: false, resumableTimeout: 30, reconnectTries: 2, restTimeout: 10000 }
 
 module.exports = class Bot extends Client {
   constructor (options = {}) {
     super(options)
-    this.nodes = [
-      { host: process.env.LAVAHOST, port: '2333', password: process.env.LAVAPASS }
-    ]
     this.bugReportsChannelID = '719760089342410772'
     this.commands = new Collection()
     this.aliases = new Collection()
@@ -28,6 +30,9 @@ module.exports = class Bot extends Client {
     this.fetch = require('node-fetch')
     this.stats = new StatsD('localhost', 8125)
     this.ksoft = new KSoftClient(process.env.KSOFTTOKEN)
+    this.dbl = new DBL(process.env.TOPGG, this)
+    this.shoukaku = new Shoukaku(this, LavalinkServer, ShoukakuOptions)
+    this.nowplaying = require('./nowplaying.js')
   };
 
   log (msg) {
@@ -87,6 +92,7 @@ module.exports = class Bot extends Client {
     mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true })
     new Handlers.loadCommands(this)
     new Handlers.loadEvents(this)
+    this._setupShoukakuEvents()
     this.login(process.env.TOKEN)
   }
 
@@ -94,5 +100,29 @@ module.exports = class Bot extends Client {
     return new Promise((resolve) => {
       setTimeout(resolve, ms)
     })
+  }
+
+  async playRadio (guildID, voiceChannelID) {
+    const node = this.shoukaku.getNode()
+    const result = await node.rest.resolve('https://stream.livida.net')
+    const { tracks } = result
+    const track = tracks.shift()
+    const player = await node.joinVoiceChannel({
+      guildID: guildID,
+      voiceChannelID: voiceChannelID
+    })
+    player.on('error', (error) => {
+      console.error(error)
+      player.disconnect()
+    })
+    for (const event of ['end', 'closed', 'nodeDisconnect']) player.on(event, () => player.disconnect())
+    player.playTrack(track)
+  }
+
+  _setupShoukakuEvents () {
+    this.shoukaku.on('ready', (name) => console.log(`Lavalink ${name}: Ready!`))
+    this.shoukaku.on('error', (name, error) => console.error(`Lavalink ${name}: Error Caught,`, error))
+    this.shoukaku.on('close', (name, code, reason) => console.warn(`Lavalink ${name}: Closed, Code ${code}, Reason ${reason || 'No reason'}`))
+    this.shoukaku.on('disconnected', (name, reason) => console.warn(`Lavalink ${name}: Disconnected, Reason ${reason || 'No reason'}`))
   }
 }

@@ -8,19 +8,12 @@ module.exports = {
     if (!data[0]) return
     if ((newMember.channelID === data[0].channelID && data[0].binded)) {
       if (newUserChannel.members.size > 2) return
-      const player = client.music.players.spawn({
-        guild: data[0].guildID,
-        voiceChannel: newUserChannel,
-        textChannel: data[0].textChannel
-      })
-      client.music.search('https://stream.livida.net', client.user.id).then(async res => {
-        player.queue.add(res.tracks[0])
-        if (!player.playing) player.play()
-      })
+      client.playRadio(data[0].guildID, newUserChannel.id)
     } else if (oldUserChannel && oldMember.channelID === data[0].channelID) {
       if (oldUserChannel.members.size < 2) {
         if (oldUserChannel.members.map(x => x.id).includes(client.user.id)) {
-          client.music.players.destroy(oldUserChannel.guild.id)
+          const player = client.shoukaku.getPlayer(oldUserChannel.guild.id)
+          player.stopTrack()
         }
       }
     }
