@@ -22,6 +22,7 @@ module.exports = {
           if (command.creatorOnly && !client.creators.ids.includes(msg.author.id)) return msg.channel.send('This commands is creator only.')
           client.log(`${msg.author.tag} (${msg.author.id}) issued the command ${command.name} in the server ${msg.guild.name} (${msg.guild.id})`)
           command.run(client, msg, args)
+          client.stats.increment('bot.newCommand')
         };
       } catch (err) {
         client.log(err)

@@ -6,7 +6,7 @@ module.exports = {
   description: 'Check what the current song is',
   usage: '',
   permissions: 'SEND_MESSAGES',
-  clientPerms: 'SEND_MESSAGES',
+  clientPerms: 'ATTACH_FILES',
   creatorOnly: false,
   guildOnly: true,
   premiumOnly: false,
