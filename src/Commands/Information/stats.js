@@ -19,7 +19,7 @@ module.exports = {
       .addField('Total Guilds', client.guilds.cache.size, true)
       .addField('Total Users', client.users.cache.size, true)
       .addField('Total Commands', client.commands.size, true)
-      .addField('Radio', `**Listeners:** ${data.listeners + client.music.players.size}`)
+      .addField('Radio', `**Listeners:** ${data.listeners + client.shoukaku.totalPlayers}`)
       .addField('Developers', client.creators.tags.join(', '), true)
       .setFooter('v' + pjson.version)
     msg.channel.send(embed)
