@@ -24,7 +24,7 @@ module.exports = {
     if (!permissions.has('SPEAK')) return msg.channel.send(new client.Embed().error('I cannot connect to your voice channel, make sure I have permission to!'))
 
     const attachment = new MessageAttachment(await client.nowplaying.nowplaying(), 'nowplaying.png')
-    client.playRadio(msg)
+    client.playRadio(msg.guild.id, channel.id)
     msg.channel.send('**Now playing Livida!**', { files: [attachment] })
   }
 }
