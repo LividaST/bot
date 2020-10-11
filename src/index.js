@@ -10,4 +10,9 @@ Sentry.init({
   release: 'discord-bot@' + '2.1.0'
 })
 client.start()
+
+client.dbl.on('posted', () => {
+  console.log('Server count posted!')
+})
+
 module.exports = client
