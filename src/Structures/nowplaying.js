@@ -2,6 +2,7 @@ const { Canvas, resolveImage } = require('canvas-constructor')
 const { registerFont } = require('canvas')
 const Vibrant = require('node-vibrant')
 const fetch = require('node-fetch')
+
 exports.nowplaying = async () => {
   const { data } = await fetch('https://api.livida.net/api/radio/').then(res => res.json())
   const title = data.song.name.length > 30 ? data.song.name.substring(0, 27) + '...' : data.song.name
@@ -21,7 +22,7 @@ exports.nowplaying = async () => {
     .lineTo(1630, 0)
     .lineTo(0, 0)
     .stroke()
-    .printLinearColorGradient(815, 0, 815, 670, [{ position: 0, color: colours.LightVibrant.getHex() }, { position: 100, color: colours.Vibrant.getHex() }])
+    .printLinearColorGradient(815, 0, 815, 670, [{ position: 0, color: colours.LightVibrant.getHex() }, { position: 100, color: colours.DarkVibrant.getHex() }])
     .fill()
     .restore()
     .printRoundedImage(thumbnail, 330, 125, 350, 350, 25)

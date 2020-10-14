@@ -20,7 +20,7 @@
   "homepage": "https://github.com/LividaST/bot#readme",
   "dependencies": {
     "@ksoft/api": "^3.1.9",
-    "@sentry/node": "^5.25.0",
+    "@sentry/node": "^5.26.0",
     "body-parser": "^1.19.0",
     "canvas": "^2.6.1",
     "canvas-constructor": "^4.1.0",
@@ -37,7 +37,7 @@
     "mongoose": "^5.10.9",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.1",
-    "node-vibrant": "^3.1.5",
+    "node-vibrant": "^3.1.6",
     "numeral": "^2.0.6",
     "os-utils": "0.0.14",
     "shoukaku": "^1.5.2"
