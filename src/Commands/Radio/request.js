@@ -11,30 +11,13 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: true,
   run: async (client, msg, args) => {
-    const request = args.splice(1).join(' ')
-    if (args[0]) {
-      switch (args[0].toLowerCase()) {
-        case 'song':
-          sendRequest(request, 'song')
-          break
-        case 'shoutout':
-          sendRequest(request, 'shoutout')
-          break
-        default:
-          msg.channel.send({
-            embed: {
-              description: 'The specified request was not found, try one of the following instead: `song, shoutout`!'
-            }
-          })
-      }
-    } else {
-      sendRequest(args[0], 'song')
-    }
+    const request = args.join(' ')
+    sendRequest(request)
 
-    function sendRequest (content, request) {
+    function sendRequest (content) {
       const body = {
         name: msg.author.tag,
-        type: request,
+        type: 'Song Request',
         message: content,
         requestOrigin: 'Discord'
       }
@@ -45,13 +28,7 @@ module.exports = {
       })
         .then(res => res.json())
         .then(json => {
-          const { data } = json
-          const embed = new client.Embed()
-            .setAuthor(`Request by ${data.name}`)
-            .setDescription(data.message)
-            .addField('Type', client.formatString(data.type))
-            .setFooter('Created at')
-            .setTimestamp(data.createdAt)
+          const embed = new client.Embed().success('Sent the song request')
           msg.channel.send(embed)
         })
     }
