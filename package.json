@@ -43,7 +43,7 @@
     "shoukaku": "^1.5.2"
   },
   "devDependencies": {
-    "snazzy": "^8.0.0",
+    "snazzy": "^9.0.0",
     "standard": "^14.3.4"
   },
   "snyk": true
