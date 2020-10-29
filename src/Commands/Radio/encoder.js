@@ -12,7 +12,7 @@ module.exports = {
   premiumOnly: false,
   run: async (client, msg, args) => {
     const id = crypto.randomBytes(10).toString('hex')
-    if (msg.member.roles.cache.some(role => role.id === '697984508468789258') === false) return msg.channel.send(new client.Embed().error('You need to have the role called `something here` to use this command.'))
+    if (msg.member.roles.cache.some(role => role.id === '743738593620525117') === false) return msg.channel.send(new client.Embed().error('You need to have the role called `something here` to use this command.'))
     const body = {
       streamer_username: msg.mentions.users.first().username,
       streamer_password: id
