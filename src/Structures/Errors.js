@@ -29,7 +29,7 @@ module.exports = class Errors {
   };
 
   async invalidArgs (guild, channel, commandName) {
-    channel.send(new this.client.Embed().error(`That is not the correct usage for that command! Correct usage \`${process.env.PREFIX}${commandName} ${client.commands.get(commandName).usage}\``))
+    channel.send(new this.client.Embed().error(`That is not the correct usage for that command! Correct usage \`${process.env.PREFIX}${commandName} ${this.client.commands.get(commandName).usage}\``))
   };
 
   noClientPerms (channel, permission) {

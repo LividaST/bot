@@ -38,5 +38,10 @@ module.exports = {
       };
     };
     client.stats.increment('bot.newMessage')
+    const suggestionChannels = ['749312053264777216', '771799181999996968']
+    if (suggestionChannels.includes(msg.channel.id)) {
+      msg.react('571759102561091597')
+      msg.react('571759105979449354')
+    }
   }
 }
