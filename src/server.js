@@ -3,8 +3,8 @@ const bodyParser = require('body-parser')
 const Canvas = require('canvas')
 const { MessageAttachment } = require('discord.js')
 const client = require(`${process.cwd()}/src/index.js`)
-var app = express()
-var port = process.env.PORT
+const app = express()
+const port = process.env.PORT
 var listener = app.listen(port, () => {
   console.log('Your app is listening on port ' + listener._connectionKey.split('::::')[1])
 })
