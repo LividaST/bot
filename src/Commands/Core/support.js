@@ -12,7 +12,7 @@ module.exports = {
   requiresArgs: false,
   run: async (client, msg, args) => {
     const embed = new client.Embed()
-      .setDescription('You can get help with the bot by joining the support Discord [here](https://discord.gg/6vRE5NJ)!')
+      .setDescription('You can get help with the bot by joining the support Discord [here](https://discord.gg/77VgNWm5W4)!')
     msg.channel.send(embed)
   }
 }
