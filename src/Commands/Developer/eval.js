@@ -15,7 +15,7 @@ module.exports = {
 
     let codein = args.join(' ')
     if (!args[0]) codein = "'No input given'"
-    var inputt = new client.Embed().setFooter('Livida • Evaluation').setColor('ORANGE')
+    const inputt = new client.Embed().setFooter('Livida • Evaluation').setColor('ORANGE')
       .setDescription(`
 **Input**
 \`\`\`js
@@ -29,7 +29,7 @@ Evaluating...
 `)
 
     msg.channel.send(inputt).then(async message => {
-      var notoken = ['bot.token', 'token', 'client.token', 'process.env.TOKEN']; var nodel = ['require("fs").unlink("/")', 'rm -rf', 'rm *', 'rm .']
+      const notoken = ['bot.token', 'token', 'client.token', 'process.env.TOKEN']; const nodel = ['require("fs").unlink("/")', 'rm -rf', 'rm *', 'rm .']
       if (nodel.includes(codein)) return msg.edit(msg.content + '\n**Output** (Error)\n```You are not permitted to delete any files using evaluation!```')
       if (notoken.includes(codein)) return msg.edit(msg.content + '\n**Output** (Error)\n```You are not permitted to get the bots token using evaluation!```')
 
@@ -38,7 +38,7 @@ Evaluating...
         if (code && code.constructor && code.constructor.name === 'Promise') code = await code
         const type = code != null && code.constructor ? code.constructor.name : typeof code
         if (typeof code !== 'string')code = require('util').inspect(code, { depth: 0 })
-        var output
+        let output
         if (code.length > 1900) {
           client.fetch('https://hasteb.in/documents', { method: 'POST', body: code.replace(bot.token, 'Hiding bots token xoxo').replace(process.env.TOKEN, 'HIDING BOT TOKEN') })
             .then(res => res.json())
@@ -46,7 +46,7 @@ Evaluating...
               code = (`https://hasteb.in/${body.key}`)
             })
         }
-        var outputt = new client.Embed().setFooter('Livida • Evaluation').setColor('GREEN')
+        const outputt = new client.Embed().setFooter('Livida • Evaluation').setColor('GREEN')
           .setDescription(`
 **Input**
 \`\`\`js

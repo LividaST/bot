@@ -13,7 +13,7 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: false,
   run: async (client, msg, args) => {
-    const { data } = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
+    const data = await client.fetch('https://livida.net/api/radio/').then(res => res.json())
     const embed = new client.Embed()
       .setAuthor(`${client.user.username} • Information`, client.user.displayAvatarURL())
       .addField('Total Guilds', client.guilds.cache.size, true)

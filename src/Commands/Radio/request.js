@@ -21,7 +21,7 @@ module.exports = {
         message: content,
         requestOrigin: 'Discord'
       }
-      client.fetch('https://api.livida.net/api/radio/request', {
+      client.fetch('https://livida.net/api/radio/request', {
         method: 'post',
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' }

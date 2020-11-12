@@ -1,4 +1,4 @@
-var numeral = require('numeral')
+const numeral = require('numeral')
 module.exports = {
   name: 'hypixel',
   aliases: ['hy'],

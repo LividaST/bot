@@ -3,8 +3,8 @@ const bodyParser = require('body-parser')
 const Canvas = require('canvas')
 const { MessageAttachment } = require('discord.js')
 const client = require(`${process.cwd()}/src/index.js`)
-var app = express()
-var port = process.env.PORT
+const app = express()
+const port = process.env.PORT
 var listener = app.listen(port, () => {
   console.log('Your app is listening on port ' + listener._connectionKey.split('::::')[1])
 })
@@ -27,8 +27,8 @@ app.post('/radioStats', async function (req, res) {
 
 app.post('/djConnect', async function (req, res) {
   const channel = await client.channels.cache.get('735344974245396581')
-  const { data } = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
-  const thumbnail = data.slot.avatar
+  const data = await client.fetch('https://livida.net/api/radio/').then(res => res.json())
+  const thumbnail = data.dj.avatar
 
   Canvas.registerFont(`${process.cwd()}/assets/bold.otf`, { family: 'SF Pro Display' })
   Canvas.registerFont(`${process.cwd()}/assets/font.otf`, { family: 'SF Pro Display Light' })
@@ -44,9 +44,9 @@ app.post('/djConnect', async function (req, res) {
 
   ctx.font = '30px "SF Pro Display"'
   ctx.fillStyle = '#ffffff'
-  ctx.fillText(`${data.slot.username} has gone live!`, 275, 170)
+  ctx.fillText(`${data.dj.username} has gone live!`, 275, 170)
   ctx.font = '20px "SF Pro Display Light"'
-  ctx.fillText('livida.net/radio', 275, 195)
+  ctx.fillText('livida.net', 275, 195)
   const attachment = new MessageAttachment(canvas.toBuffer(), 'nowplaying.png')
   channel.send(attachment)
   client.log('Sent DJ connect message.')
