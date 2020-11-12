@@ -4,13 +4,13 @@ const Vibrant = require('node-vibrant')
 const fetch = require('node-fetch')
 
 exports.nowplaying = async () => {
-  const { data } = await fetch('https://api.livida.net/api/radio/').then(res => res.json())
-  const title = data.song.name.length > 30 ? data.song.name.substring(0, 27) + '...' : data.song.name
-  const artist = data.song.artist
-  const dj = data.dj
-  const thumbnail = await resolveImage(data.song.art)
-  const djicon = await resolveImage(data.slot.avatar)
-  const colours = await Vibrant.from(data.song.art).maxColorCount(2).getPalette()
+  const data = await fetch('https://api.livida.net/api/radio/').then(res => res.json())
+  const title = data.nowplaying.song.name.length > 30 ? data.nowplaying.song.name.substring(0, 27) + '...' : data.nowplaying.song.name
+  const artist = data.nowplaying.artist.name
+  const dj = data.dj.username
+  const thumbnail = await resolveImage(data.nowplaying.album.art)
+  const djicon = await resolveImage(data.dj.avatar)
+  const colours = await Vibrant.from(data.nowplaying.album.art).maxColorCount(2).getPalette()
 
   registerFont(`${process.cwd()}/assets/OpenSans-Bold.ttf`, { family: 'OpenSans Bold' })
   registerFont(`${process.cwd()}/assets/OpenSans-Regular.ttf`, { family: 'OpenSans' })
