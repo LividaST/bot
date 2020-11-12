@@ -11,7 +11,7 @@ module.exports = {
   premiumOnly: false,
   requiresArgs: false,
   run: async (client, msg, args) => {
-    const { nowplaying } = await client.fetch('https://api.livida.net/api/radio').then(res => res.json())
+    const { nowplaying } = await client.fetch('https://livida.net/api/radio').then(res => res.json())
     const lyrics = await client.ksoft.lyrics.get(nowplaying.song.name + nowplaying.artist.name).then(x => x)
     msg.channel.send(`**${nowplaying.song.name} - ${nowplaying.artist.name}**\n${lyrics.lyrics}`, { split: true })
   }

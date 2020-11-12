@@ -14,7 +14,7 @@ module.exports = {
   premiumOnly: false,
   run: async (client, msg, args) => {
     msg.channel.startTyping()
-    const { data } = await client.fetch('https://api.livida.net/api/radio/timetable/mini').then(res => res.json())
+    const { data } = await client.fetch('https://livida.net/api/radio/timetable/mini').then(res => res.json())
     const djicon1 = await resolveImage(data.now.avatar)
     const djicon2 = await resolveImage(data.next.avatar)
     const djicon3 = await resolveImage(data.later.avatar)

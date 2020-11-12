@@ -27,7 +27,7 @@ app.post('/radioStats', async function (req, res) {
 
 app.post('/djConnect', async function (req, res) {
   const channel = await client.channels.cache.get('735344974245396581')
-  const data = await client.fetch('https://api.livida.net/api/radio/').then(res => res.json())
+  const data = await client.fetch('https://livida.net/api/radio/').then(res => res.json())
   const thumbnail = data.dj.avatar
 
   Canvas.registerFont(`${process.cwd()}/assets/bold.otf`, { family: 'SF Pro Display' })

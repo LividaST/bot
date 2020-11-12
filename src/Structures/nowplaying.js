@@ -4,7 +4,7 @@ const Vibrant = require('node-vibrant')
 const fetch = require('node-fetch')
 
 exports.nowplaying = async () => {
-  const data = await fetch('https://api.livida.net/api/radio/').then(res => res.json())
+  const data = await fetch('https://livida.net/api/radio/').then(res => res.json())
   const title = data.nowplaying.song.name.length > 30 ? data.nowplaying.song.name.substring(0, 27) + '...' : data.nowplaying.song.name
   const artist = data.nowplaying.artist.name
   const dj = data.dj.username
