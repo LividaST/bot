@@ -34,7 +34,7 @@
     "hot-shots": "^8.2.0",
     "last-commit-log": "^3.0.4",
     "moment": "^2.29.1",
-    "mongoose": "^5.10.13",
+    "mongoose": "^5.10.14",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.1",
     "node-vibrant": "^3.1.6",
