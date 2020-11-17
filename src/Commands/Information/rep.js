@@ -24,9 +24,9 @@ module.exports = {
       }
       const data = await client.fetch(`https://discordrep.com/api/v3/rep/${user.id}`, { headers: { Authorization: process.env.DISCORDREP } }).then(res => res.json())
       const embed = new client.Embed()
-        .setAuthor(`${user.username}'s Reputation`, user.avatarURL())
+        .setAuthor(`${user.username}'s Reputation`, user.avatarURL(), `https://discordrep.com/u/${user.id}`)
         .addField('Reputation', `${data.upvotes - data.downvotes} (${data.upvotes}:${data.downvotes})`)
-        .setFooter(`Requested by ${msg.author.tag}`)
+        .setFooter(`Requested by ${msg.author.tag} • Powered by discordrep.com`)
       msg.channel.send(embed)
     } catch {
       msg.channel.send(new client.Embed().error(`The specified user '${args[0]}' was not found!`))
