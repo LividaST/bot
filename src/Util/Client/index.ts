@@ -57,10 +57,7 @@ export default class Client extends Functions {
         this.info(`Loaded events (${this.events.size})`);
 
         this.login(this.ags.dev ? process.env.TOKENDEV : process.env.TOKEN)
-            .then(_ => {
-                this.db = require("../../index").db;
-                this.Handlers.updateData(this);
-            })
-            .catch(e => this.error(e));
+            .then(_ => this.db = require("../../index").db)
+            .catch(this.error);
     }
 }

@@ -40,13 +40,4 @@ export default class HandlerManager {
                 : null;
         })
     }
-
-    updateData(client) {
-        setInterval(() => {
-            client.tcp.ping({address:"176.31.68.246"}, (_, data) => client.rsPing = Math.floor(data.avg));
-            client.tcp.probe("176.31.68.246", 8000,  (_, data) => client.status.radioServer = data);
-            client.tcp.probe("176.31.68.246", 80, (_, data) => client.status.website = data);
-            client.tcp.probe("176.31.68.246", 3000, (_, data) => client.status.authentication = data);
-        }, 1000 * 10);
-    }
 }
