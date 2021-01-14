@@ -9,8 +9,12 @@ import Handlers from "./Handlers";
 env.config();
 
 export default class Client extends Functions {
-    debug: any;
-    config: any;
+    debug: boolean;
+    config: object;
+    devs: string[];
+    moduleEmoji: object;
+    commandCategories: object[];
+    Constants: any;
 
     info?(message: any): void; 
     success?(message: any): void; 
@@ -19,7 +23,6 @@ export default class Client extends Functions {
     events: Collection<any, any>;
     commands: Collection<any, any>;
     aliases: Collection<any, any>;
-    Embed: unknown| MessageEmbed;
     Handlers: Handlers;
     ags: ParsedArgs;
     db: Db;
@@ -27,6 +30,13 @@ export default class Client extends Functions {
     constructor(options: any = {}) {
         super(options);
         this.config = require("../../config");
+
+        this.devs = ["506899274748133376", "264617372227338241"]
+
+        this.commandCategories = require("../Constants/Categories").filter(x => !x.hidden).map(x => x.name);
+        this.Constants = {Emojis: require("../Constants/Emojis"), commandCategories: require("../Constants/Categories")};
+        this.moduleEmoji = this.Constants.Emojis.categories;
+
 
         this.loadExtra();
         this.logging();

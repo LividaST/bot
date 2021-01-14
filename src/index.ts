@@ -9,7 +9,7 @@ export let db;
 
 Database.connect()
     .then(start)
-    .catch(e => console.log(`${chalk.bgRed(` ERROR `)} Could not connect to database:\n${chalk.bgMagenta(" STACK ")} ${e.stack}`));
+    .catch(e => console.log(`${chalk.bgRed(` ERROR `)} Could not continue startup:\n${chalk.bgMagenta(" STACK ")} ${e.stack}`));
 
 
 function start(mongoClient) {

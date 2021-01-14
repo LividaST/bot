@@ -17,11 +17,12 @@ module.exports = {
                 cmd = client.commands.get(input) || client.aliases.get(input),
                 member = client.guilds.cache.get(client.config.main_guild).member(msg.author.id);
 
-            if(!cmd || (cmd.config.permissions.developer && (!member || (!msg.member._roles.includes(client.config.roles.lead_developer) && !msg.member._roles.includes(client.config.roles.developer))))) return;
+            if(!cmd || (cmd.config.permissions.developer && (!member || !msg.member._roles.includes(client.config.roles.developer)))) return;
 
             try {
-                await cmd.run(client, msg, args);
+                await cmd.run(client, msg, args, prefix);
             } catch(e) {
+                console.log(e)
                 msg.reply("an error occured while executing that command! Our development team have been notified.");
                 client.channels.cache.get(client.config.channels.errors).send({embed: {
                     description: `${msg.author} | ${cmd.config.name}\n\n${e}`
