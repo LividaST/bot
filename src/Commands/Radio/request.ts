@@ -48,16 +48,7 @@ module.exports = {
                     msg.edit({embed: {description: `${message.author}, your request has been submitted successfully!`, color: "GREEN"}});
                     msg.delete({timeout: 3000});
                     message.delete({timeout: 3000});
-                    client.fetch('https://livida.net/api/radio/request', {
-                        method: "POST",
-                        body: JSON.stringify({
-                            name: message.author.tag,
-                            type: 'song request',
-                            message: args.join(' '),
-                            requestOrigin: 'Discord'
-                        }),
-                        headers: { 'Content-Type': 'application/json' }
-                    });
+                    client.requestSong(args.join(' '), message.author.tag)
                 })
 
                 no.on("collect", (_, member) => {
@@ -99,16 +90,7 @@ module.exports = {
                 msg.edit({embed: {description: `${message.author}, your request has been submitted successfully!`, color: "GREEN"}});
                 msg.delete({timeout: 3000});
                 message.delete({timeout: 3000});
-                client.fetch('https://livida.net/api/radio/request', {
-                    method: "POST",
-                    body: JSON.stringify({
-                        name: message.author.tag,
-                        type: 'song request',
-                        message: results.data[result-1].artist.name + " - " + results.data[result-1].title,
-                        requestOrigin: 'Discord'
-                    }),
-                    headers: { 'Content-Type': 'application/json' }
-                });
+                client.requestSong(results.data[result-1].artist.name + " - " + results.data[result-1].title, message.author.tag)
             })
 
             no.on("collect", (_, member) => {

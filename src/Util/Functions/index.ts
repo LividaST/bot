@@ -13,7 +13,7 @@ export default class Functions extends Client {
     
 
     
-    getChannel (msg, query) {
+    getChannel(msg, query) {
         if (query.length > 3) return msg.mentions.channels.first() || this.channels.cache.get(query) || this.channels.cache.filter(ch => (ch as any).name.includes(query.toLowerCase()) && ch.type === 'text').first()
         else return msg.mentions.channels.first() || this.channels.cache.get(query)
     };
@@ -24,11 +24,22 @@ export default class Functions extends Client {
         return cm || false;
     };
 
-    upperOne (input: string) {
+    upperOne(input: string) {
         return input.toLowerCase().charAt(0).toUpperCase() + input.substring(1);
     };
 
-    requestSong (userID, song) {
+    requestSong(song: string, user: string) {
+        const body = JSON.stringify({
+            name: user,
+            type: 'Song Request',
+            message: song,
+            requestOrigin: 'Discord'
+        });
         
+        (axios as any)('https://livida.net/api/radio/request', {
+            method: "POST",
+            data: body,
+            headers: { 'Content-Type': 'application/json' }
+        });
     }
 }
