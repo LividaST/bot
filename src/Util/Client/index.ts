@@ -2,8 +2,8 @@ import axios from 'axios';
 import { Client, Collection, MessageEmbed } from 'discord.js';
 import { connect } from 'mongodb';
 
-import * as Interfaces from "../interfaces";
 import * as Constants from '../Constants';
+import * as Interfaces from '../interfaces';
 import * as Methods from '../Methods';
 import Handlers from './Handlers';
 

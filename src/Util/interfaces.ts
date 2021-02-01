@@ -11,7 +11,7 @@ interface Command {
         aliases: string[];
         category: string;
         description: string;
-        usage: string
+        usage: string;
     };
     run(client: Client, message: Message, aliases: any[]): void;
 }

@@ -1,5 +1,3 @@
-import {MessageAttachment} from "discord.js";
-
 module.exports = {
     config: {
         name: "nowplaying",

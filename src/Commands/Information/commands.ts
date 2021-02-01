@@ -62,9 +62,9 @@ module.exports = {
 };
 function commandEmbed(client, message, _, command, msg?, prefix?) {
     const embed = new client.Embed()
-        .setAuthor(`${client.upperOne(command.config.name)}`)
+        .setTitle(`${client.upperOne(command.config.name)}`)
         .setDescription(`\`\`\`yaml\n${command.config.description}\`\`\``)
-        .addField("Category", command.config.category, true)
+        .addField("Category", `${client.moduleEmoji[client.upperOne(command.config.category)]} ${command.config.category}`, true)
         .addField("Aliases", command.config.aliases[0] ? command.config.aliases.map(x => `\`${x}\``).join(", ") : "None", true)
     if(command.config.usage.length > 2) embed.setFooter(`${prefix}${command.config.name} ${command.config.usage}`);
     msg ? (() => {
@@ -75,7 +75,7 @@ function commandEmbed(client, message, _, command, msg?, prefix?) {
 
 function categoryEmbed(client, message, _, commands, category?, msg?) {
     const embed = new client.Embed()
-        .setAuthor(client.upperOne(category), client.user.avatarURL())
+        .setTitle(`${client.moduleEmoji[client.upperOne(category)]} ${client.upperOne(category)}`, client.user.avatarURL())
         .setDescription(commands.map(cmd => `\`${cmd.config.name}\``).join(", "))
         .setFooter(`${commands.size} total commands in this category!`);
     msg ? (() => {

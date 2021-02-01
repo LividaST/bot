@@ -1,6 +1,6 @@
 import API from "../Util/API";
 import Caching from "../Util/Client/Caching";
-import {regenCanvas} from "../Util/methods";
+import {regenStatsCanvas, regenNextCanvas} from "../Util/methods";
 
 module.exports = {
     name: "ready",
@@ -12,7 +12,8 @@ module.exports = {
 
         client.cache = cache;
         
-        setInterval(() => regenCanvas(client).catch(null), 5000)
+        setInterval(() => regenStatsCanvas(client).catch(null), 5000)
+        setInterval(() => regenNextCanvas(client).catch(null), 5000)
         setInterval(() => cache.updateCache(client), 15000)
         setInterval(() => {
             if(!client.maxPing || client.maxPing < client.ws.ping) client.maxPing = client.ws.ping;
