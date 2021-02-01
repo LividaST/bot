@@ -11,7 +11,7 @@ module.exports = {
         }
     },
     run: (client, message, args, prefix) => {
-        const modules = [...new Set(client.commandCategories)], mAliases = [].concat.apply([], client.Constants.commandCategories.map(x => x.aliases));
+        const modules = [...new Set(client.Constants.commandCategories.map(x => x.name))], mAliases = [].concat.apply([], client.Constants.commandCategories.map(x => x.aliases));
         if (client.devs.includes(message.author.id)) modules.push("Developer");
         if (!args[0]) {
             const embed = new client.Embed()
@@ -64,7 +64,7 @@ function commandEmbed(client, message, _, command, msg?, prefix?) {
     const embed = new client.Embed()
         .setAuthor(`${client.upperOne(command.config.name)}`)
         .setDescription(`\`\`\`yaml\n${command.config.description}\`\`\``)
-        .addField("Category", client.config.category, true)
+        .addField("Category", command.config.category, true)
         .addField("Aliases", command.config.aliases[0] ? command.config.aliases.map(x => `\`${x}\``).join(", ") : "None", true)
     if(command.config.usage.length > 2) embed.setFooter(`${prefix}${command.config.name} ${command.config.usage}`);
     msg ? (() => {

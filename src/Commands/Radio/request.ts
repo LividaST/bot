@@ -13,8 +13,15 @@ module.exports = {
     run: async (client, message, args) => {
         let embed: any = {
             description: "Searching...",
-            color: "RANDOM"
+            color: "#8800ff"
         };
+
+        if (!args[0]) return message.channel.send({
+            embed: {
+                description: "Please provide a song name/artist!",
+                color: "RED"
+            }
+        })
 
         message.channel.send({embed}).then(msg=> {
             let searchParams = args.join("+");

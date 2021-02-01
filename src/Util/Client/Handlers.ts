@@ -1,5 +1,5 @@
-import { Client, Collection } from "discord.js";
-import fs from "fs";
+import { Client, Collection } from 'discord.js';
+import fs from 'fs';
 
 let commandFolders = fs.readdirSync(`${process.cwd()}/dist/Commands/`);
 let eventFiles = fs.readdirSync(`${process.cwd()}/dist/Events/`).filter(f => f.endsWith(".js"));

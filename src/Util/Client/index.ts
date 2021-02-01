@@ -1,73 +1,79 @@
-import {Collection, MessageEmbed} from "discord.js";
-import {Db} from "mongodb";
-import chalk from "chalk";
-import minimist, { ParsedArgs } from "minimist";
-import Functions from "../Functions"
-import env from "dotenv";
-import Handlers from "./Handlers";
+import axios from 'axios';
+import { Client, Collection, MessageEmbed } from 'discord.js';
+import { connect } from 'mongodb';
 
-env.config();
+import * as Interfaces from "../interfaces";
+import * as Constants from '../Constants';
+import * as Methods from '../Methods';
+import Handlers from './Handlers';
 
-export default class Client extends Functions {
-    debug: boolean;
-    config: object;
-    devs: string[];
-    moduleEmoji: object;
-    commandCategories: object[];
-    Constants: any;
+export class Livida extends Client {
+    readonly logger = Methods.createLogger();
+    readonly config = require("../../config");
+    readonly chalk = require("chalk");
+    readonly devs = ["506899274748133376"];
 
-    info?(message: any): void; 
-    success?(message: any): void; 
-    error?(message: any): void;
+    fetch = (url: string, options?: object) => axios(url, options).catch(e => console.log(`${this.chalk.bgMagenta(` AXIOS `)} ${e}`));
 
-    events: Collection<any, any>;
-    commands: Collection<any, any>;
-    aliases: Collection<any, any>;
-    Handlers: Handlers;
-    ags: ParsedArgs;
-    db: Db;
+    info = this.logger.info;
+    debug = this.logger.debug;
+    error = this.logger.error;
+    success = this.logger.success;
+
+    db: any;
+    database: any;
+    Constants = {} as any;
+    moduleEmoji: any;
+
+    Handlers = new Handlers(this);
+
+    commands = new Collection<string, Interfaces.Command>();
+    aliases = new Collection<string, Interfaces.Command>();
+    events = new Collection<string, Interfaces.Event>();
+
+    Embed = MessageEmbed;
     
-    constructor(options: any = {}) {
-        super(options);
-        this.config = require("../../config");
+    constructor(options?: Partial<Interfaces.Options>) { super(options); }
 
-        this.devs = ["506899274748133376", "264617372227338241"]
+    async initDatabase() {
+        this.debug("Database... connecting");
+		let db = await connect(process.env.MONGO_URI, {
+			useUnifiedTopology: true,
+			useNewUrlParser: true,
+        })
+        process.stdout.moveCursor(0, -1)
+        process.stdout.clearLine(1);
+		this.success("Database... connected");
+        return db;
+    }
 
-        this.commandCategories = require("../Constants/Categories").filter(x => !x.hidden).map(x => x.name);
-        this.Constants = {Emojis: require("../Constants/Emojis"), commandCategories: require("../Constants/Categories")};
+    async loadExtra() {
+        Object.keys(Methods).forEach(key => 
+            this[key] = Methods[key]
+        );
+
+        Object.keys(Constants).forEach(key => 
+            this.Constants[key] = Constants[key]
+        );
+
         this.moduleEmoji = this.Constants.Emojis.categories;
 
-
-        this.loadExtra();
-        this.logging();
-
-        this.debug = options.debug;
-
-        this.start();
+        return true;
     }
 
-    logging() {
-        this.info = (message: String) => console.log(`${chalk.bgBlue(chalk.white(" INFO "))} ${message}`);
-        this.success = (message: String) => console.log(`${chalk.bgGreen(" SUCCESS ")} ${message}`);
-        this.error = (message: String)  => console.log(`${chalk.bgRed(" ERROR ")} ${message}`);
-    }
+    async login(token = process.env.TOKEN) {
+        this.db = (await this.initDatabase()).db("botdev");
+        await this.loadExtra();
 
-    loadExtra() {
-        this.ags = minimist(process.argv);
-    }
-
-    start() {
-        this.Handlers = new Handlers(this);
         this.Handlers.loadEvents(this);
         this.Handlers.loadCommands(this);
 
-        new Functions(this);
 
         this.info(`Loaded commands (${this.commands.size})`);
-        this.info(`Loaded events (${this.events.size})`);
+		this.info(`Loaded events (${this.events.size})`);
 
-        this.login(this.ags.dev ? process.env.TOKENDEV : process.env.TOKEN)
-            .then(_ => this.db = require("../../index").db)
-            .catch(this.error);
+        super.login(token).catch(this.logger.error)
+
+        return token as string;
     }
 }

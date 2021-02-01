@@ -13,6 +13,6 @@ module.exports = {
         }
     },
     run: (client, message) => {
-        message.channel.send(new MessageAttachment(client.nowPlaying, "nowplaying.png"));
+        message.channel.send(client.nowPlaying);
     }
 }

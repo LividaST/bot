@@ -1,21 +1,15 @@
-import Client from "./Util/Client/"
-import chalk from "chalk";
-import * as Database from "./Util/Database";
+import env from 'dotenv';
 
-let {pmdDB, MongoClient} = Database;
+import { Livida } from './util/client';
 
-export let Bot: Client;
-export let db;
+env.config();
 
-Database.connect()
-    .then(start)
-    .catch(e => console.log(`${chalk.bgRed(` ERROR `)} Could not continue startup:\n${chalk.bgMagenta(" STACK ")} ${e.stack}`));
+const client = new Livida({
+	token: process.env.TOKEN,
+	debug: false,
+	_apiPort: 3000
+})
 
+client.login();
 
-function start(mongoClient) {
-    MongoClient = mongoClient;
-	pmdDB = MongoClient.db("botdev");
-    console.log(`${chalk.bgGreen(` SUCCESS `)} Connected to the database.`);
-    db = pmdDB;
-    Bot = new Client({ debug: false }); 
-}
+export {client};

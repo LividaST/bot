@@ -1,6 +1,4 @@
 export default class CacheManager {
-    constructor(){}
-
     updateCache(client) {
         client.users.cache
             .forEach(user => 
