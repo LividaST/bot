@@ -23,6 +23,7 @@ export class Livida extends Client {
     db: any;
     database: any;
     Constants = {} as any;
+    music = new Collection<string, object>();
     moduleEmoji: any;
 
     Handlers = new Handlers(this);
