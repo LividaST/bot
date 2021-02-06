@@ -1,6 +1,6 @@
 import env from 'dotenv';
 
-import { Livida } from './util/client';
+import { Livida } from './util/client/';
 
 env.config();
 
