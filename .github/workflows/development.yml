@@ -25,5 +25,5 @@ jobs:
           source ~/.nvm/nvm.sh
           cd /root/discordbotdev
           git pull
-          npm i
+          yarn compile
           pm2 restart 1
