@@ -17,9 +17,9 @@ module.exports = {
         
         if(!user) return message.channel.send(new client.Embed().setDescription(`:warning: | ${message.author}, the specified member was not found!`));
         if(message.member != message.guild.owner && message.member.roles.highest.rawPosition <= (message.guild.members.cache.get(user.id) ? message.guild.members.cache.get(user.id).roles.highest.rawPosition : 0)) 
-            return message.channel.send(new client.Embed().setDescription(`<a:dndspin:730564359000031289> | ${message.author}, you cannot ban this member, their highest role is higher than your highest role!`).setColor("ORANGE"));
+            return message.channel.send(new client.Embed().setDescription(`⚠ | ${message.author}, you cannot ban this member, their highest role is higher than your highest role!`).setColor("ORANGE"));
         if(message.member != message.guild.owner && message.guild.me.roles.highest.rawPosition <= (message.guild.members.cache.get(user.id) ? message.guild.members.cache.get(user.id).roles.highest.rawPosition : 0)) 
-            return message.channel.send(new client.Embed().setDescription(`<a:dndspin:730564359000031289> | ${message.author}, I cannot ban this member, their highest role is higher than my highest role!`).setColor("ORANGE"));
+            return message.channel.send(new client.Embed().setDescription(`⚠ | ${message.author}, I cannot ban this member, their highest role is higher than my highest role!`).setColor("ORANGE"));
         
         const embed = new client.Embed()
             .setDescription(`**${message.author.tag}** has banned **${user.tag}** from the server!${args[1] ? ` Reason: **${args.splice(1).join(" ") || "No reason specified!"}**` : ""}`)
