@@ -13,10 +13,17 @@ export default class CacheManager {
             .collection("cachedUsers")
             .find({cached: true})
             .toArray()
-            .then(cachedUsers => 
-                cachedUsers.forEach(cachedUser => 
-                    client.users.fetch(cachedUser.id)
-                )
-            );
+            .then(cachedUsers => {
+                let count = cachedUsers.length, done = 1;
+                client.info(`Loading cached members... 0/${count}`)
+                cachedUsers.forEach((cachedUser, i) => {
+                    setTimeout(() => {
+                        process.stdout.moveCursor(0, -1)
+                        process.stdout.clearLine(1);
+                        client.info(`Loading cached members... ${done++}/${count}`)
+                        client.users.fetch(cachedUser.id)
+                    }, i * 10)
+                })
+            });
     }
 }
