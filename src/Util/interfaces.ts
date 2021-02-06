@@ -3,7 +3,7 @@ import {Client, Message, ClientOptions} from "discord.js";
 interface Options extends ClientOptions {
     token?: string;
     debug: boolean;
-    _apiPort: number;
+    _apiPort: number | string;
 }
 interface Command {
     config: {

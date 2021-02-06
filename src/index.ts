@@ -7,7 +7,7 @@ env.config();
 const client = new Livida({
 	token: process.env.TOKEN,
 	debug: false,
-	_apiPort: 3000
+	_apiPort: process.env.PORT
 })
 
 client.login();
