@@ -1,6 +1,0 @@
-{
-    "deepscan.enable": true,
-    "conventionalCommits.scopes": [
-        "bot"
-    ]
-}
