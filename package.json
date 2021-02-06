@@ -1,6 +1,6 @@
 {
   "name": "livida-bot",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Official Livida Discord bot",
   "main": "src/index.ts",
   "scripts": {
@@ -26,7 +26,7 @@
     "radio",
     "typescript"
   ],
-  "author": "Callum OKane (callumok2004)",
+  "author": "Livida",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lividast/bot/issues"
