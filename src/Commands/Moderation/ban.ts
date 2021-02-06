@@ -11,6 +11,7 @@ module.exports = {
     },
     run: async (client, message, args) => {
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.perms("BAN_MEMBERS");
+        if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.meperms("BAN_MEMBERS");
         if(!args[0]) return message.channel.send(new client.Embed().setDescription(`:warning: | ${message.author}, please specify a member to ban!`).setColor("ORANGE"));
 
         const user = message.mentions.users.first() || await client.users.fetch(args[0]) || client.getUser(args[0]);

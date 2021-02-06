@@ -49,8 +49,11 @@ export const requestSong = (song: string, user: string) => {
 }
 
 export const regenStatsCanvas = async (client) => {
-	const data = await client.fetch('https://livida.net/api/radio/').then(res => res.data).catch(null),
-        title = data.nowplaying.song.name.length > 30 ? data.nowplaying.song.name.substring(0, 27) + '...' : data.nowplaying.song.name,
+	const data = await client.fetch('https://livida.net/api/radio/').then(res => res ? res.data : {error: true});
+    if(data.error) return;
+
+
+    const title = data.nowplaying.song.name.length > 30 ? data.nowplaying.song.name.substring(0, 27) + '...' : data.nowplaying.song.name,
         artist = data.nowplaying.artist.name,
         dj = data.dj.username,
         thumbnail = await resolveImage(data.nowplaying.album.art),
@@ -84,8 +87,10 @@ export const regenStatsCanvas = async (client) => {
 }
 
 export const regenNextCanvas = async (client) => {
-    const { data } = await client.fetch('https://livida.net/api/radio/timetable/mini').then(res => res.data),
-        djicon1 = await resolveImage(data.now.avatar),
+    const { data } = await client.fetch('https://livida.net/api/radio/timetable/mini').then(res => res ? res.data : {error: true});
+    if(data.error) return;
+    
+    const djicon1 = await resolveImage(data.now.avatar),
         djicon2 = await resolveImage(data.next.avatar),
         djicon3 = await resolveImage(data.later.avatar);
 

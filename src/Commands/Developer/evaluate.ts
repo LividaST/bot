@@ -12,7 +12,7 @@ module.exports = {
             developer: true
         }
     },
-    run: (client, message, args) => {
+    run: async (client, message, args) => {
         const bot = client, token = client.token;
         let codein = args.join(" ");
         if (!args[0]) codein = "'No input given'";

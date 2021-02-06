@@ -1,7 +1,10 @@
 module.exports = {
     name: "message",
     type: "client",
-    run: (client, msg) => {
+    run: async (client, msg) => {
+        let coll = await client.db.collection("blacklisted"), blacklisted = await (await coll.find({})).toArray();
+        if(blacklisted.map(x => x.discordID).includes(msg.author.id)) return;
+
         if(msg.channel.type == "dm") return;
         let prefixes = client.config.prefixes, exec = false;
         prefixes.forEach(async inp => {
