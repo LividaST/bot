@@ -9,12 +9,6 @@
     "quick": "yarn compile && yarn start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "@types/mongodb": "^3.5.26",
-    "@types/node": "^14.11.2",
-    "rimraf": "^3.0.2",
-    "ts-devscript": "^1.0.8"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lividast/bot.git"
@@ -46,6 +40,10 @@
     "minimist": "^1.2.5",
     "mongodb": "^3.6.3",
     "node-vibrant": "^3.2.1-alpha.1",
-    "opusscript": "0.0.7"
+    "opusscript": "0.0.7",
+    "@types/mongodb": "^3.5.26",
+    "@types/node": "^14.11.2",
+    "rimraf": "^3.0.2",
+    "ts-devscript": "^1.0.8"
   }
 }
