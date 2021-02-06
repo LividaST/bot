@@ -24,6 +24,12 @@ export const getChannel = (msg, query) => {
 
 export const getCommand = (cmd) => client.aliases.get(cmd.toLowerCase()) || client.commands.get(cmd.toLowerCase()) || false;
 
+export const getUser = (queryy) => {
+    const query = queryy.toString()
+    const target = client.users.cache.get(query) || client.users.cache.filter(u => u.username.toLowerCase().includes(query.toLowerCase())).first() || client.users.cache.filter(u => u.tag.toLowerCase().includes(query.toLowerCase())).first()
+    return target
+};
+
 export const upperOne = (input: string) => input.toLowerCase().charAt(0).toUpperCase() + input.substring(1);
 
 
