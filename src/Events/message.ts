@@ -3,7 +3,7 @@ module.exports = {
     type: "client",
     run: (client, msg) => {
         if(msg.channel.type == "dm") return;
-        let prefixes = ["l!", "1!"], exec = false;
+        let prefixes = client.config.prefixes, exec = false;
         prefixes.forEach(async inp => {
             if(exec) return;
             let prefix = msg.content.match(new RegExp(`^<@!?${client.user.id}> `))
