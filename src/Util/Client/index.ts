@@ -2,9 +2,9 @@ import axios from 'axios';
 import { Client, Collection, MessageEmbed } from 'discord.js';
 import { connect } from 'mongodb';
 
-import * as Constants from '../Constants';
+import * as Constants from '../constants';
 import * as Interfaces from '../interfaces';
-import * as Methods from '../Methods';
+import * as Methods from '../methods';
 import Handlers from './Handlers';
 
 export class Livida extends Client {
