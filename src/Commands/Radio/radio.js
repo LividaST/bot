@@ -24,7 +24,7 @@ module.exports = {
     if (!permissions.has('SPEAK')) return msg.channel.send(new client.Embed().error('I cannot connect to your voice channel, make sure I have permission to!'))
 
     client.playRadio(msg.guild.id, channel.id)
-    const rdata = await fetch('https://livida.net/api/radio/').then(res => res.json())
+    const rdata = await client.fetch('https://livida.net/api/radio/').then(res => res.json())
     const embed = new client.Embed()
       .setTitle('Livida • Nowplaying')
       .setAuthor(rdata.dj.username, rdata.dj.avatar)

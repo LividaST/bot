@@ -10,7 +10,7 @@ module.exports = {
   guildOnly: true,
   premiumOnly: false,
   run: async (client, msg, args) => {
-    const data = await fetch('https://livida.net/api/radio/').then(res => res.json())
+    const data = await client.fetch('https://livida.net/api/radio/').then(res => res.json())
     const embed = new client.Embed()
       .setTitle('Livida • Nowplaying')
       .setAuthor(data.dj.username, data.dj.avatar)
