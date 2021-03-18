@@ -15,6 +15,7 @@ module.exports = {
       .setTitle('Livida • Nowplaying')
       .setAuthor(data.dj.username, data.dj.avatar)
       .addField(data.nowplaying.song.name, data.nowplaying.artist.name)
+      .setThumbnail(data.nowplaying.album)
     msg.channel.send(embed)
   }
 }
