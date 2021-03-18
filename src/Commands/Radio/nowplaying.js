@@ -1,4 +1,3 @@
-const { MessageAttachment } = require('discord.js')
 module.exports = {
   name: 'nowplaying',
   aliases: ['np', 'currenttrack', 'current'],
@@ -11,9 +10,11 @@ module.exports = {
   guildOnly: true,
   premiumOnly: false,
   run: async (client, msg, args) => {
-    msg.channel.startTyping()
-    const attachment = new MessageAttachment(await client.nowplaying.nowplaying(), 'nowplaying.png')
-    msg.channel.stopTyping()
-    await msg.channel.send(attachment)
+    const data = await fetch('https://livida.net/api/radio/').then(res => res.json())
+    const embed = new client.Embed()
+      .setTitle('Livida • Nowplaying')
+      .setAuthor(data.dj.username, data.dj.avatar)
+      .addField(data.nowplaying.song.name, data.nowplaying.artist.name)
+    msg.channel.send(embed)
   }
 }

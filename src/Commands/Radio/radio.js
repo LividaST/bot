@@ -23,8 +23,12 @@ module.exports = {
     if (!permissions.has('CONNECT')) return msg.channel.send(new client.Embed().error('I cannot connect to your voice channel, make sure I have permission to!'))
     if (!permissions.has('SPEAK')) return msg.channel.send(new client.Embed().error('I cannot connect to your voice channel, make sure I have permission to!'))
 
-    const attachment = new MessageAttachment(await client.nowplaying.nowplaying(), 'nowplaying.png')
     client.playRadio(msg.guild.id, channel.id)
-    msg.channel.send('**Now playing Livida!**', { files: [attachment] })
+    const rdata = await fetch('https://livida.net/api/radio/').then(res => res.json())
+    const embed = new client.Embed()
+      .setTitle('Livida • Nowplaying')
+      .setAuthor(rdata.dj.username, rdata.dj.avatar)
+      .addField(rdata.nowplaying.song.name, rdata.nowplaying.artist.name)
+    msg.channel.send('**Now playing Livida!**', { embed: embed })
   }
 }
