@@ -20,8 +20,8 @@ module.exports = class Bot extends Client {
     this.aliases = new Collection()
     this.prefix = process.env.PREFIX
     this.creators = {
-      tags: ['Callum#6052', 'MegaJoshy#0001'],
-      ids: ['506899274748133376', '264617372227338241']
+      tags: ['MegaJoshy#0001'],
+      ids: ['264617372227338241']
     }
     this.Embed = Embed
     this.Errors = new Errors(this)
