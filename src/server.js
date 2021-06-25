@@ -46,7 +46,7 @@ app.post('/djConnect', async function (req, res) {
     .setColor('#FFFFFF')
     .printText(data.dj.username, 300, 110)
     .setTextFont('75px OpenSans')
-    .printText('Now live', 300, 185)
+    .printText('Now live', 300, 190)
     .setTextFont('36px OpenSans Bold')
     .toBuffer()
 
