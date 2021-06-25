@@ -29,7 +29,7 @@ app.post('/radioStats', async function (req, res) {
 })
 
 app.post('/djConnect', async function (req, res) {
-  const channel = await client.channels.cache.get('765691834701185034')
+  const channel = await client.channels.cache.get('735344974245396581')
   const data = await client.fetch('https://livida.net/api/radio/').then(res => res.json())
   const thumbnail = await resolveImage(data.dj.avatar)
   const colours = await Vibrant.from(data.dj.avatar).maxColorCount(2).getPalette()
