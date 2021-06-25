@@ -1,7 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const Canvas = require('canvas')
 const { MessageAttachment } = require('discord.js')
+const { Canvas, resolveImage } = require('canvas-constructor')
+const { registerFont } = require('canvas')
+const Vibrant = require('node-vibrant')
+const fetch = require('node-fetch')
 const client = require(`${process.cwd()}/src/index.js`)
 const app = express()
 const port = process.env.PORT
@@ -26,28 +29,28 @@ app.post('/radioStats', async function (req, res) {
 })
 
 app.post('/djConnect', async function (req, res) {
-  const channel = await client.channels.cache.get('735344974245396581')
+  const channel = await client.channels.cache.get('765691834701185034')
   const data = await client.fetch('https://livida.net/api/radio/').then(res => res.json())
-  const thumbnail = data.dj.avatar
+  const thumbnail = await resolveImage(data.dj.avatar)
+  const colours = await Vibrant.from(data.dj.avatar).maxColorCount(2).getPalette()
 
-  Canvas.registerFont(`${process.cwd()}/assets/bold.otf`, { family: 'SF Pro Display' })
-  Canvas.registerFont(`${process.cwd()}/assets/font.otf`, { family: 'SF Pro Display Light' })
-  const canvas = Canvas.createCanvas(800, 360)
-  const ctx = canvas.getContext('2d')
+  registerFont(`${process.cwd()}/assets/OpenSans-Bold.ttf`, { family: 'OpenSans Bold' })
+  registerFont(`${process.cwd()}/assets/OpenSans-Regular.ttf`, { family: 'OpenSans' })
 
-  const background = await Canvas.loadImage(`${process.cwd()}/assets/waves.png`)
-  ctx.fillStyle = '#1f1f1f'
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
-  ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
-  const songimage = await Canvas.loadImage(thumbnail)
-  ctx.drawImage(songimage, 100, canvas.height / 2 - 150 / 2, 150, 150)
+  const nowplaying = new Canvas(1630, 300)
+    .printLinearColorGradient(815, 0, 815, 300, [{ position: 0, color: colours.LightVibrant.getHex() }, { position: 100, color: colours.DarkVibrant.getHex() }])
+    .printRectangle(0, 0, 1630, 300)
+    .printRoundedImage(thumbnail, 25, 25, 250, 250, 25)
+    .setTextAlign('left')
+    .setTextFont('100px OpenSans Bold')
+    .setColor('#FFFFFF')
+    .printText(data.dj.username, 300, 110)
+    .setTextFont('75px OpenSans')
+    .printText('Now live', 300, 185)
+    .setTextFont('36px OpenSans Bold')
+    .toBuffer()
 
-  ctx.font = '30px "SF Pro Display"'
-  ctx.fillStyle = '#ffffff'
-  ctx.fillText(`${data.dj.username} has gone live!`, 275, 170)
-  ctx.font = '20px "SF Pro Display Light"'
-  ctx.fillText('livida.net', 275, 195)
-  const attachment = new MessageAttachment(canvas.toBuffer(), 'nowplaying.png')
+  const attachment = new MessageAttachment(nowplaying, 'nowplaying.png')
   channel.send(attachment)
   client.log('Sent DJ connect message.')
   res.json({ success: true })
